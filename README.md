@@ -1,4 +1,4 @@
-# Pastel Evening Theme
+# Pastel Evening Theme <img src="icon.png" width="32">
 
 Dark theme with pastel colors and a slight blue hint to the editor.
 
