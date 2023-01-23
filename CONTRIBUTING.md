@@ -10,7 +10,9 @@ Please check the existing issues/PRs for similar issues before adding new one. A
 
 All from above also applies here but there are few basic stylistic and structural choices I'd like to keep with new additions. 
 
-* For this repo and open it with VS Code.
+### Modifying the theme
+
+* Fork this repo and open it with VS Code.
 * What's in the folder
   * This folder contains all of the files necessary for your color theme extension.
   * `package.json` - this is the manifest file that defines the location of the theme file and specifies the base theme of the theme.
