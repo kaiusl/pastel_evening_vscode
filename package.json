@@ -1,0 +1,38 @@
+{
+  "name": "pastel-evening-theme",
+  "displayName": "Pastel Evening Theme",
+  "description": "Dark theme with pastel colors and a slight blue hint to the editor.",
+  "publisher": "kaiusl",
+  "version": "0.1.0",
+  "icon": "icon.png",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kaiusl/pastel_evening_vscode.git"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "Theme",
+    "Dark",
+    "Pastel",
+    "Evening"
+  ],
+  "galleryBanner": {
+    "color": "#292b33",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.64.0"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "Pastel Evening Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/pastel_evening_dark.json"
+      }
+    ]
+  }
+}
