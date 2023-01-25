@@ -81,5 +81,5 @@ Editor's UI style is inspired by [Lapce] editor's default dark theme.
 [Panda Syntax]: https://marketplace.visualstudio.com/items?itemName=tinkertrain.theme-panda
 [Gatito Theme]: https://marketplace.visualstudio.com/items?itemName=pawelgrzybek.gatito-theme
 [Lapce]: https://lapce.dev/
-[ColorScheme.md]: ColorScheme.md
-[CONTRIBUTING.md]: CONTRIBUTING.md
+[ColorScheme.md]: https://github.com/kaiusl/pastel_evening_vscode/blob/main/ColorScheme.md
+[CONTRIBUTING.md]: https://github.com/kaiusl/pastel_evening_vscode/blob/main/CONTRIBUTING.md

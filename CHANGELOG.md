@@ -6,6 +6,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Fixed
+
+* Broken links to .md files in Marketplace.
+* Inconsistent input background colors in the settings.
+
 ## [0.1.0]
 
 - Initial release
