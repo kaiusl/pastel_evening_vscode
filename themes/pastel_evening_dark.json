@@ -599,23 +599,23 @@
 		"charts.red": "#f28585",
 		"charts.yellow": "#eddd9a",
 		// settings
-		// "settings.checkboxBackground": "#f0f", // "#3c3c3c"
+		"settings.checkboxBackground": "#23252b",
 		// "settings.checkboxBorder": "#f0f", // "#3c3c3c"
 		// "settings.checkboxForeground": "#f0f", // "#f0f0f0"
-		// "settings.dropdownBackground": "#f0f", // "#3c3c3c"
+		"settings.dropdownBackground": "#23252b",
 		// "settings.dropdownBorder": "#f0f", // "#3c3c3c"
 		// "settings.dropdownForeground": "#acafbf", // "#f0f0f0"
 		// "settings.dropdownListBorder": "#f0f", // "#1c1f24"
 		"settings.focusedRowBackground": "#2d323b",
 		// "settings.focusedRowBorder": "#00000030", // "#007fd4"
-		"settings.headerBorder": "#00000060", // "#80808059"
-		"settings.headerForeground": "#d1d5eb", // "#e7e7e7"
-		"settings.modifiedItemIndicator": "#0a6bb1", // "#0c7d9d"
-		// "settings.numberInputBackground": "#f0f", // "#3c3c3c"
-		// "settings.numberInputForeground": "#acafbf", // "#cccccc"
-		"settings.rowHoverBackground": "#2d323b80", // "#2a2d2e4d"
+		"settings.headerBorder": "#00000060",
+		"settings.headerForeground": "#d1d5eb",
+		"settings.modifiedItemIndicator": "#0a6bb1",
+		"settings.numberInputBackground": "#23252b",
+		//"settings.numberInputForeground": "#acafbf", // "#cccccc"
+		"settings.rowHoverBackground": "#2d323b80",
 		// "settings.sashBorder": "#f0f", // "#80808059"
-		// "settings.textInputBackground": "#23252b", // "#3c3c3c"
+		"settings.textInputBackground": "#23252b",
 		// "settings.textInputForeground": "#acafbf", // "#cccccc"
 		// "settings.numberInputBorder": "#f0f",
 		// "settings.textInputBorder": "#f0f",
@@ -956,6 +956,7 @@
 				"source.hcl variable", // HCL: 
 				"keyword.other.cabal", // Cabal: keys
 				"variable.name.pestfile", // Pest: variables
+				"a"
 			],
 			"settings": {
 				"foreground": "#d1d5eb",
