@@ -956,7 +956,6 @@
 				"source.hcl variable", // HCL: 
 				"keyword.other.cabal", // Cabal: keys
 				"variable.name.pestfile", // Pest: variables
-				"a"
 			],
 			"settings": {
 				"foreground": "#d1d5eb",
