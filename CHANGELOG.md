@@ -6,6 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.1.1]
+
 ### Fixed
 
 * Broken links to .md files in Marketplace.
@@ -15,5 +17,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Initial release
 
-[Unreleased]: https://github.com/kaiusl/pastel_evening_vscode/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/kaiusl/pastel_evening_vscode/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.1.1
 [0.1.0]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.1.0
