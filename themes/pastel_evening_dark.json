@@ -635,8 +635,8 @@
 		"diffEditor.insertedTextBackground": "#2f5f48",
 		"diffEditor.removedLineBackground": "#422c2f",
 		"diffEditor.removedTextBackground": "#60393c",
-		"diffEditorGutter.insertedLineBackground": "#254236",
-		"diffEditorGutter.removedLineBackground": "#422c2f",
+		"diffEditorGutter.insertedLineBackground": "#2f5f48",
+		"diffEditorGutter.removedLineBackground": "#60393c",
 		"diffEditorOverview.insertedForeground": "#3b805e",
 		"diffEditorOverview.removedForeground": "#824a4c",
 		"diffEditor.diagonalFill": "#353842", // 

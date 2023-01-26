@@ -79,9 +79,10 @@ Main uses:
 
 ## Diff
 
-* Added   - 12.5-5% green
-* Removed - 12.5-5% red
-* Changed - 12.5-5% blue
+* Added   - BG: #254236, Highlight: #2f5f48
+* Removed - BG: #422c2f, Highlight: #60393c
+* Changed - BG: #263645, Highlight: #314c62
+* Else    - BG: #413e33, Highlight: #5e5943
 
 ## UI
 
