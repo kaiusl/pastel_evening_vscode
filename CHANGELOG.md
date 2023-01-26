@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+# Added
+
+* Defined muted code colors in [ColorScheme.md]
+
 ## [0.1.1]
 
 ### Fixed
@@ -20,3 +24,5 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 [Unreleased]: https://github.com/kaiusl/pastel_evening_vscode/compare/v0.1.1...HEAD
 [0.1.1]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.1.1
 [0.1.0]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.1.0
+
+[ColorScheme.md]: https://github.com/kaiusl/pastel_evening_vscode/blob/main/ColorScheme.md
