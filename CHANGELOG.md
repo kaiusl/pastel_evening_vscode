@@ -6,11 +6,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
-# Added
+### Added
 
 * Defined muted code colors in [ColorScheme.md]
 
-# Changed
+### Changed
 
 * Slight color adjustments
   * UI background colors and blue highlights
