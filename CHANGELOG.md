@@ -19,6 +19,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   * Code in comments
   * Terminal uses same colors as code highlighting
 
+### Fixed
+
+* CSS: Invalid bracket color in function calls
+
 ## [0.1.1]
 
 ### Fixed

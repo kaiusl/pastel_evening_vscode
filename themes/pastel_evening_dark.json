@@ -1054,6 +1054,7 @@
 				// without it they remain gray.
 				"source.go punctuation.definition.string",
 				"meta.selector.css punctuation", // CSS: punctuation in selectors
+				"meta.property-value.css punctuation", // CSS: function call brackets
 				"source.css keyword punctuation", // CSS: @ in keywords
 				"keyword.other.elm", // Elm: operators =
 				"keyword.other.colon.elm", // Elm: colon
@@ -1375,6 +1376,16 @@
 				"fontStyle": ""
 			}
 		},
+		// {
+		// 	"name": "heading link",
+		// 	"scope": [
+		// 		"text.html.markdown markup.heading string.other.link", // Markdown, AsciiDoc: headings
+		// 	],
+		// 	"settings": {
+		// 		"foreground": "#69edab",
+		// 		"fontStyle": "underline"
+		// 	}
+		// },
 		{
 			"name": "inline code",
 			"scope": [
