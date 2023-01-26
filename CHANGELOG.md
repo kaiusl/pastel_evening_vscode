@@ -10,6 +10,15 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Defined muted code colors in [ColorScheme.md]
 
+# Changed
+
+* Slight color adjustments
+  * UI background colors and blue highlights
+  * Diff backgrounds
+  * Find match backgrounds
+  * Code in comments
+  * Terminal uses same colors as code highlighting
+
 ## [0.1.1]
 
 ### Fixed
