@@ -22,6 +22,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Fixed
 
 * CSS: Invalid bracket color in function calls
+* C++: Invalid bracket color in attributes
 
 ## [0.1.1]
 

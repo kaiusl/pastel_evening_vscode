@@ -1042,6 +1042,7 @@
 				"punctuation.separator.inheritance.ruby", // Ruby: < separator
 				"storage.type.function.arrow.java", // Java: -> in lambdas
 				"punctuation.definition.directive.cpp", // C++: # in preprocessor directives
+				"source.cpp support.other.attribute punctuation", // C++: [[]] in attributes
 				"source.fsharp support.function.attribute", // F#: attributes
 				"meta.var.expr meta.arrow storage.type.function.arrow", // JS, TS, JSX, TSX: fat arrow
 				"source meta.arrow storage.type.function.arrow", // JS, TS, JSX, TSX: => in lambdas
