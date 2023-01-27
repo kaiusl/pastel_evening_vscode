@@ -1180,7 +1180,7 @@
 				"comment string",
 			],
 			"settings": {
-				"foreground": "#bc946d",
+				"foreground": "#ba936b",
 				"fontStyle": ""
 			}
 		},
@@ -1403,7 +1403,7 @@
 				"comment markup.inline.raw.string",
 			],
 			"settings": {
-				"foreground": "#bc946d",
+				"foreground": "#ba936b",
 				"fontStyle": ""
 			}
 		},
@@ -1682,11 +1682,11 @@
 		"variable.static.injected:rust": "#a9acbe",
 		"constParameter.injected:rust": "#a9acbe",
 		// literals
-		"string.injected:rust": "#bc946d",
-		"character.injected:rust": "#bc946d",
+		"string.injected:rust": "#ba936b",
+		"character.injected:rust": "#ba936b",
 		"escapeSequence.injected:rust": "#b47747",
-		"formatSpecifier.injected:rust": "#bc946d",
-		"number.injected:rust": "#bc946d",
+		"formatSpecifier.injected:rust": "#ba936b",
+		"number.injected:rust": "#ba936b",
 		"boolean.injected:rust": "#c36c6d",
 		// attributes
 		"builtinAttribute.injected:rust": "#bfb37d",
