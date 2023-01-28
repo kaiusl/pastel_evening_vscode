@@ -50,7 +50,7 @@ Thus if the colors seem a bit too bright you can slightly lower the fontWeight a
 
 The theme has been tested with various languages, mainly against the examples from [Code Syntax Examples] repo but with some other projects as well.
 
-* C++, C#, F#, Go, Haskell, Java, Javascript (+ React), Typescript (+ React), CSS, HTML, Kotlin, Python, Ruby, Rust, Dart[^1], Elm[^1], PHP[^1], Scala[^1]
+* C++, C#, F#, Go, Haskell, Java, Javascript (.js, .jsx), Typescript (.ts, .tsx), CSS, HTML, Kotlin, Python, Ruby, Rust, Dart[^1], Elm[^1], PHP[^1], Scala[^1]
 * Markup and text
     * LaTeX, Markdown, AsciiDoc
 * Misc
@@ -68,6 +68,11 @@ Check out [CONTRIBUTING.md] for more information.
 
 This theme's code style is inspired by [Panda Syntax]'s and [Gatito Theme]'s pastel colors. 
 Editor's UI style is inspired by [Lapce] editor's default dark theme.
+
+## Availability for other editors
+
+* JetBrains IDEs - wip
+* Visual Studio - wip
 
 ## License
 

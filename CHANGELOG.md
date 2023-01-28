@@ -6,6 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.2.0] - 2023-01-28
+
 ### Added
 
 * Defined muted code colors in [ColorScheme.md]
@@ -26,18 +28,19 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * C++: Invalid bracket color in attributes
 * LaTeX: Headings not being colored green
 
-## [0.1.1]
+## [0.1.1] - 2023-01-25
 
 ### Fixed
 
 * Broken links to .md files in Marketplace.
 * Inconsistent input background colors in the settings.
 
-## [0.1.0]
+## [0.1.0] - 2023-01-23
 
 - Initial release
 
-[Unreleased]: https://github.com/kaiusl/pastel_evening_vscode/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/kaiusl/pastel_evening_vscode/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.2.0
 [0.1.1]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.1.1
 [0.1.0]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.1.0
 
