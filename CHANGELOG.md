@@ -18,11 +18,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   * Find match backgrounds
   * Code in comments
   * Terminal uses same colors as code highlighting
+* Markup and LaTeX heading colors decrease in brightness for every sublevel
 
 ### Fixed
 
 * CSS: Invalid bracket color in function calls
 * C++: Invalid bracket color in attributes
+* LaTeX: Headings not being colored green
 
 ## [0.1.1]
 

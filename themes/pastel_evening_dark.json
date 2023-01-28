@@ -1371,9 +1371,76 @@
 			"name": "headings",
 			"scope": [
 				"markup.heading", // Markdown, AsciiDoc: headings
+				"text.tex meta.function.section.part entity.name", // TeX: part name
+				"text.tex meta.function.section.chapter entity.name", // TeX: chapter name
+				"text.tex meta.function.section.section entity.name", // TeX: section name
 			],
 			"settings": {
 				"foreground": "#69edab",
+				"fontStyle": ""
+			}
+		},
+		{
+			"name": "headings 2",
+			"scope": [
+				"markup heading.2", // Markdown: lvl 2 headings
+				"markup.heading.heading-1", // AsciiDoc: lvl 2 heading text
+				"markup.heading.heading-1 markup.heading", // AsciiDoc: lvl 2 heading #=
+				"text.tex meta.function.section.subsection entity.name", // TeX: subsection name
+			],
+			"settings": {
+				"foreground": "#63dfa1",
+				"fontStyle": ""
+			}
+		},
+		{
+			"name": "headings 3",
+			"scope": [
+				"markup heading.3", // Markdown: lvl 3 headings
+				"markup.heading.heading-2", // AsciiDoc: lvl 3 heading text
+				"markup.heading.heading-2 markup.heading", // AsciiDoc: lvl 3 heading #=
+				"text.tex meta.function.section.subsubsection entity.name", // TeX: subsubsection name
+			],
+			"settings": {
+				"foreground": "#5cd096",
+				"fontStyle": ""
+			}
+		},
+		{
+			"name": "headings 4",
+			"scope": [
+				"markup heading.4", // Markdown: lvl 4 headings
+				"markup.heading.heading-3", // AsciiDoc: lvl 4 heading text
+				"markup.heading.heading-3 markup.heading", // AsciiDoc: lvl 4 heading #=
+				"text.tex meta.function.section.paragraph entity.name", // TeX: paragraph name
+			],
+			"settings": {
+				"foreground": "#56c08b",
+				"fontStyle": ""
+			}
+		},
+		{
+			"name": "headings 5",
+			"scope": [
+				"markup heading.5", // Markdown: lvl 5 headings
+				"markup.heading.heading-4", // AsciiDoc: lvl 5 heading text
+				"markup.heading.heading-4 markup.heading", // AsciiDoc: lvl 5 heading #=
+				"text.tex meta.function.section.subparagraph entity.name", // TeX: subparagraph name
+			],
+			"settings": {
+				"foreground": "#4ead7e",
+				"fontStyle": ""
+			}
+		},
+		{
+			"name": "headings 6",
+			"scope": [
+				"markup heading.6", // Markdown: lvl 6 headings
+				"markup.heading.heading-5", // AsciiDoc: lvl 6 heading text
+				"markup.heading.heading-5 markup.heading" // AsciiDoc: lvl 6 heading #=
+			],
+			"settings": {
+				"foreground": "#469970",
 				"fontStyle": ""
 			}
 		},
@@ -1528,16 +1595,7 @@
 				"foreground": "#acafbf",
 				"fontStyle": ""
 			}
-		},
-		{
-			"scope": [
-				"text.tex entity.name.section", // TeX: environment names
-			],
-			"settings": {
-				"foreground": "#e6b583",
-				"fontStyle": ""
-			}
-		},
+		}
 	],
 	"semanticHighlighting": true,
 	// def tokens: https://github.com/Microsoft/vscode/blob/main/src/vs/platform/theme/common/tokenClassificationRegistry.ts#L364
