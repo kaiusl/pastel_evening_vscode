@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Changed
+
+* Very small color adjustments. Probably not even noticeable.
+
 ## [0.2.0] - 2023-01-28
 
 ### Added

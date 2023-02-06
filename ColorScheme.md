@@ -3,7 +3,7 @@
 This document outlines overall theme style and colors.
 
 > TIP: View this file inside the VSCode with [Color Highlight] (or similar) extension for easy visualization of colors.
-> 
+
 ## Code
 
 > Elements not listed below are file specific but should follow the style of code in some meaningful way. If some color cannot be used anywhere in such a way, it can replace some other color if it results in better contrast or more pleasing visuals.
@@ -17,20 +17,20 @@ This document outlines overall theme style and colors.
 
 | scope              | color   | muted   | description                                               |
 | ------------------ | ------- | ------- | --------------------------------------------------------- |
-| keywords           | #f28585 | #c36c6d |                                                           |
+| keywords           | #f28585 | #c46d6d |                                                           |
 | function like      | #6dbaf2 | #5997c4 | functions, macros, enum members(may be language specific) |
 | types              | #69edab | #56c08b | including primitive types like `str`, `int`               |
-| traits/interfaces  | #eddd9a | #bfb37d |                                                           |
-| attributes         | #eddd9a | #bfb37d | derives, decorators, annotations                          |
-| namespaces/modules | #acafbf | #8b8e9b |                                                           |
-| operators          | #acafbf | #8b8e9b |                                                           |
-| local variables    | #acafbf | #8b8e9b |                                                           |
-| special variables  | #d1d5eb | #a9acbe | parameters, constants, struct/class members               |
+| traits/interfaces  | #eddd9a | #c0b37e |                                                           |
+| attributes         | #eddd9a | #c0b37e | derives, decorators, annotations                          |
+| namespaces/modules | #acafbf | #8c8e9b |                                                           |
+| operators          | #acafbf | #8c8e9b |                                                           |
+| local variables    | #acafbf | #8c8e9b |                                                           |
+| special variables  | #d1d5eb | #a9adbf | parameters, constants, struct/class members               |
 | strings            | #e6b583 | #ba936b | includes prefixes and suffixes                            |
-| string escapes     | #df9355 | #b47747 | \n \u123, template delimiters and format specifiers       |
+| string escapes     | #df9355 | #b57847 | \n \u123, template delimiters and format specifiers       |
 | numbers            | #e6b583 | #ba936b | includes prefixes and suffixes                            |
-| labels             | #df9355 | #b47747 | label names, lifetimes in rust                            |
-| comments           | #737580 | #5e5f69 |                                                           |
+| labels             | #df9355 | #b57847 | label names, lifetimes in rust                            |
+| comments           | #737580 | #5e6069 |                                                           |
 | code in comments   |         |         | same color as the actual code but muted variant           |
 
 Muted variant is 62.5% value in muted colors table below.
@@ -62,27 +62,28 @@ Main uses:
 * 62.5% - muted code (in docs), terminal colors
 * 12.5%, 7.5%, 5.0% - backgrounds (diff, find matches)
 
-| name         | 100%    | 87.5%   | 75%     | 62.5%   | 50%     | 37.5%   | 25%     | 12.5%   | 7.5%    | 5.0%    |
+| name         | 100%    | 87.5%   | 75%     | 62.5%   | 50%     | 37.5%   | 25%     | 12.5%   | 7.5%    | 5%      |
 | ------------ | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
-| red          | #f28585 | #e37d7d | #d47575 | #c36c6d | #b16263 | #9c5758 | #824a4c | #60393c | #4e3134 | #422c2f |
-| magenta      | #e086e0 | #d27ed3 | #c476c5 | #b56db5 | #a463a4 | #905891 | #794b7a | #5a3a5b | #49314b | #3e2c41 |
-| blue         | #6dbaf2 | #66afe3 | #60a3d4 | #5997c4 | #5188b1 | #48789c | #3e6583 | #314c62 | #2a3f50 | #263645 |
-| cyan         | #74dada | #6dcdcd | #66bfbf | #5eb0b0 | #56a0a0 | #4c8d8d | #417677 | #335859 | #2c4849 | #273e40 |
-| green        | #69edab | #63dfa1 | #5cd096 | #56c08b | #4ead7e | #469970 | #3c805e | #2f5f48 | #294d3d | #254236 |
-| yellow       | #eddd9a | #dfd091 | #d0c287 | #bfb37d | #ada272 | #988e65 | #7f7756 | #5e5943 | #4c4839 | #413e33 |
-| light_orange | #e6b583 | #d8aa7b | #ca9f73 | #ba936b | #a88562 | #947557 | #7c634b | #5c4a3b | #4a3d33 | #40352f |
-| orange       | #df9355 | #d28a50 | #c3814c | #b47747 | #a36c42 | #8f603c | #785135 | #593e2d | #48342a | #3e2e28 |
-| white        | #d1d5eb | #c4c8dd | #b7bbce | #a9acbe | #999cac | #878998 | #71737f | #54565f | #44464e | #3b3c43 |
-| gray         | #acafbf | #a2a4b4 | #979aa8 | #8b8e9b | #7e808c | #6f717c | #5e5f69 | #46484f | #3a3c42 | #32343a |
-| dark_gray    | #737580 | #6c6e78 | #656771 | #5e5f69 | #55575f | #4c4d55 | #414249 | #33343a | #2b2d32 | #27292e |
-| black        | #000000 | #0b0c0d | #0f1013 | #121317 | #15161a | #17191d | #191b1f | #1b1d21 | #1b1d22 | #1c1e23 |
+| red          | #f28585 | #e47d7e | #d57576 | #c46d6d | #b16364 | #9c5859 | #834b4c | #613a3c | #4e3134 | #432c2f |
+| purple       | #e086e0 | #d37ed3 | #c576c5 | #b56db6 | #a464a5 | #915891 | #794b7a | #5a3a5c | #49324c | #3f2c42 |
+| blue         | #6dbaf2 | #67afe4 | #60a4d5 | #5997c4 | #5189b2 | #49799d | #3e6683 | #314d62 | #2a3f51 | #273746 |
+| cyan         | #74dada | #6ecdcd | #67c0c0 | #5fb1b1 | #56a0a0 | #4d8d8e | #427677 | #33585a | #2c484a | #283e40 |
+| green        | #69edab | #63dfa1 | #5dd097 | #56c08b | #4fae7f | #469970 | #3c805f | #305f49 | #294e3d | #264237 |
+| yellow       | #eddd9a | #dfd091 | #d0c288 | #c0b37e | #aea272 | #998f66 | #807856 | #5f5943 | #4d4939 | #423f33 |
+| light orange | #e6b583 | #d9ab7c | #ca9f74 | #ba936b | #a98562 | #947657 | #7c634b | #5c4b3b | #4b3e34 | #40362f |
+| orange       | #df9355 | #d28b51 | #c4824c | #b57847 | #a46d42 | #90603c | #795236 | #5a3f2e | #49352a | #3e2f28 |
+| white        | #d1d5eb | #c5c9dd | #b8bbcf | #a9adbf | #999cad | #878a98 | #717480 | #545660 | #45474f | #3b3d44 |
+| base         | #acafbf | #a2a5b4 | #979aa8 | #8c8e9b | #7f818d | #70727d | #5e6069 | #474950 | #3b3c43 | #33353b |
+| gray         | #737580 | #6d6e79 | #666771 | #5e6069 | #565760 | #4c4e56 | #41434a | #33353b | #2c2d33 | #28292f |
+| black        | #000000 | #0b0c0e | #0f1113 | #131417 | #15171a | #17191d | #191b20 | #1b1d22 | #1c1e23 | #1c1e23 |
+
 
 ## Diff
 
-* Added   - BG: #254236, Highlight: #2f5f48
-* Removed - BG: #422c2f, Highlight: #60393c
-* Changed - BG: #263645, Highlight: #314c62
-* Else    - BG: #413e33, Highlight: #5e5943
+* Added   - BG: #264237, Highlight: #305f49
+* Removed - BG: #432c2f, Highlight: #613a3c
+* Changed - BG: #273746, Highlight: #314d62
+* Else    - BG: #423f33, Highlight: #5f5943
 
 ## UI
 
@@ -102,23 +103,24 @@ Main uses:
 |                            |         |                                                |
 | very dark highlight        | #2b3947 | inactive selections                            |
 | dark highlight             | #324454 | active selections                              |
-| highlight                  | #0d70b9 | buttons, badges, tab highlight, resize borders |
+| highlight                  | #0e70ba | buttons, badges, tab highlight, resize borders |
 | slightly lighter highlight | #0a77c5 | button hover                                   |
 |                            |         |                                                |
-| match background           | #1c1e24 | currently selected match                       |
-| match highlight            | #60393c | other matches                                  |
+| match background           | #1d1f24 | currently selected match                       |
+| match highlight            | #613a3c | other matches                                  |
 
-* Use subtle borders darker than the inner area usually "#00000040".
+* Use subtle borders darker than the inner area usually #00000040.
 * Hover is slightly lighter, focused slightly lighter than that.
 
 If possible and it looks good, try to use colors from code section for yellows, greens etc.
 However below are some other darker and brighter colors used:
 
-| name          | 100%    | 87.5%   | 75%     | 62.5%   | 50%     | 37.5%   | 25%     | 12.5%   | 7.5%    |
-| ------------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
-| bright blue   | #0a77c5 | #0d70b9 | #1069ad | #1361a0 | #155891 | #174f80 | #18436c | #1a3552 | #1b2d44 |
-| bright red    | #ee5c5c | #e05757 | #d15152 | #c04c4c | #ae4546 | #993e40 | #803638 | #5f2c2f | #4c272b |
-| bright green  | #50e080 | #4bd278 | #47c471 | #42b569 | #3ca45f | #369055 | #2f7949 | #275a3a | #234932 |
-| bright yellow | #fdbc4b | #eeb147 | #dea543 | #cc983f | #b98a3b | #a27a36 | #886631 | #644d2b | #513f28 |
+| name          | 100%    | 87.5%   | 75%     | 62.5%   | 50%     | 37.5%   | 25%     | 12.5%   | 7.5%    | 5%      |
+| ------------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
+| bright red    | #ee5c5c | #e05757 | #d15252 | #c14c4d | #ae4647 | #9a3f40 | #803739 | #5f2d30 | #4d282b | #422529 |
+| bright blue   | #0a77c5 | #0e70ba | #1169ad | #1461a0 | #165991 | #184f80 | #1a446c | #1b3552 | #1c2e44 | #1c2a3c |
+| bright green  | #50e080 | #4cd379 | #47c571 | #42b669 | #3da460 | #379156 | #30794a | #285b3b | #244a33 | #223f2f |
+| bright yellow | #fdbc4b | #eeb147 | #dea544 | #cd9940 | #b98a3b | #a37a37 | #886731 | #654d2b | #524029 | #453727 |
+
 
 [Color Highlight]: https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight

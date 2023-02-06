@@ -71,7 +71,7 @@ Editor's UI style is inspired by [Lapce] editor's default dark theme.
 
 ## Availability for other editors
 
-* JetBrains IDEs - wip
+* JetBrains' IDEs - wip
 * Visual Studio - wip
 
 ## License
