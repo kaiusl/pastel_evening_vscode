@@ -1,5 +1,6 @@
 **
-!themes/pastel_evening_dark.json
+!themes/*.json
+!out/mdstyle/*.css
 !README.md
 !CHANGELOG.md
 !LICENSE.md

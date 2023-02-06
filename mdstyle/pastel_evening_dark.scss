@@ -1,0 +1,114 @@
+[data-vscode-theme-name='Pastel Evening Dark'] .markdown-body {
+
+    pre,
+    blockquote {
+        background-color: #23252c;
+    }
+
+    .hljs-keyword,
+    .hljs-literal,
+    .hljs-variable.language_ {
+        color: #f28585;
+    }
+
+    .hljs-built_in {
+        color: #69edab;
+    }
+
+    .hljs-type,
+    .hljs-class,
+    .hljs-title.class_,
+    .hljs-title.class_.inherited__,
+    .hljs-class .hljs-title,
+    .hljs-type .hljs-title {
+        color: #69edab
+    }
+
+    .hljs-function,
+    .hljs-title.function_,
+    .hljs-title.function_.invoke__,
+    .hljs-function .hljs-title {
+        color: #6dbaf2;
+    }
+
+    .hljs-number {
+        color: #e6b583;
+    }
+
+    .hljs-regexp,
+    .hljs-string {
+        color: #e6b583
+    }
+
+    .hljs-char.escape_ {
+        color: #df9355
+    }
+
+    .hljs-subst {
+        color: #acafbf;
+    }
+
+    .hljs-symbol {
+        color: #df9355;
+    }
+
+    .hljs-operator .hljs-punctuation {
+        color: #acafbf
+    }
+
+    .hljs-variable {
+        color: #acafbf;
+    }
+
+    .hljs-property,
+    .hljs-variable.constant_,
+    .hljs-params {
+        color: #d1d5eb;
+    }
+
+    .hljs-comment,
+    .hljs-doctag {
+        color: #737580;
+    }
+
+    .hljs-meta,
+    .hljs-meta .hljs-keyword {
+        color: #eddd9a;
+    }
+
+    .hljs-section,
+    .hljs-name {
+        color: #69edab;
+    }
+
+    .hljs-tag {
+        color: #acafbf;
+    }
+
+    .hljs-attr,
+    .hljs-attribute {
+        color: #d1d5eb
+    }
+
+    .hljs-selector-tag,
+    .hljs-selector-class,
+    .hljs-selector-pseudo {
+        color: #69edab;
+    }
+
+    .hljs-selector-id {
+        color: #df9355;
+    }
+
+    .hljs-selector-attr {
+        color: #d1d5eb;
+    }
+
+    .hljs-addition {
+        color: #69edab
+    }
+
+    .hljs-deletion {
+        color: #f28585;
+    }
+}

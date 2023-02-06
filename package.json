@@ -3,7 +3,7 @@
   "displayName": "Pastel Evening Theme",
   "description": "Dark theme with pastel colors and a slight blue hint to the editor.",
   "publisher": "kaiusl",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "icon": "icon.png",
   "license": "MIT",
   "repository": {
@@ -33,6 +33,16 @@
         "uiTheme": "vs-dark",
         "path": "./themes/pastel_evening_dark.json"
       }
+    ],
+    "markdown.previewStyles": [
+      "./out/mdstyle/pastel_evening_dark.css"
     ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build:mdstyle",
+    "build:mdstyle": "sass --no-source-map mdstyle/pastel_evening_dark.scss out/mdstyle/pastel_evening_dark.css"
+  },
+  "devDependencies": {
+    "sass": "^1.57.1"
   }
 }

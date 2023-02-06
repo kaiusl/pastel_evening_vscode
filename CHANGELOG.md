@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Added
+
+* Stylesheet for markdown preview for highlighting code blocks.
+
 ### Changed
 
 * Very small color adjustments. Probably not even noticeable.
