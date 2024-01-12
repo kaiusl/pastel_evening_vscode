@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Make selection colors transparent in order to not to hide underlying decorations ([#1]).
 * Find new color (#eddd9a30) for hover, word and other editor highlights that previously used the same color as selection ([#1]).
+* Add "editorIndentGuide.activeBackground1", "editorIndentGuide.background1" colors to replace deprecated "editorIndentGuide.activeBackground", "editorIndentGuide.background".
 
 ## [0.3.0] - 2023-02-06
 

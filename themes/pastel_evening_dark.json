@@ -201,6 +201,8 @@
 		"editor.foreground": "#acafbf",
 		"editorIndentGuide.activeBackground": "#484a59",
 		"editorIndentGuide.background": "#353842",
+		"editorIndentGuide.activeBackground1": "#484a59",
+		"editorIndentGuide.background1": "#353842",
 		"editor.foldBackground": "#353842",
 		"editorCursor.foreground": "#acafbf",
 		// "editorCursor.background": "#353842",
