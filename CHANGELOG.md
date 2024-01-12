@@ -6,6 +6,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Fixed
+
+* Make selection colors transparent in order to not to hide underlying decorations ([#1]).
+* Find new color (#eddd9a30) for hover, word and other editor highlights that previously used the same color as selection ([#1]).
+
 ## [0.3.0] - 2023-02-06
 
 ### Added
@@ -56,3 +61,5 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 [0.1.0]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.1.0
 
 [ColorScheme.md]: https://github.com/kaiusl/pastel_evening_vscode/blob/main/ColorScheme.md
+
+[#1]: https://github.com/kaiusl/pastel_evening_vscode/issues/1
