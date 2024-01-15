@@ -26,6 +26,11 @@
   "engines": {
     "vscode": "^1.80.0"
   },
+  "main": "./dist/src/extension.js",
+  "browser": "./dist/src/extension_web.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "contributes": {
     "themes": [
       {
@@ -36,14 +41,33 @@
     ],
     "markdown.previewStyles": [
       "./dist/mdstyle/pastel_evening_dark.css"
-    ]
+    ],
+    "configuration": {
+      "title": "Pastel Evening Theme",
+      "properties": {
+        "pastelEveningTheme.italics": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use italics for static variables and members.",
+          "order": 0
+        },
+        "pastelEveningTheme.underlined": {
+          "type": "boolean",
+          "default": true,
+          "description": "Underline mutable variables and members.",
+          "order": 0
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run build",
-    "build": "ts-node src/scripts/generate_theme.ts",
+    "build": "npm run export-version && npm run compile-ts && node ./dist/src/scripts/generate_theme.js",
+    "compile-ts": "tsc -p ./",
+    "export-version": "node -p \"'export const THEME_VERSION = ' + JSON.stringify(require('./package.json').version) + ';'\" > src/version.ts",
     "watch": "nodemon --exec 'npm run build'",
     "clean": "rm -r dist",
-    "clean_node": "rm -rf node_modules",
+    "clean-node": "rm -rf node_modules",
     "web-test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=./",
     "test": "jest"
   },
@@ -58,7 +82,6 @@
     "jest": "^29.7.0",
     "nodemon": "^3.0.2",
     "ts-jest": "^29.1.1",
-    "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }
 }

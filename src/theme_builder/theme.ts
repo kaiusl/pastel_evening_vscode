@@ -5,6 +5,7 @@
 import { Color } from "../color/color";
 import path, { join } from "path"
 import { DIST_MDSTYLE_DIR, DIST_THEMES_DIR } from "../common_defs";
+import { Config } from "../config";
 
 enum ThemeKind {
     DARK = "dark",
@@ -125,10 +126,14 @@ export class ThemeDef {
         displayName: string,
         kind: ThemeKind,
         colors: ThemeColors,
+        cfg: Config
     ) {
         this.fileName = fileName;
         this.displayName = displayName;
         this.kind = kind;
+
+        this.italics = cfg.italics;
+        this.underlined = cfg.underlined;
 
         this.bgColor0 = colors.bg0;
         this.bgColor1 = colors.bg1;
@@ -208,6 +213,9 @@ export class ThemeDef {
     displayName: string;
     kind: ThemeKind;
 
+    italics: boolean;
+    underlined: boolean;
+
     bgColor0: Color;
     bgColor1: Color;
     bgColor2: Color;
@@ -283,12 +291,13 @@ export class ThemeDef {
     mdstyleContribPath: string;
 }
 
-export function createDarkTheme(): ThemeDef {
+export function createDarkTheme(cfg: Config): ThemeDef {
     return new ThemeDef(
         "pastel_evening_dark",
         "Pastel Evening Dark",
         ThemeKind.DARK,
-        darkColors
+        darkColors,
+        cfg
     )
 }
 
@@ -305,7 +314,7 @@ export function buildThemeJson(themeDef: ThemeDef): string {
     return JSON.stringify(theme, null, 4);
 }
 
-function editorColors(theme: ThemeDef) {
+function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
     const muted = function (c: Color): Color {
         return c.overlayOpacity(theme.mutedOpacity, theme.overlayBaseColor)
     }
@@ -1082,23 +1091,27 @@ function editorColors(theme: ThemeDef) {
     return colors
 }
 
-export function tokenColors(theme: ThemeDef) {
+
+type TokenSettings = {
+    foreground?: string | Color,
+    fontStyle: string
+}
+
+type TokenSettingsItem = {
+    name?: string,
+    scope: string[] | string,
+    settings: TokenSettings
+}
+
+
+export function tokenColors(theme: ThemeDef): TokenSettingsItem[] {
     const muted = function (c: Color): Color {
         return c.overlayOpacity(theme.mutedOpacity, theme.overlayBaseColor)
     }
 
-    type Settings = {
-        foreground?: string | Color,
-        fontStyle: string
-    }
+    const useItalics = theme.italics ? "italic" : ""
 
-    type Item = {
-        name?: string,
-        scope: string[] | string,
-        settings: Settings
-    }
-
-    const out: Item[] = [
+    const out: TokenSettingsItem[] = [
         {
             "name": "DEV: highlight missing colors",
             "scope": [
@@ -1837,7 +1850,7 @@ export function tokenColors(theme: ThemeDef) {
             ],
             "settings": {
                 "foreground": theme.codeFgColor2,
-                "fontStyle": "italic"
+                "fontStyle": useItalics
             }
         },
         {
@@ -1857,7 +1870,7 @@ export function tokenColors(theme: ThemeDef) {
             ],
             "settings": {
                 "foreground": theme.codeFgColor4,
-                "fontStyle": "italic"
+                "fontStyle": useItalics
             }
         },
         {
@@ -1953,19 +1966,20 @@ export function tokenColors(theme: ThemeDef) {
     return out
 }
 
-export function semanticTokenColors(theme: ThemeDef) {
+type SemanticHiglightItem = {
+    italic?: boolean,
+    bold?: boolean,
+    underline?: boolean,
+    foreground?: Color | string
+}
+
+
+export function semanticTokenColors(theme: ThemeDef): { [k: string]: SemanticHiglightItem | string | Color } {
     const muted = function (c: Color): Color {
         return c.overlayOpacity(theme.mutedOpacity, theme.overlayBaseColor)
     }
 
-    type SemanticHiglightValue = {
-        italic?: boolean,
-        bold?: boolean,
-        underline?: boolean,
-        foreground?: Color | string
-    }
-
-    const colors: { [k: string]: SemanticHiglightValue | string | Color } = {
+    const colors: { [k: string]: SemanticHiglightItem | string | Color } = {
         //"generic": color.code_base,
         "parameter": theme.specialVariablesColor, // Parameters inside the functions are only detected by semantic highlighting, color them here
         "selfParameter:python": theme.keywordsColor, // Python: above override self parameter too, need to override it again
@@ -1974,7 +1988,7 @@ export function semanticTokenColors(theme: ThemeDef) {
             "italic": false,
         },
         "*.static": {
-            "italic": true
+            "italic": theme.italics
         },
         "*.static.constant": {
             "italic": false
@@ -1983,7 +1997,7 @@ export function semanticTokenColors(theme: ThemeDef) {
             "italic": false
         },
         "*.mutable": {
-            "underline": true
+            "underline": theme.underlined
         },
         "member:fsharp": theme.specialVariablesColor, // F#: members which are otherwise mapped to entity.name.function
         // Kotlin: variables/parameters are either mutable or readonly, 
@@ -1994,7 +2008,7 @@ export function semanticTokenColors(theme: ThemeDef) {
         //     Parameter -> parameter in function signature/head
         // so effectively there is no consistency between variable and it's color, so color them all gray
         "property:kotlin": {
-            "underline": true,
+            "underline": theme.underlined,
             "foreground": theme.localVariablesColor
         },
         "property.readonly:kotlin": {
@@ -2002,7 +2016,7 @@ export function semanticTokenColors(theme: ThemeDef) {
             "foreground": theme.localVariablesColor
         },
         "parameter:kotlin": {
-            "underline": true,
+            "underline": theme.underlined,
             "foreground": theme.localVariablesColor
         },
         "parameter.readonly:kotlin": {
@@ -2010,7 +2024,7 @@ export function semanticTokenColors(theme: ThemeDef) {
             "foreground": theme.localVariablesColor
         },
         "variable:kotlin": {
-            "underline": true,
+            "underline": theme.underlined,
             "foreground": theme.localVariablesColor
         },
         "variable.readonly:kotlin": {

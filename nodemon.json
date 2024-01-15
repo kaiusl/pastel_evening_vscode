@@ -4,6 +4,9 @@
         "package.json",
         "tsconfig.json"
     ],
-    "ignore": [ "src/color/color.test.ts" ],
+    "ignore": [ 
+        "src/color/color.test.ts", 
+        "src/version.ts" 
+    ],
     "ext": "ts"
 }

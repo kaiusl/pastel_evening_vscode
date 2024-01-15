@@ -1,5 +1,7 @@
 **
 
+!dist/src/color/*.js
+!dist/src/theme_builder/*.js
 !dist/src/*.js
 !dist/themes/**
 !dist/mdstyle/**

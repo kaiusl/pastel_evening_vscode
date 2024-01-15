@@ -7,6 +7,7 @@ import { buildColorSchemeMd } from '../theme_builder/color_scheme_md';
 import { DIST_DIR, DIST_MDSTYLE_DIR, DIST_THEMES_DIR } from '../common_defs';
 import { buildMdstyleCss } from '../theme_builder/mdstyle';
 import { createDarkTheme, buildThemeJson } from '../theme_builder/theme';
+import { defaultConfig } from '../config';
 
 for (const dir of [DIST_DIR, DIST_THEMES_DIR, DIST_MDSTYLE_DIR]) {
     if (!fs.existsSync(dir)) {
@@ -14,7 +15,8 @@ for (const dir of [DIST_DIR, DIST_THEMES_DIR, DIST_MDSTYLE_DIR]) {
     }
 }
 
-const theme = createDarkTheme()
+const cfg = defaultConfig()
+const theme = createDarkTheme(cfg)
 const json = buildThemeJson(theme);
 fs.writeFile(theme.themeDistPath, json, (err) => {
     if (err) throw err;
