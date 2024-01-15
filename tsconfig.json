@@ -6,7 +6,7 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "rootDir": "src",
-    "outDir": "dist/src",
+    "outDir": "out/src",
     "lib": [
       "es2022"
     ]
