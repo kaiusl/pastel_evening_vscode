@@ -1,3 +1,4 @@
+
 # Color scheme
 
 This document outlines overall theme style and colors.
@@ -66,6 +67,7 @@ Main uses:
 | ------------ | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
 | red          | #f28585 | #e47d7e | #d57576 | #c46d6d | #b16364 | #9c5859 | #834b4c | #613a3c | #4e3134 | #432c2f |
 | purple       | #e086e0 | #d37ed3 | #c576c5 | #b56db6 | #a464a5 | #915891 | #794b7a | #5a3a5c | #49324c | #3f2c42 |
+| purple2      | #b385e0 | #a97dd3 | #9d75c5 | #916db6 | #8463a5 | #745891 | #624b7a | #493a5c | #3c314c | #352c42 |
 | blue         | #6dbaf2 | #67afe4 | #60a4d5 | #5997c4 | #5189b2 | #49799d | #3e6683 | #314d62 | #2a3f51 | #273746 |
 | cyan         | #74dada | #6ecdcd | #67c0c0 | #5fb1b1 | #56a0a0 | #4d8d8e | #427677 | #33585a | #2c484a | #283e40 |
 | green        | #69edab | #63dfa1 | #5dd097 | #56c08b | #4fae7f | #469970 | #3c805f | #305f49 | #294e3d | #264237 |
@@ -101,10 +103,8 @@ Main uses:
 | light fg                   | #bfc3d4 |                                                |
 | bright fg                  | #d1d5eb | highlight text                                 |
 |                            |         |                                                |
-| very dark highlight        | #2b3947 | inactive selections                            |
-| dark highlight             | #324454 | active selections                              |
-| highlight                  | #0e70ba | buttons, badges, tab highlight, resize borders |
-| slightly lighter highlight | #0a77c5 | button hover                                   |
+| dark highlight             | #264053 | active selections                              |
+| highlight                  | #0d70b9 | buttons, badges, tab highlight, resize borders |
 |                            |         |                                                |
 | match background           | #1d1f24 | currently selected match                       |
 | match highlight            | #613a3c | other matches                                  |
@@ -118,7 +118,7 @@ However below are some other darker and brighter colors used:
 | name          | 100%    | 87.5%   | 75%     | 62.5%   | 50%     | 37.5%   | 25%     | 12.5%   | 7.5%    | 5%      |
 | ------------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
 | bright red    | #ee5c5c | #e05757 | #d15252 | #c14c4d | #ae4647 | #9a3f40 | #803739 | #5f2d30 | #4d282b | #422529 |
-| bright blue   | #0a77c5 | #0e70ba | #1169ad | #1461a0 | #165991 | #184f80 | #1a446c | #1b3552 | #1c2e44 | #1c2a3c |
+| bright blue   | #0d70b9 | #106aae | #1363a3 | #155c97 | #175489 | #184b79 | #1a4066 | #1c334e | #1c2c41 | #1c2839 |
 | bright green  | #50e080 | #4cd379 | #47c571 | #42b669 | #3da460 | #379156 | #30794a | #285b3b | #244a33 | #223f2f |
 | bright yellow | #fdbc4b | #eeb147 | #dea544 | #cd9940 | #b98a3b | #a37a37 | #886731 | #654d2b | #524029 | #453727 |
 

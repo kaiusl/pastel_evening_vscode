@@ -1,6 +1,8 @@
 **
-!themes/*.json
-!out/mdstyle/*.css
+
+!dist/src/*.js
+!dist/themes/**
+!dist/mdstyle/**
 !README.md
 !CHANGELOG.md
 !LICENSE.md
