@@ -8,6 +8,7 @@ import { DIST_DIR } from './common_defs'
 import * as config from './config'
 import { buildThemeJson } from './theme_builder/theme'
 import { ThemeDef, createDarkTheme } from './theme_builder/theme'
+import { buildMdstyleCss } from './theme_builder/mdstyle'
 
 let savedConfigPath: vscode.Uri
 let extensionRoot: string
@@ -44,6 +45,7 @@ async function onCfgChange(event: vscode.ConfigurationChangeEvent) {
     }
     console.log("PET: config changed")
     // TODO: check what part of config changed and only update what's necessary
+    // TODO: don't read whole config all over again, keep one and update what's necessary
     const cfg = getCurrentCfg()
     await updateThemeFull(cfg)
     void showReloadWarning()
@@ -64,6 +66,7 @@ export function getCurrentCfg(): config.Config {
     const resultCfg = config.defaultConfig()
     resultCfg.italics = cfg.get(config.Keys.ITALICS, resultCfg.italics)
     resultCfg.underlined = cfg.get(config.Keys.UNDERLINED, resultCfg.underlined)
+    resultCfg.markdownPreviewStyle = cfg.get(config.Keys.MARKDOWN_PREVIEW_STYLE, resultCfg.markdownPreviewStyle)
 
     return resultCfg
 }
@@ -99,6 +102,7 @@ async function updateThemeFull(cfg: config.Config) {
     const theme = createDarkTheme(cfg)
     await Promise.all([
         generateThemeJson(theme),
+        generateAndUpdateMdStyle(theme, cfg),
         saveCfgToFile(cfg, savedConfigPath)
     ])
 }
@@ -111,4 +115,32 @@ async function generateThemeJson(theme: ThemeDef) {
     await vscode.workspace.fs.writeFile(dst, jsonBytes)
 
     console.log("PET: Finished updating theme")
+}
+
+
+async function generateAndUpdateMdStyle(theme: ThemeDef, cfg: config.Config) {
+    await generateMdStyleCss(theme)
+    // generation needs to finish before updating the contributed file
+    await updateMdStyle(theme, cfg)
+}
+
+async function updateMdStyle(theme: ThemeDef, cfg: config.Config) {
+    console.log("PET: updating mdstyle")
+    const dst = vscode.Uri.file(path.join(extensionRoot, theme.mdstyleContribPath))
+    if (cfg.markdownPreviewStyle) {
+        console.log("PET: copied mdstyle")
+        const src = vscode.Uri.file(path.join(extensionRoot, theme.mdstyleDistPath))
+        await vscode.workspace.fs.copy(src, dst, { overwrite: true })
+    } else {
+        console.log("PET: empty mdstyle")
+        await vscode.workspace.fs.writeFile(dst, new TextEncoder().encode(""))
+    }
+    console.log("PET: Finished updating mdstyle")
+}
+
+async function generateMdStyleCss(theme: ThemeDef) {
+    console.log("PET: generating mdstyle")
+    const dst = vscode.Uri.file(path.join(extensionRoot, theme.mdstyleDistPath))
+    const css = buildMdstyleCss(theme)
+    await vscode.workspace.fs.writeFile(dst, new TextEncoder().encode(css))
 }

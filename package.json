@@ -56,6 +56,13 @@
           "default": true,
           "description": "Underline mutable variables and members.",
           "order": 0
+        },
+        "pastelEveningTheme.markdownPreviewStyle": {
+          "type": "boolean",
+          "default": true,
+          "scope": "machine",
+          "description": "Use themed markdown preview style.",
+          "order": 1
         }
       }
     }

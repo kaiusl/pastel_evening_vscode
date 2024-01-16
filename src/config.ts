@@ -4,11 +4,13 @@ export enum Keys {
     ROOT = "pastelEveningTheme",
     ITALICS = "italics",
     UNDERLINED = "underlined",
+    MARKDOWN_PREVIEW_STYLE = "markdownPreviewStyle",
 }
 
 export type Config = {
     italics: boolean
     underlined: boolean
+    markdownPreviewStyle: boolean
     themeVersion: string
 }
 
@@ -16,6 +18,7 @@ export function defaultConfig(): Config {
     return {
         italics: true,
         underlined: true,
+        markdownPreviewStyle: true,
         themeVersion: THEME_VERSION
     }
 }
@@ -23,6 +26,7 @@ export function defaultConfig(): Config {
 export function eqConfig(a: Config, b: Config): boolean {
     return a.italics === b.italics
         && a.underlined === b.underlined
+        && a.markdownPreviewStyle === b.markdownPreviewStyle
         && a.themeVersion === b.themeVersion
 }
 
