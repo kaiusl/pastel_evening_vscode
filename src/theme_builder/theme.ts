@@ -333,7 +333,7 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
     const colors: { [k: string]: string | Color } = {
         // common
         "foreground": theme.fgColor2,
-        "selection.background": theme.blue.setAlpha(0.3),
+        "selection.background": theme.selectionColor,
         "descriptionForeground": theme.fgColor2,
         "icon.foreground": theme.fgColor2,
         "disabledForeground": theme.fgColor0,
@@ -760,10 +760,10 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
         // "editorLightBulbAutoFix.foreground": "#f0f", // "#75beff"
         // minimap
         "minimap.background": theme.bgColor1,
-        "minimap.selectionHighlight": theme.darkAccentBgColor,
+        "minimap.selectionHighlight": theme.selectionColor.multiplyAlpha(0.7),
         "minimap.errorHighlight": muted(theme.red),
         "minimap.findMatchHighlight": theme.searchMatchColor,
-        "minimap.selectionOccurrenceHighlight": theme.searchMatchColor,
+        "minimap.selectionOccurrenceHighlight": theme.editorHoverColor,
         "minimap.warningHighlight": muted(theme.lightOrange),
         // "minimap.foregroundOpacity": "#f0f", // color.very_dark_bg
         // "minimapGutter.addedBackground": "#f0f", // "#487e02"
