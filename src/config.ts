@@ -5,20 +5,48 @@ export enum Keys {
     ITALICS = "italics",
     UNDERLINED = "underlined",
     MARKDOWN_PREVIEW_STYLE = "markdownPreviewStyle",
+    COLOR_OVERRIDES = "colorOverrides",
+    COMMON_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.common`
 }
 
 export type Config = {
     italics: boolean
     underlined: boolean
     markdownPreviewStyle: boolean
+    commonColorOverrides: CommonColorOverrides
     themeVersion: string
 }
+
+/** Common color overrides */
+export type CommonColorOverrides = {
+    background0?: string
+    background1?: string
+    background2?: string
+    background3?: string
+    background4?: string
+    foreground0?: string
+    foreground1?: string
+    foreground2?: string
+    foreground3?: string
+    foreground4?: string
+    red?: string
+    pink?: string
+    orange?: string
+    lightOrange?: string
+    yellow?: string
+    green?: string
+    cyan?: string
+    blue?: string
+    purple?: string
+}
+
 
 export function defaultConfig(): Config {
     return {
         italics: true,
         underlined: true,
         markdownPreviewStyle: true,
+        commonColorOverrides: {},
         themeVersion: THEME_VERSION
     }
 }
@@ -28,6 +56,7 @@ export function eqConfig(a: Config, b: Config): boolean {
         && a.underlined === b.underlined
         && a.markdownPreviewStyle === b.markdownPreviewStyle
         && a.themeVersion === b.themeVersion
+        && JSON.stringify(a.commonColorOverrides) === JSON.stringify(b.commonColorOverrides)
 }
 
 /** Joins multiple `Keys` components into a complete key.

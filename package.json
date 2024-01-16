@@ -63,6 +63,90 @@
           "scope": "machine",
           "description": "Use themed markdown preview style.",
           "order": 1
+        },
+        "pastelEveningTheme.colorOverrides.common": {
+          "type": "object",
+          "order": 2,
+          "description": "Common color overrides. \nThese colors are used throughout the theme, so major changes may result in weird theme. The intended use is for slight adjustment of each color if needed. \nAccepted color formats are #rgb, #rgba, #rrggbb, #rrggbbaa.",
+          "properties": {
+            "background0": {
+              "type": "string",
+              "description": "Darkest background color."
+            },
+            "background1": {
+              "type": "string",
+              "description": "Dark background color."
+            },
+            "background2": {
+              "type": "string",
+              "description": "Base background color."
+            },
+            "background3": {
+              "type": "string",
+              "description": "Light background color."
+            },
+            "background4": {
+              "type": "string",
+              "description": "Lightest background color."
+            },
+            "foreground0": {
+              "type": "string",
+              "description": "Darkest foreground color."
+            },
+            "foreground1": {
+              "type": "string",
+              "description": "Dark foreground color."
+            },
+            "foreground2": {
+              "type": "string",
+              "description": "Base foreground color."
+            },
+            "foreground3": {
+              "type": "string",
+              "description": "Light foreground color."
+            },
+            "foreground4": {
+              "type": "string",
+              "description": "Lightest foreground color."
+            },
+            "red": {
+              "type": "string",
+              "description": "Base red color."
+            },
+            "pink": {
+              "type": "string",
+              "description": "Base pink color."
+            },
+            "orange": {
+              "type": "string",
+              "description": "Base orange color."
+            },
+            "lightOrange": {
+              "type": "string",
+              "description": "Base light orange color."
+            },
+            "yellow": {
+              "type": "string",
+              "description": "Base yellow color."
+            },
+            "green": {
+              "type": "string",
+              "description": "Base green color."
+            },
+            "cyan": {
+              "type": "string",
+              "description": "Base cyan color."
+            },
+            "blue": {
+              "type": "string",
+              "description": "Base blue color."
+            },
+            "purple": {
+              "type": "string",
+              "description": "Base purple color."
+            }
+          },
+          "additionalProperties": false
         }
       }
     }

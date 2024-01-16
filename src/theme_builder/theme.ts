@@ -118,6 +118,17 @@ const darkColors: ThemeColors = {
     brightYellow: Color.from_hex("#fdbc4b"),
 }
 
+function tryColorFromHexStr(s?: string): Color | null {
+    if (s == undefined) {
+        return null
+    }
+    try {
+        return Color.from_hex(s)
+    } catch (e) {
+        return null
+    }
+}
+
 /** Complete theme definition. */
 export class ThemeDef {
 
@@ -135,27 +146,27 @@ export class ThemeDef {
         this.italics = cfg.italics;
         this.underlined = cfg.underlined;
 
-        this.bgColor0 = colors.bg0;
-        this.bgColor1 = colors.bg1;
-        this.bgColor2 = colors.bg2;
-        this.bgColor3 = colors.bg3;
-        this.bgColor4 = colors.bg4;
+        this.bgColor0 = tryColorFromHexStr(cfg.commonColorOverrides.background0) ?? colors.bg0;
+        this.bgColor1 = tryColorFromHexStr(cfg.commonColorOverrides.background1) ?? colors.bg1;
+        this.bgColor2 = tryColorFromHexStr(cfg.commonColorOverrides.background2) ?? colors.bg2;
+        this.bgColor3 = tryColorFromHexStr(cfg.commonColorOverrides.background3) ?? colors.bg3;
+        this.bgColor4 = tryColorFromHexStr(cfg.commonColorOverrides.background4) ?? colors.bg4;
 
-        this.fgColor0 = colors.fg0;
-        this.fgColor1 = colors.fg1;
-        this.fgColor2 = colors.fg2;
-        this.fgColor3 = colors.fg3;
-        this.fgColor4 = colors.fg4;
+        this.fgColor0 = tryColorFromHexStr(cfg.commonColorOverrides.foreground0) ?? colors.fg0;
+        this.fgColor1 = tryColorFromHexStr(cfg.commonColorOverrides.foreground1) ?? colors.fg1;
+        this.fgColor2 = tryColorFromHexStr(cfg.commonColorOverrides.foreground2) ?? colors.fg2;
+        this.fgColor3 = tryColorFromHexStr(cfg.commonColorOverrides.foreground3) ?? colors.fg3;
+        this.fgColor4 = tryColorFromHexStr(cfg.commonColorOverrides.foreground4) ?? colors.fg4;
 
-        this.red = colors.red;
-        this.blue = colors.blue;
-        this.green = colors.green;
-        this.yellow = colors.yellow;
-        this.lightOrange = colors.lightOrange;
-        this.orange = colors.orange;
-        this.cyan = colors.cyan;
-        this.pink = colors.pink;
-        this.purple = colors.purple;
+        this.red = tryColorFromHexStr(cfg.commonColorOverrides.red) ?? colors.red;
+        this.blue = tryColorFromHexStr(cfg.commonColorOverrides.blue) ?? colors.blue;
+        this.green = tryColorFromHexStr(cfg.commonColorOverrides.green) ?? colors.green;
+        this.yellow = tryColorFromHexStr(cfg.commonColorOverrides.yellow) ?? colors.yellow;
+        this.lightOrange = tryColorFromHexStr(cfg.commonColorOverrides.lightOrange) ?? colors.lightOrange;
+        this.orange = tryColorFromHexStr(cfg.commonColorOverrides.orange) ?? colors.orange;
+        this.cyan = tryColorFromHexStr(cfg.commonColorOverrides.cyan) ?? colors.cyan;
+        this.pink = tryColorFromHexStr(cfg.commonColorOverrides.pink) ?? colors.pink;
+        this.purple = tryColorFromHexStr(cfg.commonColorOverrides.purple) ?? colors.purple;
         this.brightRed = colors.brightRed;
         this.brightGreen = colors.brightGreen;
         this.brightBlue = colors.brightBlue;
