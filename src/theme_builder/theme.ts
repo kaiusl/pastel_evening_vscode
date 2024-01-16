@@ -174,11 +174,11 @@ export class ThemeDef {
 
         this.accentBgColor = colors.accentBg;
         this.accentFgColor = colors.accentFg;
-        this.darkAccentBgColor = this.accentBgColor.darken(0.15).desaturate(0.5);
-        this.searchMatchSelectedColor = colors.searchMatchSelected;
-        this.searchMatchColor = colors.searchMatch;
-        this.selectionColor = this.blue.setAlpha(0.2);
-        this.editorHoverColor = this.yellow.setAlpha(0.15);
+        this.accentAltBgColor = this.accentBgColor.darken(0.15).desaturate(0.5);
+        this.searchMatchSelectedBgColor = colors.searchMatchSelected;
+        this.searchMatchBgColor = colors.searchMatch;
+        this.selectionBgColor = this.blue.setAlpha(0.2);
+        this.editorHoverHighlightBgColor = this.yellow.setAlpha(0.15);
 
         this.borderColor = colors.border;
         this.hoverColor = colors.UiHover;
@@ -239,13 +239,13 @@ export class ThemeDef {
     fgColor3: Color;
     fgColor4: Color;
 
-    darkAccentBgColor: Color;
+    accentAltBgColor: Color;
     accentBgColor: Color;
     accentFgColor: Color;
-    searchMatchSelectedColor: Color;
-    searchMatchColor: Color;
-    selectionColor: Color;
-    editorHoverColor: Color;
+    searchMatchSelectedBgColor: Color;
+    searchMatchBgColor: Color;
+    selectionBgColor: Color;
+    editorHoverHighlightBgColor: Color;
     borderColor: Color;
     hoverColor: Color;
     scrollBarOpacity: number;
@@ -333,7 +333,7 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
     const colors: { [k: string]: string | Color } = {
         // common
         "foreground": theme.fgColor2,
-        "selection.background": theme.selectionColor,
+        "selection.background": theme.selectionBgColor,
         "descriptionForeground": theme.fgColor2,
         "icon.foreground": theme.fgColor2,
         "disabledForeground": theme.fgColor0,
@@ -373,9 +373,9 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
         "button.background": theme.accentBgColor,
         "button.hoverBackground": theme.accentBgColor.lighten(0.05),
         "button.foreground": theme.accentFgColor,
-        "button.secondaryBackground": theme.darkAccentBgColor,
+        "button.secondaryBackground": theme.accentAltBgColor,
         "button.secondaryForeground": theme.fgColor2,
-        "button.secondaryHoverBackground": theme.darkAccentBgColor.lighten(0.05),
+        "button.secondaryHoverBackground": theme.accentAltBgColor.lighten(0.05),
         "button.separator": theme.accentFgColor.setAlpha(0.25),
         //"button.border": "#f0f",
         // text code block
@@ -573,23 +573,23 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
         // "editorBracketPairGuide.background5": "#1d1f2400",
         // "editorBracketPairGuide.background6": "#1d1f2400",
         // editor selections
-        "editor.selectionBackground": theme.selectionColor,
-        "editor.inactiveSelectionBackground": theme.selectionColor.multiplyAlpha(0.7),
+        "editor.selectionBackground": theme.selectionBgColor,
+        "editor.inactiveSelectionBackground": theme.selectionBgColor.multiplyAlpha(0.7),
         // "editor.selectionForeground": "#f0f",
         // "editor.selectionHighlightBorder": "#f0f",
         // editor highlights
         "editor.lineHighlightBackground": theme.bgColor2,
-        "editor.wordHighlightStrongBackground": theme.editorHoverColor,
-        "editor.wordHighlightBackground": theme.editorHoverColor,
-        "editor.hoverHighlightBackground": theme.editorHoverColor,
-        "editor.symbolHighlightBackground": theme.editorHoverColor,
-        "editor.selectionHighlightBackground": theme.editorHoverColor,
-        "editor.rangeHighlightBackground": theme.editorHoverColor,
-        "editor.findRangeHighlightBackground": theme.editorHoverColor,
-        "editor.focusedStackFrameHighlightBackground": theme.editorHoverColor,
-        "editor.snippetTabstopHighlightBackground": theme.editorHoverColor,
-        "editor.stackFrameHighlightBackground": theme.editorHoverColor,
-        "editor.snippetFinalTabstopHighlightBackground": theme.editorHoverColor,
+        "editor.wordHighlightStrongBackground": theme.editorHoverHighlightBgColor,
+        "editor.wordHighlightBackground": theme.editorHoverHighlightBgColor,
+        "editor.hoverHighlightBackground": theme.editorHoverHighlightBgColor,
+        "editor.symbolHighlightBackground": theme.editorHoverHighlightBgColor,
+        "editor.selectionHighlightBackground": theme.editorHoverHighlightBgColor,
+        "editor.rangeHighlightBackground": theme.editorHoverHighlightBgColor,
+        "editor.findRangeHighlightBackground": theme.editorHoverHighlightBgColor,
+        "editor.focusedStackFrameHighlightBackground": theme.editorHoverHighlightBgColor,
+        "editor.snippetTabstopHighlightBackground": theme.editorHoverHighlightBgColor,
+        "editor.stackFrameHighlightBackground": theme.editorHoverHighlightBgColor,
+        "editor.snippetFinalTabstopHighlightBackground": theme.editorHoverHighlightBgColor,
         // "editor.snippetFinalTabstopHighlightBorder": "#0000",
         // "editor.lineHighlightBorder": "#0000",
         // "editor.snippetTabstopHighlightBorder": "#0000",
@@ -598,9 +598,9 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
         // "editor.wordHighlightStrongBorder": "#0000",
         // "editor.rangeHighlightBorder": "#0000",
         // editor search
-        "editor.findMatchBackground": theme.searchMatchSelectedColor,
+        "editor.findMatchBackground": theme.searchMatchSelectedBgColor,
         //"editor.findMatchBorder": "#0000",
-        "editor.findMatchHighlightBackground": theme.searchMatchColor,
+        "editor.findMatchHighlightBackground": theme.searchMatchBgColor,
         //"editor.findMatchHighlightBorder": "#0000",
         //"editor.findRangeHighlightBorder": "#0000",
         // sticky scroll
@@ -651,7 +651,7 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
         // "editorGroup.focusedEmptyBorder": "#f0f",
         // editor widget
         "editorWidget.background": theme.bgColor1,
-        "editorWidget.resizeBorder": theme.darkAccentBgColor,
+        "editorWidget.resizeBorder": theme.accentAltBgColor,
         "editorWidget.border": theme.borderColor,
         //"editorWidget.foreground": color.fg,
         // editor suggest widget
@@ -760,10 +760,10 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
         // "editorLightBulbAutoFix.foreground": "#f0f", // "#75beff"
         // minimap
         "minimap.background": theme.bgColor1,
-        "minimap.selectionHighlight": theme.selectionColor.multiplyAlpha(0.7),
+        "minimap.selectionHighlight": theme.selectionBgColor.multiplyAlpha(0.7),
         "minimap.errorHighlight": muted(theme.red),
-        "minimap.findMatchHighlight": theme.searchMatchColor,
-        "minimap.selectionOccurrenceHighlight": theme.editorHoverColor,
+        "minimap.findMatchHighlight": theme.searchMatchBgColor,
+        "minimap.selectionOccurrenceHighlight": theme.editorHoverHighlightBgColor,
         "minimap.warningHighlight": muted(theme.lightOrange),
         // "minimap.foregroundOpacity": "#f0f", // color.very_dark_bg
         // "minimapGutter.addedBackground": "#f0f", // "#487e02"
@@ -776,10 +776,10 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
         "peekView.border": theme.accentBgColor.setAlpha(0.5),//"#0d70b980",
         "peekViewEditor.background": theme.bgColor2.addBlue(0.03),
         "peekViewEditorGutter.background": theme.bgColor1.addBlue(0.03),
-        "peekViewEditor.matchHighlightBackground": theme.searchMatchColor,
+        "peekViewEditor.matchHighlightBackground": theme.searchMatchBgColor,
         // "peekViewEditor.matchHighlightBorder": "#3d6b99",
         "peekViewResult.background": theme.bgColor1.addBlue(0.03),
-        "peekViewResult.matchHighlightBackground": theme.searchMatchColor,
+        "peekViewResult.matchHighlightBackground": theme.searchMatchBgColor,
         "peekViewResult.fileForeground": theme.fgColor4,
         "peekViewResult.lineForeground": theme.fgColor2,
         // "peekViewResult.selectionBackground": "#f0f", // "#3399ff33"
@@ -1014,13 +1014,13 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
         // notebook
         "notebook.cellBorderColor": theme.borderColor,
         "notebook.cellEditorBackground": theme.bgColor2,
-        "notebook.cellInsertionIndicator": theme.darkAccentBgColor,
+        "notebook.cellInsertionIndicator": theme.accentAltBgColor,
         "notebook.cellStatusBarItemHoverBackground": "#acafbf20",
         "notebook.cellToolbarSeparator": theme.borderColor,
         "notebook.editorBackground": theme.bgColor1,
-        "notebook.focusedCellBorder": theme.darkAccentBgColor,
-        "notebook.focusedEditorBorder": theme.darkAccentBgColor,
-        "notebook.inactiveFocusedCellBorder": theme.darkAccentBgColor,
+        "notebook.focusedCellBorder": theme.accentAltBgColor,
+        "notebook.focusedEditorBorder": theme.accentAltBgColor,
+        "notebook.inactiveFocusedCellBorder": theme.accentAltBgColor,
         //"notebook.selectedCellBackground": "#f0f", // "#37373d"
         //"notebook.selectedCellBorder": "#f0f", // "#37373d"
         //"notebook.symbolHighlightBackground": "#f0f", // "#d1d5eb0b"

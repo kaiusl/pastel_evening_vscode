@@ -152,11 +152,11 @@ ${buildColorsTable(codeColors, themeDef.overlayBaseColor, opacities)}
 | light fg                   | ${themeDef.fgColor3.toHex()} |                                                |
 | bright fg                  | ${themeDef.fgColor4.toHex()} | highlight text                                 |
 |                            |         |                                                |
-| dark highlight             | ${themeDef.darkAccentBgColor.toHex()} | active selections                              |
+| dark highlight             | ${themeDef.accentAltBgColor.toHex()} | active selections                              |
 | highlight                  | ${themeDef.accentBgColor.toHex()} | buttons, badges, tab highlight, resize borders |
 |                            |         |                                                |
-| match background           | ${themeDef.searchMatchSelectedColor.toHex()} | currently selected match                       |
-| match highlight            | ${themeDef.searchMatchColor.toHex()} | other matches                                  |
+| match background           | ${themeDef.searchMatchSelectedBgColor.toHex()} | currently selected match                       |
+| match highlight            | ${themeDef.searchMatchBgColor.toHex()} | other matches                                  |
 
 * Use subtle borders darker than the inner area usually ${themeDef.borderColor.toHex("rgba")}.
 * Hover is slightly lighter, focused slightly lighter than that.
