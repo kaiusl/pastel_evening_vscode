@@ -172,13 +172,14 @@ export class ThemeDef {
         this.brightBlue = colors.brightBlue;
         this.brightYellow = colors.brightYellow;
 
-        this.accentBgColor = colors.accentBg;
-        this.accentFgColor = colors.accentFg;
-        this.accentAltBgColor = this.accentBgColor.darken(0.15).desaturate(0.5);
-        this.searchMatchSelectedBgColor = colors.searchMatchSelected;
-        this.searchMatchBgColor = colors.searchMatch;
-        this.selectionBgColor = this.blue.setAlpha(0.2);
-        this.editorHoverHighlightBgColor = this.yellow.setAlpha(0.15);
+        this.accentBgColor = tryColorFromHexStr(cfg.uiColorOverrides.accentBackground) ?? colors.accentBg;
+        this.accentFgColor = tryColorFromHexStr(cfg.uiColorOverrides.accentForeground) ?? colors.accentFg;
+        this.accentAltBgColor = tryColorFromHexStr(cfg.uiColorOverrides.accentAltBackground) ?? this.accentBgColor.darken(0.15).desaturate(0.5);
+        
+        this.searchMatchSelectedBgColor = tryColorFromHexStr(cfg.editorColorOverrides.searchMatchSelectedBackground) ?? colors.searchMatchSelected;
+        this.searchMatchBgColor = tryColorFromHexStr(cfg.editorColorOverrides.searchMatchBackground) ?? colors.searchMatch;
+        this.selectionBgColor = tryColorFromHexStr(cfg.editorColorOverrides.selectionBackground) ?? this.blue.setAlpha(0.2);
+        this.editorHoverHighlightBgColor = tryColorFromHexStr(cfg.editorColorOverrides.hoverHighlightBackground) ?? this.yellow.setAlpha(0.15);
 
         this.borderColor = colors.border;
         this.hoverColor = colors.UiHover;

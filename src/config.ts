@@ -6,7 +6,9 @@ export enum Keys {
     UNDERLINED = "underlined",
     MARKDOWN_PREVIEW_STYLE = "markdownPreviewStyle",
     COLOR_OVERRIDES = "colorOverrides",
-    COMMON_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.common`
+    COMMON_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.common`,
+    UI_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.ui`,
+    EDITOR_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.editor`,
 }
 
 export type Config = {
@@ -14,6 +16,8 @@ export type Config = {
     underlined: boolean
     markdownPreviewStyle: boolean
     commonColorOverrides: CommonColorOverrides
+    uiColorOverrides: UiColorOverrides
+    editorColorOverrides: EditorColorOverrides
     themeVersion: string
 }
 
@@ -40,6 +44,21 @@ export type CommonColorOverrides = {
     purple?: string
 }
 
+/** UI specific color overrides */
+export type UiColorOverrides = {
+    accentBackground?: string
+    accentAltBackground?: string
+    accentForeground?: string
+}
+
+/** Editor specific color overrides */
+export type EditorColorOverrides = {
+    selectionBackground?: string
+    hoverHighlightBackground?: string
+    searchMatchBackground?: string
+    searchMatchSelectedBackground?: string
+}
+
 
 export function defaultConfig(): Config {
     return {
@@ -47,6 +66,8 @@ export function defaultConfig(): Config {
         underlined: true,
         markdownPreviewStyle: true,
         commonColorOverrides: {},
+        uiColorOverrides: {},
+        editorColorOverrides: {},
         themeVersion: THEME_VERSION
     }
 }
@@ -57,6 +78,8 @@ export function eqConfig(a: Config, b: Config): boolean {
         && a.markdownPreviewStyle === b.markdownPreviewStyle
         && a.themeVersion === b.themeVersion
         && JSON.stringify(a.commonColorOverrides) === JSON.stringify(b.commonColorOverrides)
+        && JSON.stringify(a.uiColorOverrides) === JSON.stringify(b.uiColorOverrides)
+        && JSON.stringify(a.editorColorOverrides) === JSON.stringify(b.editorColorOverrides)
 }
 
 /** Joins multiple `Keys` components into a complete key.

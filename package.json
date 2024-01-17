@@ -147,6 +147,51 @@
             }
           },
           "additionalProperties": false
+        },
+        "pastelEveningTheme.colorOverrides.ui": {
+          "type": "object",
+          "order": 3,
+          "description": "UI color overrides.",
+          "properties": {
+            "accentBackground": {
+              "type": "string",
+              "description": ""
+            },
+            "accentAltBackground": {
+              "type": "string",
+              "description": ""
+            },
+            "accentForeground": {
+              "type": "string",
+              "description": ""
+            }
+
+          },
+          "additionalProperties": false
+        },
+        "pastelEveningTheme.colorOverrides.editor": {
+          "type": "object",
+          "order": 4,
+          "description": "Editor color overrides.",
+          "properties": {
+            "selectionBackground": {
+              "type": "string",
+              "description": ""
+            },
+            "hoverHighlightBackground": {
+              "type": "string",
+              "description": ""
+            },
+            "searchMatchBackground": {
+              "type": "string",
+              "description": ""
+            },
+            "searchMatchSelectedBackground": {
+              "type": "string",
+              "description": ""
+            }
+          },
+          "additionalProperties": false
         }
       }
     }

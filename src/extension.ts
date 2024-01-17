@@ -68,6 +68,8 @@ export function getCurrentCfg(): config.Config {
     resultCfg.underlined = cfg.get(config.Keys.UNDERLINED, resultCfg.underlined)
     resultCfg.markdownPreviewStyle = cfg.get(config.Keys.MARKDOWN_PREVIEW_STYLE, resultCfg.markdownPreviewStyle)
     resultCfg.commonColorOverrides = cfg.get(config.Keys.COMMON_COLOR_OVERRIDES, resultCfg.commonColorOverrides)
+    resultCfg.editorColorOverrides = cfg.get(config.Keys.EDITOR_COLOR_OVERRIDES, resultCfg.editorColorOverrides)
+    resultCfg.uiColorOverrides = cfg.get(config.Keys.UI_COLOR_OVERRIDES, resultCfg.uiColorOverrides)
 
     return resultCfg
 }
