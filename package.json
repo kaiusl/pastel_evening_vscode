@@ -189,6 +189,18 @@
             "searchMatchSelectedBackground": {
               "type": "string",
               "description": ""
+            },
+            "foreground0": {
+              "type": "string",
+              "description": "Muted color of editor text."
+            },
+            "foreground2": {
+              "type": "string",
+              "description": "Base color of editor text."
+            },
+            "foreground4": {
+              "type": "string",
+              "description": "Highlight color of editor text."
             }
           },
           "additionalProperties": false

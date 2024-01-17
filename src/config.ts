@@ -57,6 +57,9 @@ export type EditorColorOverrides = {
     hoverHighlightBackground?: string
     searchMatchBackground?: string
     searchMatchSelectedBackground?: string
+    foreground0?: string
+    foreground2?: string
+    foreground4?: string
 }
 
 

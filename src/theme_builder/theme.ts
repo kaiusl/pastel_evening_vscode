@@ -175,7 +175,7 @@ export class ThemeDef {
         this.accentBgColor = tryColorFromHexStr(cfg.uiColorOverrides.accentBackground) ?? colors.accentBg;
         this.accentFgColor = tryColorFromHexStr(cfg.uiColorOverrides.accentForeground) ?? colors.accentFg;
         this.accentAltBgColor = tryColorFromHexStr(cfg.uiColorOverrides.accentAltBackground) ?? this.accentBgColor.darken(0.15).desaturate(0.5);
-        
+
         this.searchMatchSelectedBgColor = tryColorFromHexStr(cfg.editorColorOverrides.searchMatchSelectedBackground) ?? colors.searchMatchSelected;
         this.searchMatchBgColor = tryColorFromHexStr(cfg.editorColorOverrides.searchMatchBackground) ?? colors.searchMatch;
         this.selectionBgColor = tryColorFromHexStr(cfg.editorColorOverrides.selectionBackground) ?? this.blue.setAlpha(0.2);
@@ -193,9 +193,9 @@ export class ThemeDef {
         this.diffGutterOpacity = colors.diffGutterOpacity;
         this.diffMarkerOpacity = colors.diffMarkerOpacity;
 
-        this.codeFgColor0 = this.fgColor0;
-        this.codeFgColor2 = this.fgColor2;
-        this.codeFgColor4 = this.fgColor4;
+        this.codeFgColor0 = tryColorFromHexStr(cfg.editorColorOverrides.foreground0) ?? this.fgColor0;
+        this.codeFgColor2 = tryColorFromHexStr(cfg.editorColorOverrides.foreground2) ?? this.fgColor2;
+        this.codeFgColor4 = tryColorFromHexStr(cfg.editorColorOverrides.foreground4) ?? this.fgColor4;
 
         this.commentsColor = this.codeFgColor0;
         this.keywordsColor = this.red;
