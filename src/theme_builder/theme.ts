@@ -1169,7 +1169,8 @@ export function tokenColors(theme: ThemeDef): TokenSettingsItem[] {
                 // lang specific
                 "string.quoted.docstring", // Python: docstring
                 "string.quoted.docstring storage.type.string.python", // Python: docstring prefixes like r f
-                "punctuation.definition.comment.yaml", // YAML: comment # sign
+                "string.quoted.docstring punctuation.definition.string", // Python: docstring quotes
+                "punctuation.definition.comment", // comment start // # etc
                 "markup.underline.link", // Markdown: actual link, it's not that important, make it dark
                 "markup.link", // AsciiDoc: actual link, it's not that important, make it dark
                 "source.ini comment punctuation", // INI: comment specified ;
@@ -1192,9 +1193,21 @@ export function tokenColors(theme: ThemeDef): TokenSettingsItem[] {
                 "entity.name.section.fsharp", // F#: module 
                 // "entity.name.type.module", // Ruby: module, this only changes the color on declaration, disable it for consistency with other location where a module name could be used
                 "string.quoted.double.include.cpp", // C++: includes
-                "string.quoted.other.lt-gt.include.cpp", // C++: includes
+                "source.cpp string.quoted.other.lt-gt.include", // C++: includes
+                "source.cpp string.quoted.other.lt-gt.include punctuation.definition.string", // C++: includes punctuation <>
+                "source.cpp meta.preprocessor.include punctuation.definition.string", // C++: includes punctuation ""
                 "entity.name.tag.namespace", // XML: namespace
                 "punctuation.separator.namespace", // XML: namespace separator :
+
+                // Go's imports are strings, they are detected by semantic highlighting as 
+                // namespace, which colors them gray, but the quotes are not captured
+                // and they are yellow as strings.
+                // I think it looks better if there are gray quotes around strings
+                // than yellow quotes around imports. With semantic highlighting 
+                // the quotes around string are captured and colored yellow,
+                // without it they remain gray.
+                "source.go punctuation.definition.string",
+                "source.go entity.name.import"
             ],
             "settings": {
                 "foreground": theme.namespacesColor,
@@ -1349,6 +1362,7 @@ export function tokenColors(theme: ThemeDef): TokenSettingsItem[] {
                 "storage.type.template.argument.struct.cpp",
                 "storage.type.template.argument.enum.cpp",
                 "storage.type.template.argument.union.cpp",
+                //"punctuation.section.attribute",
                 "variable.parameter.function.language.special.self.python", // Python: self function parameter
                 "variable.parameter.function.language.special.cls.python", // Python: cls function parameter
                 "keyword.type.go", // Go: type keyword
@@ -1368,6 +1382,7 @@ export function tokenColors(theme: ThemeDef): TokenSettingsItem[] {
                 "comment.documentation.name.cs", // C#: doc comment tags with semantic highlighting
                 "storage.type.class.doxygen", // Doxygen: doc tags
                 "comment storage.type.class.jsdoc", // JS, TS: doc keywords/tags
+                "punctuation.definition.block.tag.jsdoc", // JSDoc @ tags
                 "keyword.other.phpdoc", // PHP: doc kws
             ],
             "settings": {
@@ -1383,6 +1398,9 @@ export function tokenColors(theme: ThemeDef): TokenSettingsItem[] {
                 "source.cpp storage.modifier.reference", // C++: &
                 "source.cpp storage.modifier.pointer", // C++: *
                 "entity.name.function.operator", // C++ overloaded operators
+                "source.cpp punctuation.separator.scope-resolution", // C++ :: in scope resolution, eg std::vector
+                "source.cpp punctuation.separator.pointer-access", // C++ -> accessor
+                "source.cpp punctuation.separator.dot-access", // C++ . accessor
                 "entity.name.function.member.overload.cs", // C#: overloaded operators
                 "source.fsharp keyword.symbol", // F#: operators and punctuation
                 "keyword.symbol.fsharp", // F#: operators and punctuation with semantic highlighting
@@ -1391,10 +1409,15 @@ export function tokenColors(theme: ThemeDef): TokenSettingsItem[] {
                 "variable.language.wildcard.java", // Java: * in import
                 "variable.language.wildcard.kotlin", // Kotlin: * in imports
                 "meta.import constant.language.import-export-all", // JS, TS, JSX, TSX: wildcard in imports
+                "punctuation.accessor", // JS, TS, JSX, TSX: accessor operators ., ?. etc
                 "entity.name.tag.wildcard", // CSS: *
                 "entity.other.document.begin.yaml", // YAML: --- doc end/begin
                 "meta.separator.markdown", // Markdown: separator line --- or ***
                 "source.yaml keyword.control", // YAML: | >
+                "source.python punctuation.separator.period", // Python: . accessor
+                "source.ruby punctuation.separator.method", // Ruby: ::, . accessor
+                "source.java punctuation.separator.period", // Java: . accessor
+                "text.html punctuation.separator.key-value", // HTML: = in attributes
             ],
             "settings": {
                 "foreground": theme.operatorsColor,
@@ -1404,6 +1427,7 @@ export function tokenColors(theme: ThemeDef): TokenSettingsItem[] {
         {
             "name": "punctuation",
             "scope": [
+                "punctuation",
                 "source.rust meta.use punctuation", // Rust: punctuation in use statements, 'meta.use' is used to overload function names blue 
                 "meta.attribute.rust punctuation", // Rust: punctuation in attributes
                 "punctuation.definition.decorator", // Python: @ in attributes
@@ -1414,14 +1438,8 @@ export function tokenColors(theme: ThemeDef): TokenSettingsItem[] {
                 "source.fsharp support.function.attribute", // F#: attributes
                 "meta.var.expr meta.arrow storage.type.function.arrow", // JS, TS, JSX, TSX: fat arrow
                 "source meta.arrow storage.type.function.arrow", // JS, TS, JSX, TSX: => in lambdas
-                // Go's imports are strings, they are detected by semantic highlighting as 
-                // namespace, which colors them gray, but the quotes are not captured
-                // and they are yellow as strings.
-                // I think it looks better if there are gray quotes around strings
-                // than yellow quotes around imports. With semantic highlighting 
-                // the quotes around string are captured and colored yellow,
-                // without it they remain gray.
-                "source.go punctuation.definition.string",
+                "source meta.brace", // TS: brackets
+
                 "meta.selector.css punctuation", // CSS: punctuation in selectors
                 "meta.property-value.css punctuation", // CSS: function call brackets
                 "source.css keyword punctuation", // CSS: @ in keywords
@@ -1437,7 +1455,7 @@ export function tokenColors(theme: ThemeDef): TokenSettingsItem[] {
                 "source.ini punctuation", // INI: punctuation
             ],
             "settings": {
-                "foreground": theme.punctuationsColor,
+                "foreground": "#f0f",// theme.punctuationsColor,
                 "fontStyle": ""
             }
         },
@@ -1502,6 +1520,8 @@ export function tokenColors(theme: ThemeDef): TokenSettingsItem[] {
                 "storage.type.string.python", // Python: string prefixes like r 
                 "keyword.interpolation.scala", // Scala: string s prefix
                 "meta.jsx.children", // JSX, TSX: element input
+                "punctuation.definition.string", // JS, TS, C#: string start and end quotes
+                "punctuation.definition.char", // JS, TS, C#: char start and end quotes
                 "text.html", // HTML: text
                 "text.xml", // XML: text
                 "source.cabal", // Cabal: text
@@ -1511,6 +1531,7 @@ export function tokenColors(theme: ThemeDef): TokenSettingsItem[] {
                 "source.yaml punctuation.definition.string", // YAML: string quotes
                 "meta.property-value.css support.constant", // CSS: property values
                 "source.css string punctuation", // CSS: string quotes
+                "source.cpp entity.name.operator.custom-literal"
             ],
             "settings": {
                 "foreground": theme.stringsColor,
@@ -2061,7 +2082,7 @@ export function semanticTokenColors(theme: ThemeDef): { [k: string]: SemanticHig
         "decorator": theme.attributesColor, // Rust: builtin attributes like feature = "..."
         "class.decorator": theme.attributesColor, // Python: decorators that are classes
         "function.decorator": theme.attributesColor, // Python: decorators that are functions
-        "attributeBracket:rust": theme.codeFgColor2, //  [ in #[...]
+        "attributeBracket:rust": theme.punctuationsColor, //  [ in #[...]
         // toml
         "tomlTableKey": theme.codeFgColor4, // toml inline table key 
         "tomlArrayKey": theme.codeFgColor4, // toml inline array key
