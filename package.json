@@ -204,6 +204,86 @@
             }
           },
           "additionalProperties": false
+        },
+        "pastelEveningTheme.colorOverrides.tokens": {
+          "type": "object",
+          "order": 5,
+          "description": "Token color overrides.",
+          "properties": {
+            "keywords": {
+              "type": "string",
+              "description": "Color of keywords"
+            },
+            "functions": {
+              "type": "string",
+              "description": "Color of function"
+            },
+            "comments": {
+              "type": "string",
+              "description": "Color of comments."
+            },
+            "literals": {
+              "type": "string",
+              "description": "Color of literals."
+            },
+            "literalsAlt": {
+              "type": "string",
+              "description": "Alternative color of literals."
+            },
+            "strings": {
+              "type": "string",
+              "description": "Color of strings."
+            },
+            "stringEscapes": {
+              "type": "string",
+              "description": "Color of string escapes."
+            },
+            "numbers": {
+              "type": "string",
+              "description": "Color of numbers."
+            },
+            "namespaces": {
+              "type": "string",
+              "description": "Color of namespaces and modules."
+            },
+            "localVariables": {
+              "type": "string",
+              "description": "Color of local variables."
+            },
+            "specialVariables": {
+              "type": "string",
+              "description": "Color of special variables like globals, statics and constants."
+            },
+            "enumMembers": {
+              "type": "string",
+              "description": "Color of enum members."
+            },
+            "operators": {
+              "type": "string",
+              "description": "Color of operators."
+            },
+            "punctuations": {
+              "type": "string",
+              "description": "Color of punctuation."
+            },
+            "interfaces": {
+              "type": "string",
+              "description": "Color of interfaces or traits."
+            },
+            "attributes": {
+              "type": "string",
+              "description": "Color of attributes, annotations."
+            },
+            "labels": {
+              "type": "string",
+              "description": "Color of labels."
+            },
+            "types": {
+              "type": "string",
+              "description": "Color of types."
+            }
+          },
+          "additionalProperties": false
         }
       }
     }

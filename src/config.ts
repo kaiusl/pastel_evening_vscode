@@ -9,6 +9,7 @@ export enum Keys {
     COMMON_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.common`,
     UI_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.ui`,
     EDITOR_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.editor`,
+    TOKENS_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.tokens`,
 }
 
 export type Config = {
@@ -18,6 +19,7 @@ export type Config = {
     commonColorOverrides: CommonColorOverrides
     uiColorOverrides: UiColorOverrides
     editorColorOverrides: EditorColorOverrides
+    tokensColorOverrides: TokenColorOverrides
     themeVersion: string
 }
 
@@ -63,6 +65,28 @@ export type EditorColorOverrides = {
 }
 
 
+/** Code token specific color overrides */
+export type TokenColorOverrides = {
+    keywords?: string
+    functions?: string
+    comments?: string
+    literals?: string
+    literalsAlt?: string
+    strings?: string
+    stringEscapes?: string
+    numbers?: string
+    namespaces?: string
+    localVariables?: string
+    specialVariables?: string
+    enumMembers?: string
+    operators?: string
+    punctuations?: string
+    interfaces?: string
+    attributes?: string
+    labels?: string
+    types?: string
+}
+
 export function defaultConfig(): Config {
     return {
         italics: true,
@@ -71,6 +95,7 @@ export function defaultConfig(): Config {
         commonColorOverrides: {},
         uiColorOverrides: {},
         editorColorOverrides: {},
+        tokensColorOverrides: {},
         themeVersion: THEME_VERSION
     }
 }
@@ -83,6 +108,7 @@ export function eqConfig(a: Config, b: Config): boolean {
         && JSON.stringify(a.commonColorOverrides) === JSON.stringify(b.commonColorOverrides)
         && JSON.stringify(a.uiColorOverrides) === JSON.stringify(b.uiColorOverrides)
         && JSON.stringify(a.editorColorOverrides) === JSON.stringify(b.editorColorOverrides)
+        && JSON.stringify(a.tokensColorOverrides) === JSON.stringify(b.tokensColorOverrides)
 }
 
 /** Joins multiple `Keys` components into a complete key.
