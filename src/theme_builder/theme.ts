@@ -1455,7 +1455,7 @@ export function tokenColors(theme: ThemeDef): TokenSettingsItem[] {
                 "source.ini punctuation", // INI: punctuation
             ],
             "settings": {
-                "foreground": "#f0f",// theme.punctuationsColor,
+                "foreground": theme.punctuationsColor,
                 "fontStyle": ""
             }
         },
