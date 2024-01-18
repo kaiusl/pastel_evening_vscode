@@ -143,8 +143,8 @@ export class ThemeDef {
         this.displayName = displayName;
         this.kind = kind;
 
-        this.italics = cfg.italics;
-        this.underlined = cfg.underlined;
+        this.italics = cfg.useItalics;
+        this.underlined = cfg.useUnderlined;
 
         this.bgColor0 = tryColorFromHexStr(cfg.commonColorOverrides.background0) ?? colors.bg0;
         this.bgColor1 = tryColorFromHexStr(cfg.commonColorOverrides.background1) ?? colors.bg1;

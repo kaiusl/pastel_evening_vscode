@@ -64,9 +64,9 @@ export function getCurrentCfg(): config.Config {
     const cfg = vscode.workspace.getConfiguration(config.Keys.ROOT)
 
     const resultCfg = config.defaultConfig()
-    resultCfg.italics = cfg.get(config.Keys.ITALICS, resultCfg.italics)
-    resultCfg.underlined = cfg.get(config.Keys.UNDERLINED, resultCfg.underlined)
-    resultCfg.markdownPreviewStyle = cfg.get(config.Keys.MARKDOWN_PREVIEW_STYLE, resultCfg.markdownPreviewStyle)
+    resultCfg.useItalics = cfg.get(config.Keys.ITALICS, resultCfg.useItalics)
+    resultCfg.useUnderlined = cfg.get(config.Keys.UNDERLINED, resultCfg.useUnderlined)
+    resultCfg.exportMarkdownPreviewStyle = cfg.get(config.Keys.MARKDOWN_PREVIEW_STYLE, resultCfg.exportMarkdownPreviewStyle)
     resultCfg.commonColorOverrides = cfg.get(config.Keys.COMMON_COLOR_OVERRIDES, resultCfg.commonColorOverrides)
     resultCfg.editorColorOverrides = cfg.get(config.Keys.EDITOR_COLOR_OVERRIDES, resultCfg.editorColorOverrides)
     resultCfg.uiColorOverrides = cfg.get(config.Keys.UI_COLOR_OVERRIDES, resultCfg.uiColorOverrides)
@@ -131,7 +131,7 @@ async function generateAndUpdateMdStyle(theme: ThemeDef, cfg: config.Config) {
 async function updateMdStyle(theme: ThemeDef, cfg: config.Config) {
     console.log("PET: updating mdstyle")
     const dst = vscode.Uri.file(path.join(extensionRoot, theme.mdstyleContribPath))
-    if (cfg.markdownPreviewStyle) {
+    if (cfg.exportMarkdownPreviewStyle) {
         console.log("PET: copied mdstyle")
         const src = vscode.Uri.file(path.join(extensionRoot, theme.mdstyleDistPath))
         await vscode.workspace.fs.copy(src, dst, { overwrite: true })

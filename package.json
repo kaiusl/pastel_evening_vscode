@@ -47,19 +47,19 @@
         "title": "Pastel Evening Theme",
         "order": 0,
         "properties": {
-          "pastelEveningTheme.italics": {
+          "pastelEveningTheme.useItalics": {
             "type": "boolean",
             "default": true,
             "description": "Use italics for static variables and members.",
             "order": 0
           },
-          "pastelEveningTheme.underlined": {
+          "pastelEveningTheme.useUnderlined": {
             "type": "boolean",
             "default": true,
             "description": "Underline mutable variables and members.",
             "order": 0
           },
-          "pastelEveningTheme.markdownPreviewStyle": {
+          "pastelEveningTheme.exportMarkdownPreviewStyle": {
             "type": "boolean",
             "default": true,
             "scope": "machine",

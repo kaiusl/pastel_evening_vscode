@@ -4,9 +4,9 @@ const CONFIG_VERSION = 1
 
 export enum Keys {
     ROOT = "pastelEveningTheme",
-    ITALICS = "italics",
-    UNDERLINED = "underlined",
-    MARKDOWN_PREVIEW_STYLE = "markdownPreviewStyle",
+    ITALICS = "useItalics",
+    UNDERLINED = "useUnderlined",
+    MARKDOWN_PREVIEW_STYLE = "exportMarkdownPreviewStyle",
     COLOR_OVERRIDES = "colorOverrides",
     COMMON_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.common`,
     UI_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.ui`,
@@ -15,9 +15,9 @@ export enum Keys {
 }
 
 export type Config = {
-    italics: boolean
-    underlined: boolean
-    markdownPreviewStyle: boolean
+    useItalics: boolean
+    useUnderlined: boolean
+    exportMarkdownPreviewStyle: boolean
     commonColorOverrides: CommonColorOverrides
     uiColorOverrides: UiColorOverrides
     editorColorOverrides: EditorColorOverrides
@@ -92,9 +92,9 @@ export type TokenColorOverrides = {
 
 export function defaultConfig(): Config {
     return {
-        italics: true,
-        underlined: true,
-        markdownPreviewStyle: true,
+        useItalics: true,
+        useUnderlined: true,
+        exportMarkdownPreviewStyle: true,
         commonColorOverrides: {},
         uiColorOverrides: {},
         editorColorOverrides: {},
@@ -105,9 +105,9 @@ export function defaultConfig(): Config {
 }
 
 export function eqConfig(a: Config, b: Config): boolean {
-    return a.italics === b.italics
-        && a.underlined === b.underlined
-        && a.markdownPreviewStyle === b.markdownPreviewStyle
+    return a.useItalics === b.useItalics
+        && a.useUnderlined === b.useUnderlined
+        && a.exportMarkdownPreviewStyle === b.exportMarkdownPreviewStyle
         && a.themeVersion === b.themeVersion
         && a.configVersion === b.configVersion
         && JSON.stringify(a.commonColorOverrides) === JSON.stringify(b.commonColorOverrides)
