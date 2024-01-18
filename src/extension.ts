@@ -43,12 +43,20 @@ async function onCfgChange(event: vscode.ConfigurationChangeEvent) {
     if (!event.affectsConfiguration(config.Keys.ROOT)) {
         return;
     }
-    console.log("PET: config changed")
-    // TODO: check what part of config changed and only update what's necessary
+
     // TODO: don't read whole config all over again, keep one and update what's necessary
+    // TODO: don't need to regenerate whole theme always, we can probably just update it
+    console.log("PET: config changed")
     const cfg = getCurrentCfg()
-    await updateThemeFull(cfg)
+    // check what part of config changed and only update what's necessary
+    if (event.affectsConfiguration(config.joinKeys(config.Keys.ROOT, config.Keys.MARKDOWN_PREVIEW_STYLE))) {
+        // Don't need to regenerate theme files
+        await updateMdStyle(createDarkTheme(cfg), cfg)
+    } else {
+        await updateThemeFull(cfg)
+    }
     void showReloadWarning()
+
 }
 
 async function showReloadWarning() {
