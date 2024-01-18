@@ -2,7 +2,7 @@
  * Simple and minimal color class.
  */
 
-const hexRegEx = /^(#|0x|0X)?(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$/g
+const hexRegEx = /^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$/g
 
 export class Color {
     r: number
