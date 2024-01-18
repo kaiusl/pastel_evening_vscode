@@ -44,8 +44,6 @@ async function onCfgChange(event: vscode.ConfigurationChangeEvent) {
         return;
     }
 
-    // TODO: don't read whole config all over again, keep one and update what's necessary
-    // TODO: don't need to regenerate whole theme always, we can probably just update it
     console.log("PET: config changed")
     const cfg = getCurrentCfg()
     // check what part of config changed and only update what's necessary
