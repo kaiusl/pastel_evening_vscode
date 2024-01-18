@@ -1,5 +1,7 @@
 import { THEME_VERSION } from "./version"
 
+const CONFIG_VERSION = 1
+
 export enum Keys {
     ROOT = "pastelEveningTheme",
     ITALICS = "italics",
@@ -21,6 +23,7 @@ export type Config = {
     editorColorOverrides: EditorColorOverrides
     tokensColorOverrides: TokenColorOverrides
     themeVersion: string
+    configVersion: number
 }
 
 /** Common color overrides */
@@ -96,7 +99,8 @@ export function defaultConfig(): Config {
         uiColorOverrides: {},
         editorColorOverrides: {},
         tokensColorOverrides: {},
-        themeVersion: THEME_VERSION
+        themeVersion: THEME_VERSION,
+        configVersion: CONFIG_VERSION
     }
 }
 
@@ -105,6 +109,7 @@ export function eqConfig(a: Config, b: Config): boolean {
         && a.underlined === b.underlined
         && a.markdownPreviewStyle === b.markdownPreviewStyle
         && a.themeVersion === b.themeVersion
+        && a.configVersion === b.configVersion
         && JSON.stringify(a.commonColorOverrides) === JSON.stringify(b.commonColorOverrides)
         && JSON.stringify(a.uiColorOverrides) === JSON.stringify(b.uiColorOverrides)
         && JSON.stringify(a.editorColorOverrides) === JSON.stringify(b.editorColorOverrides)
