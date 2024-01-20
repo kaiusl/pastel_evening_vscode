@@ -28,11 +28,67 @@ export async function activate(context: vscode.ExtensionContext) {
     //   we should also update theme. Thus we should check if options were changed at the start.
     //
     // To detect change in config, we save the config that was used to generate the theme to `savedConfigPath`.
-    const savedCfg = readCfgFromFile(savedConfigPath);
+    let savedCfg = await readCfgFromFile(savedConfigPath);
     const currentCfg = getCurrentCfg();
-    if (!config.eqConfig(currentCfg, await savedCfg)) {
+    if (savedCfg.themeVersion != currentCfg.themeVersion) {
+        void versionUpdated(savedCfg.themeVersion, currentCfg.themeVersion)
+
+        // After theme update the bundled theme uses default config
+        savedCfg = config.defaultConfig()
+
+        if (!config.eqConfig(currentCfg, savedCfg)) {
+            await updateThemeFull(currentCfg)
+            void showReloadWarning()
+        } else {
+            // Need to write it to file because if previous config was the default 
+            // one then we don't update the theme version in there and version 
+            // updated messages will keep popping up
+            await saveCfgToFile(savedCfg, savedConfigPath);
+        }
+    } else if (!config.eqConfig(currentCfg, savedCfg)) {
+        // Config changed manually
         await updateThemeFull(currentCfg)
         void showReloadWarning()
+    }
+}
+
+
+type Version = {
+    major: number
+    minor: number
+    patch: number
+}
+
+function parseVersion(s: string): Version {
+    const parts = s.split('.')
+    return {
+        major: parseInt(parts[0]),
+        minor: parseInt(parts[1]),
+        patch: parseInt(parts[2])
+    }
+}
+
+async function versionUpdated(oldVersionStr: string, newVersionStr: string) {
+    const oldVersion = parseVersion(oldVersionStr)
+    //const newVersion = parseVersion(newVersionStr)
+
+    let msg = `Pastel Evening Theme has been updated to version ${newVersionStr}.`
+    if (oldVersion.major == 0 && oldVersion.minor < 4) {
+        msg += "This version introduces easy configuration options to customize the theme. Check out the setting in the editor."
+        const changelogLabel = "Open changelog"
+        const settingsLabel = "Open settings"
+        const action = await vscode.window.showInformationMessage(msg, settingsLabel, changelogLabel)
+        if (action === changelogLabel) {
+            void vscode.env.openExternal(vscode.Uri.parse('https://github.com/kaiusl/pastel_evening_vscode/blob/main/CHANGELOG.md'))
+        } else if (action === settingsLabel) {
+            void vscode.commands.executeCommand('workbench.action.openSettings', `@ext:kaiusl.pastel-evening-theme`)
+        }
+    } else {
+        const changelogLabel = "Open changelog"
+        const action = await vscode.window.showInformationMessage(msg, changelogLabel)
+        if (action === changelogLabel) {
+            void vscode.env.openExternal(vscode.Uri.parse('https://github.com/kaiusl/pastel_evening_vscode/blob/main/CHANGELOG.md'))
+        }
     }
 }
 
@@ -54,7 +110,7 @@ async function onCfgChange(event: vscode.ConfigurationChangeEvent) {
 }
 
 async function showReloadWarning() {
-    const msg = "Theme updated. Please reload the window for the changes to take effect."
+    const msg = "Pastel Evening Theme configuration has changed. \n\nPlease reload the window for the changes to take effect."
     const reloadLabel = "Reload"
     const action = await vscode.window.showWarningMessage(msg, reloadLabel)
     if (action === reloadLabel) {
