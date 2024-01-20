@@ -31,12 +31,9 @@ export async function activate(context: vscode.ExtensionContext) {
     const savedCfg = readCfgFromFile(savedConfigPath);
     const currentCfg = getCurrentCfg();
     if (!config.eqConfig(currentCfg, await savedCfg)) {
-        console.log("PET: theme config changed between load, regenerate theme")
         await updateThemeFull(currentCfg)
         void showReloadWarning()
     }
-
-    console.log("PET: Finished activation")
 }
 
 async function onCfgChange(event: vscode.ConfigurationChangeEvent) {
@@ -44,7 +41,6 @@ async function onCfgChange(event: vscode.ConfigurationChangeEvent) {
         return;
     }
 
-    console.log("PET: config changed")
     const cfg = getCurrentCfg()
     // check what part of config changed and only update what's necessary
     if (event.affectsConfiguration(config.joinKeys(config.Keys.ROOT, config.Keys.MARKDOWN_PREVIEW_STYLE))) {
@@ -88,7 +84,6 @@ export async function readCfgFromFile(path: vscode.Uri): Promise<config.Config> 
         cfgStr = new TextDecoder().decode(contents)
     } catch (err) {
         if (err instanceof vscode.FileSystemError) {
-            console.log(`PET: failed to load saved cfg because ${err.message}`)
             // It's ok, means that the extension is run first time
         } else {
             throw err
@@ -104,7 +99,6 @@ export async function readCfgFromFile(path: vscode.Uri): Promise<config.Config> 
 
 async function saveCfgToFile(cfg: config.Config, path: vscode.Uri) {
     const contents = new TextEncoder().encode(JSON.stringify(cfg))
-    console.log("PET: saved config")
     await vscode.workspace.fs.writeFile(path, contents)
 }
 
@@ -118,13 +112,10 @@ async function updateThemeFull(cfg: config.Config) {
 }
 
 async function generateThemeJson(theme: ThemeDef) {
-    console.log("PET: updating theme")
     const dst = vscode.Uri.file(path.join(extensionRoot, theme.themeDistPath))
     const json = buildThemeJson(theme)
     const jsonBytes = new TextEncoder().encode(json)
     await vscode.workspace.fs.writeFile(dst, jsonBytes)
-
-    console.log("PET: Finished updating theme")
 }
 
 
@@ -135,21 +126,16 @@ async function generateAndUpdateMdStyle(theme: ThemeDef, cfg: config.Config) {
 }
 
 async function updateMdStyle(theme: ThemeDef, cfg: config.Config) {
-    console.log("PET: updating mdstyle")
     const dst = vscode.Uri.file(path.join(extensionRoot, theme.mdstyleContribPath))
     if (cfg.exportMarkdownPreviewStyle) {
-        console.log("PET: copied mdstyle")
         const src = vscode.Uri.file(path.join(extensionRoot, theme.mdstyleDistPath))
         await vscode.workspace.fs.copy(src, dst, { overwrite: true })
     } else {
-        console.log("PET: empty mdstyle")
         await vscode.workspace.fs.writeFile(dst, new TextEncoder().encode(""))
     }
-    console.log("PET: Finished updating mdstyle")
 }
 
 async function generateMdStyleCss(theme: ThemeDef) {
-    console.log("PET: generating mdstyle")
     const dst = vscode.Uri.file(path.join(extensionRoot, theme.mdstyleDistPath))
     const css = buildMdstyleCss(theme)
     await vscode.workspace.fs.writeFile(dst, new TextEncoder().encode(css))

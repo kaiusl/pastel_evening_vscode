@@ -7,7 +7,6 @@ import * as vscode from 'vscode'
 
 export function activate(context: vscode.ExtensionContext) {
     vscode.workspace.onDidChangeConfiguration(onCfgChange)
-    console.log("PET: Finised web activation")
 }
 
 function onCfgChange(event: vscode.ConfigurationChangeEvent) {
