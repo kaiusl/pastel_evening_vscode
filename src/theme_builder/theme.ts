@@ -375,7 +375,7 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
         "button.hoverBackground": theme.accentBgColor.lighten(0.05),
         "button.foreground": theme.accentFgColor,
         "button.secondaryBackground": theme.accentAltBgColor,
-        "button.secondaryForeground": theme.fgColor2,
+        "button.secondaryForeground": theme.accentFgColor,
         "button.secondaryHoverBackground": theme.accentAltBgColor.lighten(0.05),
         "button.separator": theme.accentFgColor.setAlpha(0.25),
         //"button.border": "#f0f",
@@ -817,7 +817,7 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
         "statusBar.background": theme.bgColor1,
         "statusBar.border": theme.borderColor,
         "statusBarItem.warningBackground": "#ce8e1f",
-        "statusBarItem.warningForeground": theme.accentFgColor,
+        "statusBarItem.warningForeground": theme.fgColor4,
         "statusBar.debuggingBackground": theme.accentBgColor,
         "statusBar.debuggingForeground": theme.accentFgColor,
         // "statusBar.focusBorder": "#f0f", // color.bright_fg
@@ -827,7 +827,7 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
         "statusBarItem.activeBackground": theme.hoverColor.setAlpha(theme.activeOpacity),
         "statusBarItem.compactHoverBackground": theme.hoverColor.setAlpha(theme.hoverOpacity),
         "statusBarItem.errorBackground": "#d82828",
-        "statusBarItem.errorForeground": theme.accentFgColor,
+        "statusBarItem.errorForeground": theme.fgColor4,
         // "statusBarItem.focusBorder": "#f0f", // color.bright_fg
         "statusBarItem.hoverBackground": theme.hoverColor.setAlpha(theme.hoverOpacity),
         // "statusBarItem.prominentBackground": "#f0f", // "#1d1f2480"
