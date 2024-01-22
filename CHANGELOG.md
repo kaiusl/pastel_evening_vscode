@@ -6,6 +6,25 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Fixed
+
+* Some inconsistencies in operator and punctuation coloring.
+* Inconsistencies between selection colors in editor and UI.
+
+### Added
+
+* Configuration options to modify the theme to users liking. Options include:
+  * Toggle italic font on static variables and functions
+  * Toggle underlines on mutable variables
+  * Toggle custom markdown preview style
+  * Change base colors
+  * Change some UI, editor and token colors
+
+### Changed
+
+* Extension is now a full fledged VSCode extension which allow to generate theme on the fly based on the configuration.
+* Small color changes because the theme and colors are now generated from a smaller set of colors.
+
 ## [0.3.1] - 2024-01-12
 
 ### Fixed
