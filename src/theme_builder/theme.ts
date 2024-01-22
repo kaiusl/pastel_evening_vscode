@@ -2024,10 +2024,10 @@ export function semanticTokenColors(theme: ThemeDef): { [k: string]: SemanticHig
             "italic": theme.italics
         },
         "*.static.constant": {
-            "italic": theme.italics
+            "italic": false
         },
         "*.static.readonly": {
-            "italic": theme.italics
+            "italic": false
         },
         "*.mutable": {
             "underline": theme.underlined
