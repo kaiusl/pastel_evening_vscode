@@ -162,7 +162,7 @@ export class ThemeDef {
         this.blue = tryColorFromHexStr(cfg.commonColorOverrides.blue) ?? colors.blue;
         this.green = tryColorFromHexStr(cfg.commonColorOverrides.green) ?? colors.green;
         this.yellow = tryColorFromHexStr(cfg.commonColorOverrides.yellow) ?? colors.yellow;
-        this.lightOrange = tryColorFromHexStr(cfg.commonColorOverrides.lightOrange) ?? colors.lightOrange;
+        this.lightOrange = tryColorFromHexStr(cfg.commonColorOverrides["light orange"]) ?? colors.lightOrange;
         this.orange = tryColorFromHexStr(cfg.commonColorOverrides.orange) ?? colors.orange;
         this.cyan = tryColorFromHexStr(cfg.commonColorOverrides.cyan) ?? colors.cyan;
         this.pink = tryColorFromHexStr(cfg.commonColorOverrides.pink) ?? colors.pink;
@@ -172,14 +172,14 @@ export class ThemeDef {
         this.brightBlue = colors.brightBlue;
         this.brightYellow = colors.brightYellow;
 
-        this.accentBgColor = tryColorFromHexStr(cfg.uiColorOverrides.accentBackground) ?? colors.accentBg;
-        this.accentFgColor = tryColorFromHexStr(cfg.uiColorOverrides.accentForeground) ?? colors.accentFg;
-        this.accentAltBgColor = tryColorFromHexStr(cfg.uiColorOverrides.accentAltBackground) ?? this.accentBgColor.darken(0.15).desaturate(0.5);
+        this.accentBgColor = tryColorFromHexStr(cfg.uiColorOverrides["accent background"]) ?? colors.accentBg;
+        this.accentFgColor = tryColorFromHexStr(cfg.uiColorOverrides["accent foreground"]) ?? colors.accentFg;
+        this.accentAltBgColor = tryColorFromHexStr(cfg.uiColorOverrides["accent alt background"]) ?? this.accentBgColor.darken(0.15).desaturate(0.5);
 
-        this.searchMatchSelectedBgColor = tryColorFromHexStr(cfg.editorColorOverrides.searchMatchSelectedBackground) ?? colors.searchMatchSelected;
-        this.searchMatchBgColor = tryColorFromHexStr(cfg.editorColorOverrides.searchMatchBackground) ?? colors.searchMatch;
-        this.selectionBgColor = tryColorFromHexStr(cfg.editorColorOverrides.selectionBackground) ?? this.blue.setAlpha(0.2);
-        this.editorHoverHighlightBgColor = tryColorFromHexStr(cfg.editorColorOverrides.hoverHighlightBackground) ?? this.yellow.setAlpha(0.15);
+        this.searchMatchSelectedBgColor = tryColorFromHexStr(cfg.editorColorOverrides["search match selected background"]) ?? colors.searchMatchSelected;
+        this.searchMatchBgColor = tryColorFromHexStr(cfg.editorColorOverrides["search match background"]) ?? colors.searchMatch;
+        this.selectionBgColor = tryColorFromHexStr(cfg.editorColorOverrides["selection background"]) ?? this.blue.setAlpha(0.2);
+        this.editorHoverHighlightBgColor = tryColorFromHexStr(cfg.editorColorOverrides["hover highlight background"]) ?? this.yellow.setAlpha(0.15);
 
         this.borderColor = colors.border;
         this.hoverColor = colors.UiHover;
@@ -200,14 +200,14 @@ export class ThemeDef {
         this.commentsColor = tryColorFromHexStr(cfg.tokensColorOverrides.comments) ?? this.codeFgColor0;
         this.keywordsColor = tryColorFromHexStr(cfg.tokensColorOverrides.keywords) ?? this.red;
         this.literalsColor = tryColorFromHexStr(cfg.tokensColorOverrides.literals) ?? this.lightOrange;
-        this.literalsColor2 = tryColorFromHexStr(cfg.tokensColorOverrides.literalsAlt) ?? this.orange;
+        this.literalsColor2 = tryColorFromHexStr(cfg.tokensColorOverrides["literals alt"]) ?? this.orange;
         this.stringsColor = tryColorFromHexStr(cfg.tokensColorOverrides.strings) ?? this.literalsColor;
-        this.stringEscapesColor = tryColorFromHexStr(cfg.tokensColorOverrides.stringEscapes) ?? this.literalsColor2;
+        this.stringEscapesColor = tryColorFromHexStr(cfg.tokensColorOverrides["string escapes"]) ?? this.literalsColor2;
         this.numbersColor = tryColorFromHexStr(cfg.tokensColorOverrides.numbers) ?? this.literalsColor;
         this.namespacesColor = tryColorFromHexStr(cfg.tokensColorOverrides.namespaces) ?? this.codeFgColor2;
-        this.localVariablesColor = tryColorFromHexStr(cfg.tokensColorOverrides.localVariables) ?? this.codeFgColor2;
-        this.specialVariablesColor = tryColorFromHexStr(cfg.tokensColorOverrides.specialVariables) ?? this.codeFgColor4;
-        this.enumMembersColor = tryColorFromHexStr(cfg.tokensColorOverrides.enumMembers) ?? this.specialVariablesColor;
+        this.localVariablesColor = tryColorFromHexStr(cfg.tokensColorOverrides["local variables"]) ?? this.codeFgColor2;
+        this.specialVariablesColor = tryColorFromHexStr(cfg.tokensColorOverrides["special variables"]) ?? this.codeFgColor4;
+        this.enumMembersColor = tryColorFromHexStr(cfg.tokensColorOverrides["enum members"]) ?? this.specialVariablesColor;
         this.operatorsColor = tryColorFromHexStr(cfg.tokensColorOverrides.operators) ?? this.codeFgColor2;
         this.punctuationsColor = tryColorFromHexStr(cfg.tokensColorOverrides.punctuations) ?? this.codeFgColor2;
         this.interfacesColor = tryColorFromHexStr(cfg.tokensColorOverrides.interfaces) ?? this.yellow;

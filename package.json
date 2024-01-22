@@ -155,7 +155,7 @@
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
-              "lightOrange": {
+              "light orange": {
                 "type": "string",
                 "description": "Base light orange color.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
@@ -199,19 +199,19 @@
             "order": 3,
             "description": "UI color overrides. \nAccepted color formats are #rgb, #rgba, #rrggbb, #rrggbbaa.",
             "properties": {
-              "accentBackground": {
+              "accent background": {
                 "type": "string",
                 "description": "Main ui accent color. Used by buttons, highlghts etc.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
-              "accentAltBackground": {
+              "accent alt background": {
                 "type": "string",
                 "description": "Alternative ui accent color. Used by secondary buttons, highlight etc.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
-              "accentForeground": {
+              "accent foreground": {
                 "type": "string",
                 "description": "Foreground color used on accents.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
@@ -226,25 +226,25 @@
             "order": 4,
             "description": "Editor color overrides. \nAccepted color formats are #rgb, #rgba, #rrggbb, #rrggbbaa.",
             "properties": {
-              "selectionBackground": {
+              "selection background": {
                 "type": "string",
                 "description": "Selection background color.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
-              "hoverHighlightBackground": {
+              "hover highlight background": {
                 "type": "string",
                 "description": "Background color of various editor hover highlights.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
-              "searchMatchBackground": {
+              "search match background": {
                 "type": "string",
                 "description": "Background color of search matches.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
-              "searchMatchSelectedBackground": {
+              "search match selected background": {
                 "type": "string",
                 "description": "Background color of currently selected search match.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
@@ -299,7 +299,7 @@
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
-              "literalsAlt": {
+              "literals alt": {
                 "type": "string",
                 "description": "Alternative base color of literals. Used by nested components in literals, for example escape sequences or string interpolation components.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
@@ -311,7 +311,7 @@
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
-              "stringEscapes": {
+              "string escapes": {
                 "type": "string",
                 "description": "Color of string escape sequences.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
@@ -329,19 +329,19 @@
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
-              "localVariables": {
+              "local variables": {
                 "type": "string",
                 "description": "Color of local variables.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
-              "specialVariables": {
+              "special variables": {
                 "type": "string",
                 "description": "Color of special variables like globals, statics, constants and function parameters.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
-              "enumMembers": {
+              "enum members": {
                 "type": "string",
                 "description": "Color of enum members.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",

@@ -41,7 +41,7 @@ export type CommonColorOverrides = {
     red?: string
     pink?: string
     orange?: string
-    lightOrange?: string
+    "light orange"?: string
     yellow?: string
     green?: string
     cyan?: string
@@ -51,17 +51,17 @@ export type CommonColorOverrides = {
 
 /** UI specific color overrides */
 export type UiColorOverrides = {
-    accentBackground?: string
-    accentAltBackground?: string
-    accentForeground?: string
+    "accent background"?: string
+    "accent alt background"?: string
+    "accent foreground"?: string
 }
 
 /** Editor specific color overrides */
 export type EditorColorOverrides = {
-    selectionBackground?: string
-    hoverHighlightBackground?: string
-    searchMatchBackground?: string
-    searchMatchSelectedBackground?: string
+    "selection background"?: string
+    "hover highlight background"?: string
+    "search match background"?: string
+    "search match selected background"?: string
     foreground0?: string
     foreground2?: string
     foreground4?: string
@@ -74,14 +74,14 @@ export type TokenColorOverrides = {
     functions?: string
     comments?: string
     literals?: string
-    literalsAlt?: string
+    "literals alt"?: string
     strings?: string
-    stringEscapes?: string
+    "string escapes"?: string
     numbers?: string
     namespaces?: string
-    localVariables?: string
-    specialVariables?: string
-    enumMembers?: string
+    "local variables"?: string
+    "special variables"?: string
+    "enum members"?: string
     operators?: string
     punctuations?: string
     interfaces?: string
