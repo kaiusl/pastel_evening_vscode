@@ -116,6 +116,20 @@ export function eqConfig(a: Config, b: Config): boolean {
         && JSON.stringify(a.tokensColorOverrides) === JSON.stringify(b.tokensColorOverrides)
 }
 
+export function mergeConfig(base: Config, other: Partial<Config>): Config {
+    base.useItalics = other.useItalics ?? base.useItalics
+    base.useUnderlined = other.useUnderlined ?? base.useUnderlined
+    base.exportMarkdownPreviewStyle = other.exportMarkdownPreviewStyle ?? base.exportMarkdownPreviewStyle
+    base.themeVersion = other.themeVersion ?? base.themeVersion
+    base.configVersion = other.configVersion ?? base.configVersion
+    base.commonColorOverrides = other.commonColorOverrides ?? base.commonColorOverrides
+    base.uiColorOverrides = other.uiColorOverrides ?? base.uiColorOverrides
+    base.editorColorOverrides = other.editorColorOverrides ?? base.editorColorOverrides
+    base.tokensColorOverrides = other.tokensColorOverrides ?? base.tokensColorOverrides
+
+    return base
+}
+
 /** Joins multiple `Keys` components into a complete key.
  * 
  * Usual key is `ROOT.SOME_KEY`.

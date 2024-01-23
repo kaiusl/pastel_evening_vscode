@@ -4,13 +4,28 @@
 
 const hexRegEx = /^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$/g
 
+class ColorParseError extends Error {
+    constructor(message: string) {
+        super(message)
+        this.name = "ColorParseError"
+    }
+}
+
 export class Color {
     r: number
     g: number
     b: number
     a: number
 
+    /**
+     * 
+     * Throws `ColorParseError` if `r`, `g`, `b` or `a` is not between 0 and 1.
+     */
     constructor(r: number, g: number, b: number, a: number) {
+        if (r < 0 || r > 1 || g < 0 || g > 1 || b < 0 || b > 1 || a < 0 || a > 1) {
+            throw new ColorParseError(`r=${r}, g=${g}, b=${b}, a=${a} is not valid color. All values must be between 0 and 1.`)
+        }
+
         this.r = r;
         this.g = g;
         this.b = b;
@@ -19,12 +34,14 @@ export class Color {
 
     /** Create color from hex string.
      * 
-     * Input starts with '#', '0x' or '0X', followed by 'rgb', 'rgba', 'rrggbb' or 'rrggbbaa' values.
+     * Input starts with '#', followed by 'rgb', 'rgba', 'rrggbb' or 'rrggbbaa' values.
+     * 
+     * Throws `ColorParseError` if input is invalid hex color string.
      */
     public static from_hex(hex: string): Color {
         if (!hex.match(hexRegEx)) {
             console.log("err")
-            throw Error(`${hex} is invalid hex color string`)
+            throw new ColorParseError(`${hex} is invalid hex color string`)
         }
 
         if (hex.startsWith("#")) {
