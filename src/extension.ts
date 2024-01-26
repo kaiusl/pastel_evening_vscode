@@ -32,8 +32,9 @@ export async function activate(context: vscode.ExtensionContext) {
     // If anything throws here it will fail to activate the extension. That's probably the desired behavior.
     let savedCfg = await readCfgFromFile(savedConfigPath);
     const currentCfg = getCurrentCfg();
-    if (savedCfg.themeVersion != currentCfg.themeVersion) {
-        void versionUpdated(savedCfg.themeVersion, currentCfg.themeVersion)
+        if (currentCfg.showUpdateNotifications) {
+            void showVersionUpdateNotification(savedCfg.themeVersion, currentCfg.themeVersion)
+        }
 
         // After theme update the bundled theme uses default config
         savedCfg = config.defaultConfig()

@@ -8,6 +8,7 @@ export enum Keys {
     UNDERLINED = "useUnderlined",
     MARKDOWN_PREVIEW_STYLE = "exportMarkdownPreviewStyle",
     COLOR_OVERRIDES = "colorOverrides",
+    SHOW_UPDATE_NOTIFICATIONS = "showUpdateNotifications",
     COMMON_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.common`,
     UI_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.ui`,
     EDITOR_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.editor`,
@@ -18,6 +19,7 @@ export type Config = {
     useItalics: boolean
     useUnderlined: boolean
     exportMarkdownPreviewStyle: boolean
+    showUpdateNotifications: boolean
     commonColorOverrides: CommonColorOverrides
     uiColorOverrides: UiColorOverrides
     editorColorOverrides: EditorColorOverrides
@@ -95,6 +97,7 @@ export function defaultConfig(): Config {
         useItalics: true,
         useUnderlined: true,
         exportMarkdownPreviewStyle: true,
+        showUpdateNotifications: true,
         commonColorOverrides: {},
         uiColorOverrides: {},
         editorColorOverrides: {},
@@ -110,6 +113,7 @@ export function eqConfig(a: Config, b: Config): boolean {
         && a.exportMarkdownPreviewStyle === b.exportMarkdownPreviewStyle
         && a.themeVersion === b.themeVersion
         && a.configVersion === b.configVersion
+        && a.showUpdateNotifications === b.showUpdateNotifications
         && JSON.stringify(a.commonColorOverrides) === JSON.stringify(b.commonColorOverrides)
         && JSON.stringify(a.uiColorOverrides) === JSON.stringify(b.uiColorOverrides)
         && JSON.stringify(a.editorColorOverrides) === JSON.stringify(b.editorColorOverrides)
@@ -126,6 +130,7 @@ export function mergeConfig(base: Config, other: Partial<Config>): Config {
     base.uiColorOverrides = other.uiColorOverrides ?? base.uiColorOverrides
     base.editorColorOverrides = other.editorColorOverrides ?? base.editorColorOverrides
     base.tokensColorOverrides = other.tokensColorOverrides ?? base.tokensColorOverrides
+    base.showUpdateNotifications = other.showUpdateNotifications ?? base.showUpdateNotifications
 
     return base
 }

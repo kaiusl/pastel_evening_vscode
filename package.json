@@ -47,24 +47,30 @@
         "title": "Pastel Evening Theme",
         "order": 0,
         "properties": {
+          "pastelEveningTheme.showUpdateNotifications": {
+            "type": "boolean",
+            "default": true,
+            "description": "Show a short notifications after a new version of theme was installed.",
+            "order": 0
+          },
           "pastelEveningTheme.useItalics": {
             "type": "boolean",
             "default": true,
             "description": "Use italics for static variables and members.",
-            "order": 0
+            "order": 1
           },
           "pastelEveningTheme.useUnderlined": {
             "type": "boolean",
             "default": true,
             "description": "Underline mutable variables and members.",
-            "order": 0
+            "order": 2
           },
           "pastelEveningTheme.exportMarkdownPreviewStyle": {
             "type": "boolean",
             "default": true,
             "scope": "machine",
             "description": "Use themed markdown preview style.",
-            "order": 1
+            "order": 3
           }
         }
       },
@@ -74,7 +80,7 @@
         "properties": {
           "pastelEveningTheme.colorOverrides.common": {
             "type": "object",
-            "order": 2,
+            "order": 0,
             "description": "Common color overrides. \nThese colors are used throughout the theme, so major changes may result in weird theme. The intended use is for slight adjustment of each color if needed. \nAccepted color formats are #rgb, #rgba, #rrggbb, #rrggbbaa.",
             "properties": {
               "background0": {
@@ -196,7 +202,7 @@
           },
           "pastelEveningTheme.colorOverrides.ui": {
             "type": "object",
-            "order": 3,
+            "order": 1,
             "description": "UI color overrides. \nAccepted color formats are #rgb, #rgba, #rrggbb, #rrggbbaa.",
             "properties": {
               "accent background": {
@@ -223,7 +229,7 @@
           },
           "pastelEveningTheme.colorOverrides.editor": {
             "type": "object",
-            "order": 4,
+            "order": 2,
             "description": "Editor color overrides. \nAccepted color formats are #rgb, #rgba, #rrggbb, #rrggbbaa.",
             "properties": {
               "selection background": {
@@ -273,7 +279,7 @@
           },
           "pastelEveningTheme.colorOverrides.tokens": {
             "type": "object",
-            "order": 5,
+            "order": 3,
             "description": "Token color overrides. \nAccepted color formats are #rgb, #rgba, #rrggbb, #rrggbbaa.",
             "propertyNames": true,
             "properties": {
