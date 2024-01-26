@@ -4,10 +4,6 @@ Dark theme with pastel colors and a slight blue hint to the editor.
 
 ![](resources/example_rust.png)
 
-> I have been using this basic color scheme for a while now but the amount of rules in settings.json started to grew out of hand. 
-> I thought that I should just polish it up and actually make it a proper theme.
-> So a week and a bit later here it is.
-
 ## Color scheme
 
 This theme aims to use relatively few different colors but still clearly distinguish different elements in the code. 
@@ -46,6 +42,10 @@ It's worth noting that Linux's and Windows' font rendering is different, I have 
 With same `fontWeight` the theme looks quite a bit brighter on Windows than on Linux.
 Thus if the colors seem a bit too bright you can slightly lower the fontWeight and other way around too.
 
+## Configuration
+
+This theme includes various configuration options to easily customize the theme to your liking. Check out the extension settings in VSCode itself, they should be relatively self-explanatory.
+
 ## Tested languages
 
 The theme has been tested with various languages, mainly against the examples from [Code Syntax Examples] repo but with some other projects as well.
@@ -68,11 +68,6 @@ Check out [CONTRIBUTING.md] for more information.
 
 This theme's code style is inspired by [Panda Syntax]'s and [Gatito Theme]'s pastel colors. 
 Editor's UI style is inspired by [Lapce] editor's default dark theme.
-
-## Availability for other editors
-
-* JetBrains' IDEs - wip
-* Visual Studio - wip
 
 ## License
 
