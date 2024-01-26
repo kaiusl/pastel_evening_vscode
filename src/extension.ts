@@ -30,10 +30,16 @@ export async function activate(context: vscode.ExtensionContext) {
     // To detect change in config, we save the config that was used to generate the theme to `savedConfigPath`.
 
     // If anything throws here it will fail to activate the extension. That's probably the desired behavior.
-    let savedCfg = await readCfgFromFile(savedConfigPath);
+    const savedCfgReadResult = await readCfgFromFile(savedConfigPath);
+    let savedCfg = savedCfgReadResult.cfg
     const currentCfg = getCurrentCfg();
+    if (!savedCfgReadResult.exists || savedCfg.themeVersion != currentCfg.themeVersion) {
         if (currentCfg.showUpdateNotifications) {
-            void showVersionUpdateNotification(savedCfg.themeVersion, currentCfg.themeVersion)
+            // if the previously saved config does not exist, it either is a first install or a plugin update from before v0.4.0
+            // we cannot distinguish between these two cases, but we definitely want to show a notification for an update from pre v0.4.0 version
+            // so we'll have to show one for an fresh install too, maybe it's good, maybe not
+            const savedCfgThemeVersion = savedCfgReadResult.exists ? savedCfg.themeVersion : "0.0.0"
+            void showVersionUpdateNotification(savedCfgThemeVersion, currentCfg.themeVersion)
         }
 
         // After theme update the bundled theme uses default config
@@ -55,41 +61,42 @@ export async function activate(context: vscode.ExtensionContext) {
     }
 }
 
+async function showVersionUpdateNotification(oldVersionStr: string, newVersionStr: string) {
 
-type Version = {
-    major: number
-    minor: number
-    patch: number
-}
-
-function parseVersion(s: string): Version {
-    try {
-        const parts = s.split('.')
-        return {
-            major: parseInt(parts[0]),
-            minor: parseInt(parts[1]),
-            patch: parseInt(parts[2])
-        }
-    } catch (err) {
-        throw Error(`failed to parse version: ${(err as Error).toString()}`)
+    type Version = {
+        major: number
+        minor: number
+        patch: number
     }
-}
 
-async function versionUpdated(oldVersionStr: string, newVersionStr: string) {
-    let msg = `Pastel Evening Theme has been updated to version ${newVersionStr}.`
+    function parseVersion(s: string): Version {
+        try {
+            const parts = s.split('.')
+            return {
+                major: parseInt(parts[0]),
+                minor: parseInt(parts[1]),
+                patch: parseInt(parts[2])
+            }
+        } catch (err) {
+            throw Error(`failed to parse version: ${(err as Error).toString()}`)
+        }
+    }
+
+    let msg = `Pastel Evening Theme version ${newVersionStr} has been installed.`
     try {
         const oldVersion = parseVersion(oldVersionStr)
         //const newVersion = parseVersion(newVersionStr)
-        
+
         const changelogLabel = "Open changelog"
         const settingsLabel = "Open settings"
+        const dontShowAnymore = "Don't show anymore"
 
         let action: string | undefined
         if (oldVersion.major == 0 && oldVersion.minor < 4) {
-            msg += "This version introduces easy configuration options to customize the theme. Check out the setting in the editor."
-            action = await vscode.window.showInformationMessage(msg, settingsLabel, changelogLabel)
+            msg += " It includes easy configuration options to customize the theme. Check out the setting in the editor."
+            action = await vscode.window.showInformationMessage(msg, settingsLabel, changelogLabel, dontShowAnymore)
         } else {
-            action = await vscode.window.showInformationMessage(msg, changelogLabel)
+            action = await vscode.window.showInformationMessage(msg, changelogLabel, dontShowAnymore)
         }
 
         if (action === changelogLabel) {
@@ -97,6 +104,10 @@ async function versionUpdated(oldVersionStr: string, newVersionStr: string) {
             void vscode.env.openExternal(changelogPath)
         } else if (action === settingsLabel) {
             void vscode.commands.executeCommand('workbench.action.openSettings', `@ext:kaiusl.pastel-evening-theme`)
+        } else if (action === dontShowAnymore) {
+            const cfg = vscode.workspace.getConfiguration(config.Keys.ROOT)
+            await cfg.update(config.Keys.SHOW_UPDATE_NOTIFICATIONS, false, vscode.ConfigurationTarget.Global)
+            await saveCfgToFile(getCurrentCfg(), savedConfigPath)
         }
     } catch (err) {
         void vscode.window.showErrorMessage(msg)
@@ -110,8 +121,12 @@ async function onCfgChange(event: vscode.ConfigurationChangeEvent) {
 
     try {
         const cfg = getCurrentCfg()
+
         // check what part of config changed and only update what's necessary
-        if (event.affectsConfiguration(config.joinKeys(config.Keys.ROOT, config.Keys.MARKDOWN_PREVIEW_STYLE))) {
+        if (event.affectsConfiguration(config.joinKeys(config.Keys.ROOT, config.Keys.SHOW_UPDATE_NOTIFICATIONS))) {
+            // don't need to do anything
+            return
+        } else if (event.affectsConfiguration(config.joinKeys(config.Keys.ROOT, config.Keys.MARKDOWN_PREVIEW_STYLE))) {
             // Don't need to regenerate theme files
             await updateMdStyle(createDarkTheme(cfg), cfg)
         } else {
@@ -144,15 +159,21 @@ export function getCurrentCfg(): config.Config {
         resultCfg.editorColorOverrides = cfg.get(config.Keys.EDITOR_COLOR_OVERRIDES, resultCfg.editorColorOverrides)
         resultCfg.uiColorOverrides = cfg.get(config.Keys.UI_COLOR_OVERRIDES, resultCfg.uiColorOverrides)
         resultCfg.tokensColorOverrides = cfg.get(config.Keys.TOKENS_COLOR_OVERRIDES, resultCfg.tokensColorOverrides)
+        resultCfg.showUpdateNotifications = cfg.get(config.Keys.SHOW_UPDATE_NOTIFICATIONS, resultCfg.showUpdateNotifications)
         return resultCfg
     } catch (err) {
         throw Error(`failed to read current theme config: ${(err as Error).toString()}`)
     }
 }
 
-export async function readCfgFromFile(path: vscode.Uri): Promise<config.Config> {
-    let cfg = config.defaultConfig()
+type CfgReadResult = {
+    exists: boolean,
+    cfg: config.Config
+}
 
+export async function readCfgFromFile(path: vscode.Uri): Promise<CfgReadResult> {
+    let cfg = config.defaultConfig()
+    let exists = true
     try {
         const contents = await vscode.workspace.fs.readFile(path)
         const cfgStr = new TextDecoder().decode(contents)
@@ -161,13 +182,13 @@ export async function readCfgFromFile(path: vscode.Uri): Promise<config.Config> 
     } catch (err) {
         if (err instanceof vscode.FileSystemError && err.code == "FileNotFound") {
             // It's ok, means that the extension is run first time
-            cfg = config.defaultConfig()
+            exists = false
         } else {
             throw Error(`failed to read saved theme config: ${(err as Error).toString()}`)
         }
     }
 
-    return cfg
+    return { exists, cfg }
 }
 
 async function saveCfgToFile(cfg: config.Config, path: vscode.Uri) {
