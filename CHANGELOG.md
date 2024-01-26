@@ -6,6 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.4.0] - 2024-01-26
+
 ### Fixed
 
 * Some inconsistencies in operator and punctuation coloring.
@@ -76,7 +78,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Initial release
 
-[Unreleased]: https://github.com/kaiusl/pastel_evening_vscode/compare/v0.3.1...HEAD
+[Unreleased]: https://github.com/kaiusl/pastel_evening_vscode/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.4.0
 [0.3.1]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.3.1
 [0.3.0]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.3.0
 [0.2.0]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.2.0
