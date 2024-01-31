@@ -45,7 +45,8 @@
         "pastelEveningTheme.colorOverrides.editor",
         "pastelEveningTheme.colorOverrides.tokens"
       ]
-    }
+    },
+    "virtualWorkspaces": true
   },
   "contributes": {
     "themes": [

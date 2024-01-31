@@ -3,7 +3,6 @@
  */
 
 import * as vscode from 'vscode'
-import * as path from 'path'
 import { DIST_DIR } from './common_defs'
 import * as config from './config'
 import { buildThemeJson } from './theme_builder/theme'
@@ -11,11 +10,11 @@ import { ThemeDef, createDarkTheme } from './theme_builder/theme'
 import { buildMdstyleCss } from './theme_builder/mdstyle'
 
 let savedConfigPath: vscode.Uri
-let extensionRoot: string
+let extensionRoot: vscode.Uri
 
 export async function activate(context: vscode.ExtensionContext) {
-    extensionRoot = context.extensionUri.fsPath
-    savedConfigPath = vscode.Uri.file(path.join(extensionRoot, DIST_DIR, "current_theme_cfg.json"))
+    extensionRoot = context.extensionUri
+    savedConfigPath = vscode.Uri.joinPath(extensionRoot, DIST_DIR, "current_theme_cfg.json")
 
     vscode.workspace.onDidChangeConfiguration(onCfgChange)
 
@@ -223,7 +222,7 @@ async function updateThemeFull(cfg: config.Config) {
 
 async function generateThemeJson(theme: ThemeDef) {
     try {
-        const dst = vscode.Uri.file(path.join(extensionRoot, theme.themeDistPath))
+        const dst = vscode.Uri.joinPath(extensionRoot, theme.themeDistPath)
         const json = buildThemeJson(theme)
         const jsonBytes = new TextEncoder().encode(json)
         await vscode.workspace.fs.writeFile(dst, jsonBytes)
@@ -240,9 +239,9 @@ async function generateAndUpdateMdStyle(theme: ThemeDef, cfg: config.Config) {
 
 async function updateMdStyle(theme: ThemeDef, cfg: config.Config) {
     try {
-        const dst = vscode.Uri.file(path.join(extensionRoot, theme.mdstyleContribPath))
+        const dst = vscode.Uri.joinPath(extensionRoot, theme.mdstyleContribPath)
         if (cfg.exportMarkdownPreviewStyle) {
-            const src = vscode.Uri.file(path.join(extensionRoot, theme.mdstyleDistPath))
+            const src = vscode.Uri.joinPath(extensionRoot, theme.mdstyleDistPath)
             await vscode.workspace.fs.copy(src, dst, { overwrite: true })
         } else {
             await vscode.workspace.fs.writeFile(dst, new TextEncoder().encode(""))
@@ -254,7 +253,7 @@ async function updateMdStyle(theme: ThemeDef, cfg: config.Config) {
 
 async function generateMdStyleCss(theme: ThemeDef) {
     try {
-        const dst = vscode.Uri.file(path.join(extensionRoot, theme.mdstyleDistPath))
+        const dst = vscode.Uri.joinPath(extensionRoot, theme.mdstyleDistPath)
         const css = buildMdstyleCss(theme)
         await vscode.workspace.fs.writeFile(dst, new TextEncoder().encode(css))
     } catch (err) {
