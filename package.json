@@ -31,6 +31,22 @@
   "activationEvents": [
     "onStartupFinished"
   ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "Untrusted workspaces can use the theme but not customize it.",
+      "restrictedConfigurations": [
+        "pastelEveningTheme.showUpdateNotifications",
+        "pastelEveningTheme.useItalics",
+        "pastelEveningTheme.useUnderlined",
+        "pastelEveningTheme.exportMarkdownPreviewStyle",
+        "pastelEveningTheme.colorOverrides.common",
+        "pastelEveningTheme.colorOverrides.ui",
+        "pastelEveningTheme.colorOverrides.editor",
+        "pastelEveningTheme.colorOverrides.tokens"
+      ]
+    }
+  },
   "contributes": {
     "themes": [
       {
