@@ -6,6 +6,21 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Added
+
+* Support for untrusted workspaces. The configuration values from the untrusted workspaces are not 
+  used.
+* Check that extension works in virtual workspaces.
+* Default values to the color overrides descriptions.
+
+### Fixed
+
+* Removed unnecessary `machine` scope from `exportMarkdownPreviewStyle` option. 
+* Removed unnecessary theme updates when VSCode calls `onDidChangeConfiguration` but configuration 
+  didn't actually change for our purposes.
+* Removed unnecessary reload warning messages after configuration change that didn't require theme 
+  update.
+
 ## [0.4.0] - 2024-01-26
 
 ### Fixed
@@ -24,7 +39,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Changed
 
-* Extension is now a full fledged VSCode extension which allow to generate theme on the fly based on the configuration.
+* Extension is now a full fledged VSCode extension which allow to generate theme on the fly based on
+  the configuration.
 * Small color changes because the theme and colors are now generated from a smaller set of colors.
 
 ## [0.3.1] - 2024-01-12
@@ -32,8 +48,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Fixed
 
 * Make selection colors transparent in order to not to hide underlying decorations ([#1]).
-* Find new color (#eddd9a30) for hover, word and other editor highlights that previously used the same color as selection ([#1]).
-* Add "editorIndentGuide.activeBackground1", "editorIndentGuide.background1" colors to replace deprecated "editorIndentGuide.activeBackground", "editorIndentGuide.background".
+* Find new color (#eddd9a30) for hover, word and other editor highlights that previously used the 
+  same color as selection ([#1]).
+* Add "editorIndentGuide.activeBackground1", "editorIndentGuide.background1" colors to replace 
+  deprecated "editorIndentGuide.activeBackground", "editorIndentGuide.background".
 
 ## [0.3.0] - 2023-02-06
 
