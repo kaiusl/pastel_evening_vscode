@@ -120,19 +120,26 @@ async function onCfgChange(event: vscode.ConfigurationChangeEvent) {
     }
 
     try {
-        const cfg = getCurrentCfg()
-
         // check what part of config changed and only update what's necessary
         if (event.affectsConfiguration(config.joinKeys(config.Keys.ROOT, config.Keys.SHOW_UPDATE_NOTIFICATIONS))) {
             // don't need to do anything
             return
         } else if (event.affectsConfiguration(config.joinKeys(config.Keys.ROOT, config.Keys.MARKDOWN_PREVIEW_STYLE))) {
+            const cfg = getCurrentCfg()
             // Don't need to regenerate theme files
             await updateMdStyle(createDarkTheme(cfg), cfg)
+            void showReloadWarning()
         } else {
-            await updateThemeFull(cfg)
+            const cfg = getCurrentCfg()
+            const currentThemeCfg = (await readCfgFromFile(savedConfigPath)).cfg;
+            if (!config.eqConfig(cfg, currentThemeCfg)) {
+                // only generate theme if cfg actually changed from the saved one
+                // 
+                // For example in untrusted workspaces user can edit the workspace config but it won't apply as we don't trust it.
+                await updateThemeFull(cfg)
+                void showReloadWarning()
+            }
         }
-        void showReloadWarning()
     } catch (err) {
         void vscode.window.showErrorMessage(`Failed to update theme: ${(err as Error).toString()}`)
     }
