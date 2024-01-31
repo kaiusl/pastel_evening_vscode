@@ -68,7 +68,6 @@
           "pastelEveningTheme.exportMarkdownPreviewStyle": {
             "type": "boolean",
             "default": true,
-            "scope": "machine",
             "description": "Use themed markdown preview style.",
             "order": 3
           }
