@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Fixed
+
+* `symbolIcon` colors (icon colors in outline, breadcrumbs and suggest widgets) not respecting overridden token colors.
+
 ## [0.4.1] - 2024-02-01
 
 ### Added
