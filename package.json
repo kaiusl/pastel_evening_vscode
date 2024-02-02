@@ -89,6 +89,7 @@
             "order": 3
           },
           "pastelEveningTheme.extensionColors": {
+            "order": 4,
             "type": "object",
             "properties": {
               "GitLens": {
