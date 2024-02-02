@@ -1169,6 +1169,16 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
 
         "errorLens.statusBarIconErrorForeground": theme.red, // "#ff6464"
         "errorLens.statusBarIconWarningForeground": theme.lightOrange, // "#fa973a"
+
+        // GitHub Pull Requests and Issues (v0.80.0)
+        "issues.open": theme.green, // "#3fb950",
+        "issues.closed": theme.purple, // "#cb2431",
+        "issues.newIssueDecoration": theme.fgColor4.setAlpha(0.5), // "#ffffff48",
+        //"pullRequests.open": theme.green, // "issues.open",
+        "pullRequests.draft": theme.fgColor0, // "#6e7681",
+        "pullRequests.merged": theme.purple, // "#8957e5",
+        "pullRequests.closed": theme.red, // "issues.closed",
+        //"pullRequests.notification": "#f0f", // "notificationsInfoIcon.foreground",
     };
 
     // Convert colors to HEX
