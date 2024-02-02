@@ -8,7 +8,7 @@ Dark theme with pastel colors and a slight blue hint to the editor.
 
 This theme aims to use relatively few different colors but still clearly distinguish different elements in the code. 
 The comments are purposefully muted to emphasize the actual code. 
-Short summary about colors and their meaning is below.
+Short summary about colors and their meaning is below. Note however that it's possible to change them to your liking.
 
 | Color                                   | Tokens                                                                           |
 | --------------------------------------- | -------------------------------------------------------------------------------- |
