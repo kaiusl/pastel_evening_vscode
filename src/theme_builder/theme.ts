@@ -1132,21 +1132,24 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
         "gitlens.unpublishedCommitIconColor": theme.green.darken(0.25).desaturate(0.25),//"#35b15e",
         "gitlens.unpulledChangesIconColor": theme.orange,//"#b15e35"
 
-        // Error Lens
+        // Error Lens (v3.16.0)
         "errorLens.errorBackground": theme.brightRed.setAlpha(0.05), // "#e454541b"
         "errorLens.errorMessageBackground": theme.brightRed.setAlpha(0.05), // "#e4545419"
+        "errorLens.errorRangeBackground": theme.brightRed.setAlpha(0.05), // "#e4545419"
         "errorLens.errorForeground": muted(theme.red), // "#ff6464"
         // "errorLens.errorBackgroundLight": "#f0f", // "#e4545420"
         // "errorLens.errorForegroundLight": "#f0f", // "#e45454"
 
         "errorLens.warningBackground": theme.orange.setAlpha(0.05), // "#ff942f1b"
         "errorLens.warningMessageBackground": theme.orange.setAlpha(0.05), // "#ff942f19"
+        "errorLens.warningRangeBackground": theme.orange.setAlpha(0.05), // "#ff942f19"
         "errorLens.warningForeground": muted(theme.lightOrange), // "#fa973a"
         // "errorLens.warningBackgroundLight": "#f0f", // "#ff942f20"
         // "errorLens.warningForegroundLight": "#f0f", // "#ff942f"
 
         "errorLens.hintBackground": theme.brightGreen.setAlpha(0.05), // "#17a2a220"
         "errorLens.hintMessageBackground": theme.brightGreen.setAlpha(0.05), // "#17a2a219"
+        "errorLens.hintRangeBackground": theme.brightGreen.setAlpha(0.05), // "#17a2a219"
         "errorLens.hintForeground": muted(theme.green), // "#2faf64"
         // "errorLens.hintBackgroundLight": "#f0f", // "#17a2a220"
         // "errorLens.hintForegroundLight": "#f0f", // "#2faf64"
@@ -1154,6 +1157,7 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
 
         "errorLens.infoBackground": theme.blue.setAlpha(0.05), // "#00b7e420"
         "errorLens.infoMessageBackground": theme.blue.setAlpha(0.05), // "#00b7e419"
+        "errorLens.infoRangeBackground": theme.blue.setAlpha(0.05), // "#00b7e419"
         "errorLens.infoForeground": muted(theme.blue), // "#00b7e4"
         // "errorLens.infoForegroundLight": "#f0f", // "#00b7e4"
         // "errorLens.infoBackgroundLight": "#f0f", // "#00b7e420"
@@ -1165,7 +1169,6 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
 
         "errorLens.statusBarIconErrorForeground": theme.red, // "#ff6464"
         "errorLens.statusBarIconWarningForeground": theme.lightOrange, // "#fa973a"
-
     };
 
     // Convert colors to HEX
