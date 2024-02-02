@@ -711,37 +711,6 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
         // "editorOverviewRuler.wordHighlightForeground": "#f0f", // "#a0a0a0cc"
         // "editorOverviewRuler.wordHighlightStrongForeground": "#f0f", // "#c0a0c0cc"
         "editorOverviewRuler.background": theme.bgColor1,
-        // error lens
-        // "editorError.background": "#f14c4c40",
-        // "editorError.border": "#f0f",
-        // "editorError.foreground": "#f0f", // color.bright_red
-        // "errorForeground": "#f0f", // "#f48771"
-        // "errorLens.errorBackground": "#f0f", // "#e454541b"
-        // "errorLens.errorBackgroundLight": "#f0f", // "#e4545420"
-        // "errorLens.errorForeground": "#f0f", // "#ff6464"
-        // "errorLens.errorForegroundLight": "#f0f", // "#e45454"
-        // "errorLens.errorMessageBackground": "#f0f", // "#e4545419"
-        // "errorLens.hintBackground": "#f0f", // "#17a2a220"
-        // "errorLens.hintBackgroundLight": "#f0f", // "#17a2a220"
-        // "errorLens.hintForeground": "#f0f", // "#2faf64"
-        // "errorLens.hintForegroundLight": "#f0f", // "#2faf64"
-        // "errorLens.hintMessageBackground": "#f0f", // "#17a2a219"
-        // "errorLens.infoBackground": "#f0f", // "#00b7e420"
-        // "errorLens.infoBackgroundLight": "#f0f", // "#00b7e420"
-        // "errorLens.infoForeground": "#f0f", // "#00b7e4"
-        // "errorLens.infoForegroundLight": "#f0f", // "#00b7e4"
-        // "errorLens.infoMessageBackground": "#f0f", // "#00b7e419"
-        // "errorLens.statusBarErrorForeground": "#f0f", // "#ff6464"
-        // "errorLens.statusBarHintForeground": "#f0f", // "#2faf64"
-        // "errorLens.statusBarIconErrorForeground": "#f0f", // "#ff6464"
-        // "errorLens.statusBarIconWarningForeground": "#f0f", // "#fa973a"
-        // "errorLens.statusBarInfoForeground": "#f0f", // "#00b7e4"
-        // "errorLens.statusBarWarningForeground": "#f0f", // "#fa973a"
-        // "errorLens.warningBackground": "#f0f", // "#ff942f1b"
-        // "errorLens.warningBackgroundLight": "#f0f", // "#ff942f20"
-        // "errorLens.warningForeground": "#f0f", // "#fa973a"
-        // "errorLens.warningForegroundLight": "#f0f", // "#ff942f"
-        // "errorLens.warningMessageBackground": "#f0f", // "#ff942f19"
         // warning "lens"
         // "editorUnnecessaryCode.opacity": "#f0f", // "#1d1f24aa"
         // "editorUnnecessaryCode.border": "#f0f",
@@ -1162,6 +1131,41 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
         "gitlens.unpublishedChangesIconColor": theme.green.darken(0.25).desaturate(0.25),//"#35b15e",
         "gitlens.unpublishedCommitIconColor": theme.green.darken(0.25).desaturate(0.25),//"#35b15e",
         "gitlens.unpulledChangesIconColor": theme.orange,//"#b15e35"
+
+        // Error Lens
+        "errorLens.errorBackground": theme.brightRed.setAlpha(0.05), // "#e454541b"
+        "errorLens.errorMessageBackground": theme.brightRed.setAlpha(0.05), // "#e4545419"
+        "errorLens.errorForeground": muted(theme.red), // "#ff6464"
+        // "errorLens.errorBackgroundLight": "#f0f", // "#e4545420"
+        // "errorLens.errorForegroundLight": "#f0f", // "#e45454"
+
+        "errorLens.warningBackground": theme.orange.setAlpha(0.05), // "#ff942f1b"
+        "errorLens.warningMessageBackground": theme.orange.setAlpha(0.05), // "#ff942f19"
+        "errorLens.warningForeground": muted(theme.lightOrange), // "#fa973a"
+        // "errorLens.warningBackgroundLight": "#f0f", // "#ff942f20"
+        // "errorLens.warningForegroundLight": "#f0f", // "#ff942f"
+
+        "errorLens.hintBackground": theme.brightGreen.setAlpha(0.05), // "#17a2a220"
+        "errorLens.hintMessageBackground": theme.brightGreen.setAlpha(0.05), // "#17a2a219"
+        "errorLens.hintForeground": muted(theme.green), // "#2faf64"
+        // "errorLens.hintBackgroundLight": "#f0f", // "#17a2a220"
+        // "errorLens.hintForegroundLight": "#f0f", // "#2faf64"
+
+
+        "errorLens.infoBackground": theme.blue.setAlpha(0.05), // "#00b7e420"
+        "errorLens.infoMessageBackground": theme.blue.setAlpha(0.05), // "#00b7e419"
+        "errorLens.infoForeground": muted(theme.blue), // "#00b7e4"
+        // "errorLens.infoForegroundLight": "#f0f", // "#00b7e4"
+        // "errorLens.infoBackgroundLight": "#f0f", // "#00b7e420"
+
+        "errorLens.statusBarErrorForeground": theme.red, // "#ff6464"
+        "errorLens.statusBarInfoForeground": theme.blue, // "#00b7e4"
+        "errorLens.statusBarWarningForeground": theme.lightOrange, // "#fa973a"
+        "errorLens.statusBarHintForeground": theme.green, // "#2faf64"
+
+        "errorLens.statusBarIconErrorForeground": theme.red, // "#ff6464"
+        "errorLens.statusBarIconWarningForeground": theme.lightOrange, // "#fa973a"
+
     };
 
     // Convert colors to HEX
