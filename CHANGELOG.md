@@ -6,6 +6,16 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Added
+
+* Add theme colors for couple of extensions.
+  * GitLens
+  * Error Lens
+  * GitHub Pull Requests and Issues
+  
+  Each of them can be turned off from the settings.
+* Add themed `gitDecoration` colors.
+
 ### Fixed
 
 * `symbolIcon` colors (icon colors in outline, breadcrumbs and suggest widgets) not respecting overridden token colors.
