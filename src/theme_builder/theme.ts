@@ -952,16 +952,16 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
         // "settings.numberInputBorder": "#f0f",
         // "settings.textInputBorder": "#f0f",
         // git
-        // "gitDecoration.addedResourceForeground": "#f0f", // "#81b88b"
-        // "gitDecoration.conflictingResourceForeground": "#f0f", // "#e4676b"
-        // "gitDecoration.deletedResourceForeground": "#f0f", // "#c74e39"
-        // "gitDecoration.ignoredResourceForeground": "#f0f", // "#8c8c8c"
-        // "gitDecoration.modifiedResourceForeground": color.code_light_orange, // "#e2c08d"
-        // "gitDecoration.renamedResourceForeground": "#f0f", // "#73c991"
-        // "gitDecoration.stageDeletedResourceForeground": "#f0f", // "#c74e39"
-        // "gitDecoration.stageModifiedResourceForeground": "#f0f", // "#e2c08d"
-        // "gitDecoration.submoduleResourceForeground": "#f0f", // "#8db9e2"
-        // "gitDecoration.untrackedResourceForeground": "#f0f", // "#73c991"
+        "gitDecoration.addedResourceForeground": theme.green, // "#81b88b"
+        "gitDecoration.conflictingResourceForeground": theme.brightRed, // "#e4676b"
+        "gitDecoration.deletedResourceForeground": theme.red, // "#c74e39"
+        "gitDecoration.ignoredResourceForeground": theme.fgColor0, // "#8c8c8c"
+        "gitDecoration.modifiedResourceForeground": theme.yellow, // "#e2c08d"
+        "gitDecoration.renamedResourceForeground": theme.green, // "#73c991"
+        "gitDecoration.stageDeletedResourceForeground": theme.red, // "#c74e39"
+        "gitDecoration.stageModifiedResourceForeground": theme.yellow, // "#e2c08d"
+        "gitDecoration.submoduleResourceForeground": theme.blue, // "#8db9e2"
+        "gitDecoration.untrackedResourceForeground": theme.purple, // "#73c991"
         // diff
         "diffEditor.insertedLineBackground": theme.green.overlayOpacity(theme.diffBgOpacity, theme.overlayBaseColor),//"#254236",
         "diffEditor.insertedTextBackground": theme.green.overlayOpacity(theme.diffGutterOpacity, theme.overlayBaseColor),//"#2f5f48",
