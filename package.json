@@ -87,6 +87,30 @@
             "default": true,
             "description": "Use themed markdown preview style.",
             "order": 3
+          },
+          "pastelEveningTheme.extensionColors": {
+            "type": "object",
+            "properties": {
+              "GitLens": {
+                "type": "boolean",
+                "default": true
+              },
+              "GitHub Pull Requests and Issues": {
+                "type": "boolean",
+                "default": true
+              },
+              "Error Lens": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            "additionalProperties": false,
+            "default": {
+              "GitLens": true,
+              "GitHub Pull Requests and Issues": true,
+              "Error Lens": true
+            },
+            "markdownDescription": "Use theme colors for extensions."
           }
         }
       },

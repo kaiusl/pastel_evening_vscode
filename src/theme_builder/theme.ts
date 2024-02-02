@@ -5,7 +5,7 @@
 import { Color } from "../color/color";
 import path, { join } from "path"
 import { DIST_MDSTYLE_DIR, DIST_THEMES_DIR } from "../common_defs";
-import { Config } from "../config";
+import { Config, ExtensionColors } from "../config";
 
 enum ThemeKind {
     DARK = "dark",
@@ -142,6 +142,7 @@ export class ThemeDef {
         this.fileName = fileName;
         this.displayName = displayName;
         this.kind = kind;
+        this.extensionColors = cfg.extensionColors;
 
         this.italics = cfg.useItalics;
         this.underlined = cfg.useUnderlined;
@@ -224,6 +225,8 @@ export class ThemeDef {
     fileName: string;
     displayName: string;
     kind: ThemeKind;
+
+    extensionColors: ExtensionColors;
 
     italics: boolean;
     underlined: boolean;
@@ -331,7 +334,9 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
         return c.overlayOpacity(theme.mutedOpacity, theme.overlayBaseColor)
     }
 
-    const colors: { [k: string]: string | Color } = {
+    type EditorColors = { [k: string]: string | Color }
+
+    const colors: EditorColors = {
         // common
         "foreground": theme.fgColor2,
         "selection.background": theme.selectionBgColor,
@@ -1060,126 +1065,141 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
         // "sash.hoverBorder": "#f0f", // "#007fd4"
         // "scm.providerBorder": "#f0f", // color.very_dark_bg
         // "walkThrough.embeddedEditorBackground": "#f0f", // "#f0f"
-
-        // GitLens colors
-        "gitlens.closedAutolinkedIssueIconColor": theme.purple, //"#a371f7",
-        "gitlens.closedPullRequestIconColor": theme.fgColor0, // "#f85149",
-        //"gitlens.decorations.addedForegroundColor": "gitDecoration.addedResourceForeground",
-
-        "gitlens.decorations.branchAheadForegroundColor": theme.green,//"#35b15e",
-        "gitlens.decorations.branchBehindForegroundColor": theme.red,
-        "gitlens.decorations.branchDivergedForegroundColor": theme.yellow, // "#D8AF1B",
-        "gitlens.decorations.branchMissingUpstreamForegroundColor": theme.brightRed, // "#c74e39",
-        "gitlens.decorations.branchUnpublishedForegroundColor": theme.purple,//"#35b15e",
-        // "gitlens.decorations.branchUpToDateForegroundColor": "sideBar.foreground",
-
-        // "gitlens.decorations.copiedForegroundColor": "gitDecoration.renamedResourceForeground",
-        // "gitlens.decorations.deletedForegroundColor": "gitDecoration.deletedResourceForeground",
-        // "gitlens.decorations.ignoredForegroundColor": "gitDecoration.ignoredResourceForeground",
-        // "gitlens.decorations.modifiedForegroundColor": "gitDecoration.modifiedResourceForeground",
-        // "gitlens.decorations.renamedForegroundColor": "gitDecoration.renamedResourceForeground",
-
-        "gitlens.decorations.statusMergingOrRebasingConflictForegroundColor": theme.brightRed, // "#c74e39",
-        "gitlens.decorations.statusMergingOrRebasingForegroundColor": theme.brightYellow, // "#D8AF1B",
-        //"gitlens.decorations.untrackedForegroundColor": "gitDecoration.untrackedResourceForeground",
-        "gitlens.decorations.workspaceCurrentForegroundColor": theme.green, //"#35b15e",
-        "gitlens.decorations.workspaceRepoMissingForegroundColor": theme.fgColor0, //"#909090",
-        "gitlens.decorations.workspaceRepoOpenForegroundColor": theme.green, // "#35b15e",
-        "gitlens.decorations.worktreeHasUncommittedChangesForegroundColor": theme.yellow, // "#E2C08D",
-        "gitlens.decorations.worktreeMissingForegroundColor": theme.brightRed, // "#c74e39",
-
-        "gitlens.graphChangesColumnAddedColor": theme.green,
-        "gitlens.graphChangesColumnDeletedColor": theme.red,
-
-        "gitlens.graphLane1Color": theme.green,
-        "gitlens.graphLane2Color": theme.cyan,
-        "gitlens.graphLane3Color": theme.blue,
-        "gitlens.graphLane4Color": theme.purple,
-        "gitlens.graphLane5Color": theme.pink,
-        "gitlens.graphLane6Color": "#f285c7",
-        "gitlens.graphLane7Color": theme.red,
-        "gitlens.graphLane8Color": theme.orange,
-        "gitlens.graphLane9Color": theme.lightOrange,
-        "gitlens.graphLane10Color": theme.yellow,
-
-        "gitlens.graphMinimapMarkerHeadColor": theme.fgColor4,
-        "gitlens.graphMinimapMarkerHighlightsColor": theme.brightYellow,
-        "gitlens.graphMinimapMarkerLocalBranchesColor": theme.blue,
-        "gitlens.graphMinimapMarkerRemoteBranchesColor": theme.brightBlue,
-        "gitlens.graphMinimapMarkerStashesColor": theme.purple.darken(0.2).desaturate(0.4),
-        "gitlens.graphMinimapMarkerTagsColor": theme.orange.darken(0.2).desaturate(0.5),
-        "gitlens.graphMinimapMarkerUpstreamColor": theme.green,
-
-        "gitlens.graphScrollMarkerHeadColor": theme.fgColor4,
-        "gitlens.graphScrollMarkerHighlightsColor": theme.brightYellow,
-        "gitlens.graphScrollMarkerLocalBranchesColor": theme.blue,
-        "gitlens.graphScrollMarkerRemoteBranchesColor": theme.brightBlue,
-        "gitlens.graphScrollMarkerStashesColor": theme.purple.darken(0.2).desaturate(0.4),
-        "gitlens.graphScrollMarkerTagsColor": theme.orange.darken(0.2).desaturate(0.5),
-        "gitlens.graphScrollMarkerUpstreamColor": theme.green,
-
-        "gitlens.gutterBackgroundColor": theme.bgColor1.setAlpha(0.1),//"#FFFFFF13",
-        "gitlens.gutterForegroundColor": theme.fgColor2, //"#BEBEBE",
-        "gitlens.gutterUncommittedForegroundColor": theme.blue.setAlpha(0.75),//"#00BCF299",
-        "gitlens.lineHighlightBackgroundColor": theme.blue.setAlpha(0.25),//"#00BCF233",
-        "gitlens.lineHighlightOverviewRulerColor": theme.blue.setAlpha(0.75),//"#00BCF299",
-        "gitlens.mergedPullRequestIconColor": theme.purple,//"#a371f7",
-        "gitlens.openAutolinkedIssueIconColor": theme.green,//"#3fb950",
-        "gitlens.openPullRequestIconColor": theme.green,//"#3fb950",
-        "gitlens.trailingLineBackgroundColor": Color.TRANSPARENT,//"#00000000",
-        "gitlens.trailingLineForegroundColor": theme.fgColor0.darken(0.16),//"#99999959",
-        "gitlens.unpublishedChangesIconColor": theme.green.darken(0.25).desaturate(0.25),//"#35b15e",
-        "gitlens.unpublishedCommitIconColor": theme.green.darken(0.25).desaturate(0.25),//"#35b15e",
-        "gitlens.unpulledChangesIconColor": theme.orange,//"#b15e35"
-
-        // Error Lens (v3.16.0)
-        "errorLens.errorBackground": theme.brightRed.setAlpha(0.05), // "#e454541b"
-        "errorLens.errorMessageBackground": theme.brightRed.setAlpha(0.05), // "#e4545419"
-        "errorLens.errorRangeBackground": theme.brightRed.setAlpha(0.05), // "#e4545419"
-        "errorLens.errorForeground": muted(theme.red), // "#ff6464"
-        // "errorLens.errorBackgroundLight": "#f0f", // "#e4545420"
-        // "errorLens.errorForegroundLight": "#f0f", // "#e45454"
-
-        "errorLens.warningBackground": theme.orange.setAlpha(0.05), // "#ff942f1b"
-        "errorLens.warningMessageBackground": theme.orange.setAlpha(0.05), // "#ff942f19"
-        "errorLens.warningRangeBackground": theme.orange.setAlpha(0.05), // "#ff942f19"
-        "errorLens.warningForeground": muted(theme.lightOrange), // "#fa973a"
-        // "errorLens.warningBackgroundLight": "#f0f", // "#ff942f20"
-        // "errorLens.warningForegroundLight": "#f0f", // "#ff942f"
-
-        "errorLens.hintBackground": theme.brightGreen.setAlpha(0.05), // "#17a2a220"
-        "errorLens.hintMessageBackground": theme.brightGreen.setAlpha(0.05), // "#17a2a219"
-        "errorLens.hintRangeBackground": theme.brightGreen.setAlpha(0.05), // "#17a2a219"
-        "errorLens.hintForeground": muted(theme.green), // "#2faf64"
-        // "errorLens.hintBackgroundLight": "#f0f", // "#17a2a220"
-        // "errorLens.hintForegroundLight": "#f0f", // "#2faf64"
-
-
-        "errorLens.infoBackground": theme.blue.setAlpha(0.05), // "#00b7e420"
-        "errorLens.infoMessageBackground": theme.blue.setAlpha(0.05), // "#00b7e419"
-        "errorLens.infoRangeBackground": theme.blue.setAlpha(0.05), // "#00b7e419"
-        "errorLens.infoForeground": muted(theme.blue), // "#00b7e4"
-        // "errorLens.infoForegroundLight": "#f0f", // "#00b7e4"
-        // "errorLens.infoBackgroundLight": "#f0f", // "#00b7e420"
-
-        "errorLens.statusBarErrorForeground": theme.red, // "#ff6464"
-        "errorLens.statusBarInfoForeground": theme.blue, // "#00b7e4"
-        "errorLens.statusBarWarningForeground": theme.lightOrange, // "#fa973a"
-        "errorLens.statusBarHintForeground": theme.green, // "#2faf64"
-
-        "errorLens.statusBarIconErrorForeground": theme.red, // "#ff6464"
-        "errorLens.statusBarIconWarningForeground": theme.lightOrange, // "#fa973a"
-
-        // GitHub Pull Requests and Issues (v0.80.0)
-        "issues.open": theme.green, // "#3fb950",
-        "issues.closed": theme.purple, // "#cb2431",
-        "issues.newIssueDecoration": theme.fgColor4.setAlpha(0.5), // "#ffffff48",
-        //"pullRequests.open": theme.green, // "issues.open",
-        "pullRequests.draft": theme.fgColor0, // "#6e7681",
-        "pullRequests.merged": theme.purple, // "#8957e5",
-        "pullRequests.closed": theme.red, // "issues.closed",
-        //"pullRequests.notification": "#f0f", // "notificationsInfoIcon.foreground",
     };
+
+    if (theme.extensionColors["GitLens"] === true) {
+        const GitLensColors: EditorColors = {
+            // GitLens (v14.7)
+            "gitlens.closedAutolinkedIssueIconColor": theme.purple, //"#a371f7",
+            "gitlens.closedPullRequestIconColor": theme.fgColor0, // "#f85149",
+            //"gitlens.decorations.addedForegroundColor": "gitDecoration.addedResourceForeground",
+
+            "gitlens.decorations.branchAheadForegroundColor": theme.green,//"#35b15e",
+            "gitlens.decorations.branchBehindForegroundColor": theme.red,
+            "gitlens.decorations.branchDivergedForegroundColor": theme.yellow, // "#D8AF1B",
+            "gitlens.decorations.branchMissingUpstreamForegroundColor": theme.brightRed, // "#c74e39",
+            "gitlens.decorations.branchUnpublishedForegroundColor": theme.purple,//"#35b15e",
+            // "gitlens.decorations.branchUpToDateForegroundColor": "sideBar.foreground",
+
+            // "gitlens.decorations.copiedForegroundColor": "gitDecoration.renamedResourceForeground",
+            // "gitlens.decorations.deletedForegroundColor": "gitDecoration.deletedResourceForeground",
+            // "gitlens.decorations.ignoredForegroundColor": "gitDecoration.ignoredResourceForeground",
+            // "gitlens.decorations.modifiedForegroundColor": "gitDecoration.modifiedResourceForeground",
+            // "gitlens.decorations.renamedForegroundColor": "gitDecoration.renamedResourceForeground",
+
+            "gitlens.decorations.statusMergingOrRebasingConflictForegroundColor": theme.brightRed, // "#c74e39",
+            "gitlens.decorations.statusMergingOrRebasingForegroundColor": theme.brightYellow, // "#D8AF1B",
+            //"gitlens.decorations.untrackedForegroundColor": "gitDecoration.untrackedResourceForeground",
+            "gitlens.decorations.workspaceCurrentForegroundColor": theme.green, //"#35b15e",
+            "gitlens.decorations.workspaceRepoMissingForegroundColor": theme.fgColor0, //"#909090",
+            "gitlens.decorations.workspaceRepoOpenForegroundColor": theme.green, // "#35b15e",
+            "gitlens.decorations.worktreeHasUncommittedChangesForegroundColor": theme.yellow, // "#E2C08D",
+            "gitlens.decorations.worktreeMissingForegroundColor": theme.brightRed, // "#c74e39",
+
+            "gitlens.graphChangesColumnAddedColor": theme.green,
+            "gitlens.graphChangesColumnDeletedColor": theme.red,
+
+            "gitlens.graphLane1Color": theme.green,
+            "gitlens.graphLane2Color": theme.cyan,
+            "gitlens.graphLane3Color": theme.blue,
+            "gitlens.graphLane4Color": theme.purple,
+            "gitlens.graphLane5Color": theme.pink,
+            "gitlens.graphLane6Color": "#f285c7",
+            "gitlens.graphLane7Color": theme.red,
+            "gitlens.graphLane8Color": theme.orange,
+            "gitlens.graphLane9Color": theme.lightOrange,
+            "gitlens.graphLane10Color": theme.yellow,
+
+            "gitlens.graphMinimapMarkerHeadColor": theme.fgColor4,
+            "gitlens.graphMinimapMarkerHighlightsColor": theme.brightYellow,
+            "gitlens.graphMinimapMarkerLocalBranchesColor": theme.blue,
+            "gitlens.graphMinimapMarkerRemoteBranchesColor": theme.brightBlue,
+            "gitlens.graphMinimapMarkerStashesColor": theme.purple.darken(0.2).desaturate(0.4),
+            "gitlens.graphMinimapMarkerTagsColor": theme.orange.darken(0.2).desaturate(0.5),
+            "gitlens.graphMinimapMarkerUpstreamColor": theme.green,
+
+            "gitlens.graphScrollMarkerHeadColor": theme.fgColor4,
+            "gitlens.graphScrollMarkerHighlightsColor": theme.brightYellow,
+            "gitlens.graphScrollMarkerLocalBranchesColor": theme.blue,
+            "gitlens.graphScrollMarkerRemoteBranchesColor": theme.brightBlue,
+            "gitlens.graphScrollMarkerStashesColor": theme.purple.darken(0.2).desaturate(0.4),
+            "gitlens.graphScrollMarkerTagsColor": theme.orange.darken(0.2).desaturate(0.5),
+            "gitlens.graphScrollMarkerUpstreamColor": theme.green,
+
+            "gitlens.gutterBackgroundColor": theme.bgColor1.setAlpha(0.1),//"#FFFFFF13",
+            "gitlens.gutterForegroundColor": theme.fgColor2, //"#BEBEBE",
+            "gitlens.gutterUncommittedForegroundColor": theme.blue.setAlpha(0.75),//"#00BCF299",
+            "gitlens.lineHighlightBackgroundColor": theme.blue.setAlpha(0.25),//"#00BCF233",
+            "gitlens.lineHighlightOverviewRulerColor": theme.blue.setAlpha(0.75),//"#00BCF299",
+            "gitlens.mergedPullRequestIconColor": theme.purple,//"#a371f7",
+            "gitlens.openAutolinkedIssueIconColor": theme.green,//"#3fb950",
+            "gitlens.openPullRequestIconColor": theme.green,//"#3fb950",
+            "gitlens.trailingLineBackgroundColor": Color.TRANSPARENT,//"#00000000",
+            "gitlens.trailingLineForegroundColor": theme.fgColor0.darken(0.16),//"#99999959",
+            "gitlens.unpublishedChangesIconColor": theme.green.darken(0.25).desaturate(0.25),//"#35b15e",
+            "gitlens.unpublishedCommitIconColor": theme.green.darken(0.25).desaturate(0.25),//"#35b15e",
+            "gitlens.unpulledChangesIconColor": theme.orange,//"#b15e35"
+        }
+        Object.assign(colors, GitLensColors)
+    }
+
+    if (theme.extensionColors["Error Lens"]) {
+        const ErrorLensColors: EditorColors = {
+            // Error Lens (v3.16.0)
+            "errorLens.errorBackground": theme.brightRed.setAlpha(0.05), // "#e454541b"
+            "errorLens.errorMessageBackground": theme.brightRed.setAlpha(0.05), // "#e4545419"
+            "errorLens.errorRangeBackground": theme.brightRed.setAlpha(0.05), // "#e4545419"
+            "errorLens.errorForeground": muted(theme.red), // "#ff6464"
+            // "errorLens.errorBackgroundLight": "#f0f", // "#e4545420"
+            // "errorLens.errorForegroundLight": "#f0f", // "#e45454"
+
+            "errorLens.warningBackground": theme.orange.setAlpha(0.05), // "#ff942f1b"
+            "errorLens.warningMessageBackground": theme.orange.setAlpha(0.05), // "#ff942f19"
+            "errorLens.warningRangeBackground": theme.orange.setAlpha(0.05), // "#ff942f19"
+            "errorLens.warningForeground": muted(theme.lightOrange), // "#fa973a"
+            // "errorLens.warningBackgroundLight": "#f0f", // "#ff942f20"
+            // "errorLens.warningForegroundLight": "#f0f", // "#ff942f"
+
+            "errorLens.hintBackground": theme.brightGreen.setAlpha(0.05), // "#17a2a220"
+            "errorLens.hintMessageBackground": theme.brightGreen.setAlpha(0.05), // "#17a2a219"
+            "errorLens.hintRangeBackground": theme.brightGreen.setAlpha(0.05), // "#17a2a219"
+            "errorLens.hintForeground": muted(theme.green), // "#2faf64"
+            // "errorLens.hintBackgroundLight": "#f0f", // "#17a2a220"
+            // "errorLens.hintForegroundLight": "#f0f", // "#2faf64"
+
+
+            "errorLens.infoBackground": theme.blue.setAlpha(0.05), // "#00b7e420"
+            "errorLens.infoMessageBackground": theme.blue.setAlpha(0.05), // "#00b7e419"
+            "errorLens.infoRangeBackground": theme.blue.setAlpha(0.05), // "#00b7e419"
+            "errorLens.infoForeground": muted(theme.blue), // "#00b7e4"
+            // "errorLens.infoForegroundLight": "#f0f", // "#00b7e4"
+            // "errorLens.infoBackgroundLight": "#f0f", // "#00b7e420"
+
+            "errorLens.statusBarErrorForeground": theme.red, // "#ff6464"
+            "errorLens.statusBarInfoForeground": theme.blue, // "#00b7e4"
+            "errorLens.statusBarWarningForeground": theme.lightOrange, // "#fa973a"
+            "errorLens.statusBarHintForeground": theme.green, // "#2faf64"
+
+            "errorLens.statusBarIconErrorForeground": theme.red, // "#ff6464"
+            "errorLens.statusBarIconWarningForeground": theme.lightOrange, // "#fa973a"
+        }
+        Object.assign(colors, ErrorLensColors)
+    }
+
+    if (theme.extensionColors["GitHub Pull Requests and Issues"]) {
+        const GitHubPullRequestsAndIssuesColors: EditorColors = {
+            // GitHub Pull Requests and Issues (v0.80.0)
+            "issues.open": theme.green, // "#3fb950",
+            "issues.closed": theme.purple, // "#cb2431",
+            "issues.newIssueDecoration": theme.fgColor4.setAlpha(0.5), // "#ffffff48",
+            //"pullRequests.open": theme.green, // "issues.open",
+            "pullRequests.draft": theme.fgColor0, // "#6e7681",
+            "pullRequests.merged": theme.purple, // "#8957e5",
+            "pullRequests.closed": theme.red, // "issues.closed",
+            //"pullRequests.notification": "#f0f", // "notificationsInfoIcon.foreground",
+        }
+        Object.assign(colors, GitHubPullRequestsAndIssuesColors)
+    }
 
     // Convert colors to HEX
     for (const [k, v] of Object.entries(colors)) {

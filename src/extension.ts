@@ -163,6 +163,7 @@ export function getCurrentCfg(): config.Config {
         resultCfg.exportMarkdownPreviewStyle = cfg.get(config.Keys.MARKDOWN_PREVIEW_STYLE, resultCfg.exportMarkdownPreviewStyle)
         resultCfg.commonColorOverrides = cfg.get(config.Keys.COMMON_COLOR_OVERRIDES, resultCfg.commonColorOverrides)
         resultCfg.editorColorOverrides = cfg.get(config.Keys.EDITOR_COLOR_OVERRIDES, resultCfg.editorColorOverrides)
+        resultCfg.extensionColors = cfg.get(config.Keys.EXTENSION_COLORS, resultCfg.extensionColors)
         resultCfg.uiColorOverrides = cfg.get(config.Keys.UI_COLOR_OVERRIDES, resultCfg.uiColorOverrides)
         resultCfg.tokensColorOverrides = cfg.get(config.Keys.TOKENS_COLOR_OVERRIDES, resultCfg.tokensColorOverrides)
         resultCfg.showUpdateNotifications = cfg.get(config.Keys.SHOW_UPDATE_NOTIFICATIONS, resultCfg.showUpdateNotifications)

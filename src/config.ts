@@ -9,6 +9,7 @@ export enum Keys {
     MARKDOWN_PREVIEW_STYLE = "exportMarkdownPreviewStyle",
     COLOR_OVERRIDES = "colorOverrides",
     SHOW_UPDATE_NOTIFICATIONS = "showUpdateNotifications",
+    EXTENSION_COLORS = "extensionColors",
     COMMON_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.common`,
     UI_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.ui`,
     EDITOR_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.editor`,
@@ -20,12 +21,19 @@ export type Config = {
     useUnderlined: boolean
     exportMarkdownPreviewStyle: boolean
     showUpdateNotifications: boolean
+    extensionColors: ExtensionColors
     commonColorOverrides: CommonColorOverrides
     uiColorOverrides: UiColorOverrides
     editorColorOverrides: EditorColorOverrides
     tokensColorOverrides: TokenColorOverrides
     themeVersion: string
     configVersion: number
+}
+
+export type ExtensionColors = {
+    "GitLens": boolean
+    "GitHub Pull Requests and Issues": boolean
+    "Error Lens": boolean
 }
 
 /** Common color overrides */
@@ -98,6 +106,11 @@ export function defaultConfig(): Config {
         useUnderlined: true,
         exportMarkdownPreviewStyle: true,
         showUpdateNotifications: true,
+        extensionColors: {
+            "GitLens": true,
+            "GitHub Pull Requests and Issues": true,
+            "Error Lens": true
+        },
         commonColorOverrides: {},
         uiColorOverrides: {},
         editorColorOverrides: {},
@@ -114,6 +127,7 @@ export function eqConfig(a: Config, b: Config): boolean {
         && a.themeVersion === b.themeVersion
         && a.configVersion === b.configVersion
         && a.showUpdateNotifications === b.showUpdateNotifications
+        && JSON.stringify(a.extensionColors) === JSON.stringify(b.extensionColors)
         && JSON.stringify(a.commonColorOverrides) === JSON.stringify(b.commonColorOverrides)
         && JSON.stringify(a.uiColorOverrides) === JSON.stringify(b.uiColorOverrides)
         && JSON.stringify(a.editorColorOverrides) === JSON.stringify(b.editorColorOverrides)
@@ -126,6 +140,8 @@ export function mergeConfig(base: Config, other: Partial<Config>): Config {
     base.exportMarkdownPreviewStyle = other.exportMarkdownPreviewStyle ?? base.exportMarkdownPreviewStyle
     base.themeVersion = other.themeVersion ?? base.themeVersion
     base.configVersion = other.configVersion ?? base.configVersion
+    // TODO: We should probably merge objects too, not just replace them
+    base.extensionColors = other.extensionColors ?? base.extensionColors
     base.commonColorOverrides = other.commonColorOverrides ?? base.commonColorOverrides
     base.uiColorOverrides = other.uiColorOverrides ?? base.uiColorOverrides
     base.editorColorOverrides = other.editorColorOverrides ?? base.editorColorOverrides
