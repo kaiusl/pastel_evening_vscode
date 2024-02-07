@@ -1,1 +1,1 @@
-export const THEME_VERSION = "0.4.2";
+export const THEME_VERSION = "0.4.3";

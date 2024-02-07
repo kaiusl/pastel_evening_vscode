@@ -3,7 +3,7 @@
   "displayName": "Pastel Evening Theme",
   "description": "Dark theme with pastel colors and a slight blue hint to the editor.",
   "publisher": "kaiusl",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "icon": "icon.png",
   "license": "MIT",
   "repository": {
@@ -122,7 +122,7 @@
           "pastelEveningTheme.colorOverrides.common": {
             "type": "object",
             "order": 0,
-            "description": "Common color overrides. \nThese colors are used throughout the theme, so major changes may result in weird theme. The intended use is for slight adjustment of each color if needed. \nAccepted color formats are #rgb, #rgba, #rrggbb, #rrggbbaa.",
+            "markdownDescription": "Common color overrides. \n\nThese colors are used throughout the theme, so major changes may result in weird theme. The intended use is for slight adjustment of each color if needed. \n\nAccepted color formats are `#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`.",
             "properties": {
               "background0": {
                 "type": "string",
@@ -244,75 +244,74 @@
           "pastelEveningTheme.colorOverrides.ui": {
             "type": "object",
             "order": 1,
-            "description": "UI color overrides. \nAccepted color formats are #rgb, #rgba, #rrggbb, #rrggbbaa.",
+            "markdownDescription": "UI color overrides. \n\nAccepted color formats are: \n * hex color string (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`) \n * one of the common colors (`background[0-4]`, `foregound[0-4]`, `red`, `blue`, `green`, `yellow`, `orange`, `light orange`, `cyan`, `pink`, `purple`)",
             "properties": {
               "accent background": {
                 "type": "string",
                 "description": "Main ui accent color. Used by buttons, highlghts etc. Defaults to #0d70b9.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "accent alt background": {
                 "type": "string",
                 "description": "Alternative ui accent color. Used by secondary buttons, highlight etc. Defaults to darkened version of `accent background`.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "accent foreground": {
                 "type": "string",
                 "description": "Foreground color used on accents. Defaults to #e3e7ff.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               }
-  
             },
             "additionalProperties": false
           },
           "pastelEveningTheme.colorOverrides.editor": {
             "type": "object",
             "order": 2,
-            "description": "Editor color overrides. \nAccepted color formats are #rgb, #rgba, #rrggbb, #rrggbbaa.",
+            "markdownDescription": "Editor color overrides. \n\nAccepted color formats are: \n * hex color string (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`) \n * one of the common colors (`background[0-4]`, `foregound[0-4]`, `red`, `blue`, `green`, `yellow`, `orange`, `light orange`, `cyan`, `pink`, `purple`).",
             "properties": {
               "selection background": {
                 "type": "string",
                 "description": "Selection background color. Defaults to 20% alpha of base blue color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "hover highlight background": {
                 "type": "string",
                 "description": "Background color of various editor hover highlights. Defaults to 15% alpha of base yellow color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "search match background": {
                 "type": "string",
                 "description": "Background color of search matches. Defaults to 12.5% alpha of base red color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "search match selected background": {
                 "type": "string",
                 "description": "Background color of currently selected search match. Defaults to base `background0`.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "foreground0": {
                 "type": "string",
                 "description": "Dark color of editor text. Defaults to base `foreground0`.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "foreground2": {
                 "type": "string",
                 "description": "Base color of editor text. Defaults to base `foreground2`.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "foreground4": {
                 "type": "string",
                 "description": "Highlight color of editor text. Defaults to base `foreground4`.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               }
             },
@@ -321,113 +320,115 @@
           "pastelEveningTheme.colorOverrides.tokens": {
             "type": "object",
             "order": 3,
-            "description": "Token color overrides. \nAccepted color formats are #rgb, #rgba, #rrggbb, #rrggbbaa.",
+            "markdownDescription": "Token color overrides. \n\nAccepted color formats are: \n * hex color string (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`) \n * one of the common colors (`background[0-4]`, `foregound[0-4]`, `red`, `blue`, `green`, `yellow`, `orange`, `light orange`, `cyan`, `pink`, `purple`) \n * one of editor foreground colors (`editor.foreground[0,2,4]`)",
             "propertyNames": true,
             "properties": {
               "keywords": {
                 "type": "string",
-                "description": "Color of keywords. Defaults to base red color."
+                "description": "Color of keywords. Defaults to base red color.",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(editor.foreground(0|2|4))|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
+                "patternErrorMessage": "Invalid color string."
               },
               "functions": {
                 "type": "string",
                 "description": "Color of functions. Defaults to base blue color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(editor.foreground(0|2|4))|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "comments": {
                 "type": "string",
                 "description": "Color of comments. Defaults to editor `foreground0` color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(editor.foreground(0|2|4))|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "literals": {
                 "type": "string",
                 "description": "Base color of literals. The color of specific literals can be overridden by `strings`, `numbers` etc keys. Defaults to base light orange color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(editor.foreground(0|2|4))|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "literals alt": {
                 "type": "string",
                 "description": "Alternative base color of literals. Used by nested components in literals, for example escape sequences or string interpolation components. Defaults to base orange color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(editor.foreground(0|2|4))|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "strings": {
                 "type": "string",
                 "description": "Color of strings. Defaults to `literals` color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(editor.foreground(0|2|4))|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "string escapes": {
                 "type": "string",
                 "description": "Color of string escape sequences. Defaults to `literals alt` color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(editor.foreground(0|2|4))|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "numbers": {
                 "type": "string",
                 "description": "Color of numbers. Defaults to `literals` color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(editor.foreground(0|2|4))|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "namespaces": {
                 "type": "string",
                 "description": "Color of namespaces and modules. Defaults to editor `foreground2` color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(editor.foreground(0|2|4))|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "local variables": {
                 "type": "string",
                 "description": "Color of local variables. Defaults to editor `foreground2` color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(editor.foreground(0|2|4))|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "special variables": {
                 "type": "string",
                 "description": "Color of special variables like globals, statics, constants and function parameters. Defaults to editor `foreground4` color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(editor.foreground(0|2|4))|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "enum members": {
                 "type": "string",
                 "description": "Color of enum members. Defaults to `special variables` color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(editor.foreground(0|2|4))|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "operators": {
                 "type": "string",
                 "description": "Color of operators. Defaults to editor `foreground2` color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(editor.foreground(0|2|4))|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "punctuations": {
                 "type": "string",
                 "description": "Color of punctuation. Defaults to editor `foreground2` color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(editor.foreground(0|2|4))|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "interfaces": {
                 "type": "string",
                 "description": "Color of interfaces or traits. Defaults to base yellow color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(editor.foreground(0|2|4))|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "attributes": {
                 "type": "string",
                 "description": "Color of attributes or annotations. Defaults to base yellow color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(editor.foreground(0|2|4))|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "labels": {
                 "type": "string",
                 "description": "Color of labels. Defaults to base orange color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(editor.foreground(0|2|4))|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
               "types": {
                 "type": "string",
                 "description": "Color of types. Defaults to base green color.",
-                "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
+                "pattern": "^((background[0-4])|(foreground[0-4])|(editor.foreground(0|2|4))|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               }
             },

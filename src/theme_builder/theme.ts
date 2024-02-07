@@ -173,14 +173,14 @@ export class ThemeDef {
         this.brightBlue = colors.brightBlue;
         this.brightYellow = colors.brightYellow;
 
-        this.accentBgColor = tryColorFromHexStr(cfg.uiColorOverrides["accent background"]) ?? colors.accentBg;
-        this.accentFgColor = tryColorFromHexStr(cfg.uiColorOverrides["accent foreground"]) ?? colors.accentFg;
-        this.accentAltBgColor = tryColorFromHexStr(cfg.uiColorOverrides["accent alt background"]) ?? this.accentBgColor.darken(0.15).desaturate(0.5);
+        this.accentBgColor = this.tryColorFromStr(cfg.uiColorOverrides["accent background"]) ?? colors.accentBg;
+        this.accentFgColor = this.tryColorFromStr(cfg.uiColorOverrides["accent foreground"]) ?? colors.accentFg;
+        this.accentAltBgColor = this.tryColorFromStr(cfg.uiColorOverrides["accent alt background"]) ?? this.accentBgColor.darken(0.15).desaturate(0.5);
 
-        this.searchMatchSelectedBgColor = tryColorFromHexStr(cfg.editorColorOverrides["search match selected background"]) ?? colors.searchMatchSelected;
-        this.searchMatchBgColor = tryColorFromHexStr(cfg.editorColorOverrides["search match background"]) ?? colors.searchMatch;
-        this.selectionBgColor = tryColorFromHexStr(cfg.editorColorOverrides["selection background"]) ?? this.blue.setAlpha(0.2);
-        this.editorHoverHighlightBgColor = tryColorFromHexStr(cfg.editorColorOverrides["hover highlight background"]) ?? this.yellow.setAlpha(0.15);
+        this.searchMatchSelectedBgColor = this.tryColorFromStr(cfg.editorColorOverrides["search match selected background"]) ?? colors.searchMatchSelected;
+        this.searchMatchBgColor = this.tryColorFromStr(cfg.editorColorOverrides["search match background"]) ?? colors.searchMatch;
+        this.selectionBgColor = this.tryColorFromStr(cfg.editorColorOverrides["selection background"]) ?? this.blue.setAlpha(0.2);
+        this.editorHoverHighlightBgColor = this.tryColorFromStr(cfg.editorColorOverrides["hover highlight background"]) ?? this.yellow.setAlpha(0.15);
 
         this.borderColor = colors.border;
         this.hoverColor = colors.UiHover;
@@ -194,28 +194,28 @@ export class ThemeDef {
         this.diffGutterOpacity = colors.diffGutterOpacity;
         this.diffMarkerOpacity = colors.diffMarkerOpacity;
 
-        this.codeFgColor0 = tryColorFromHexStr(cfg.editorColorOverrides.foreground0) ?? this.fgColor0;
-        this.codeFgColor2 = tryColorFromHexStr(cfg.editorColorOverrides.foreground2) ?? this.fgColor2;
-        this.codeFgColor4 = tryColorFromHexStr(cfg.editorColorOverrides.foreground4) ?? this.fgColor4;
+        this.codeFgColor0 = this.tryColorFromStr(cfg.editorColorOverrides.foreground0) ?? this.fgColor0;
+        this.codeFgColor2 = this.tryColorFromStr(cfg.editorColorOverrides.foreground2) ?? this.fgColor2;
+        this.codeFgColor4 = this.tryColorFromStr(cfg.editorColorOverrides.foreground4) ?? this.fgColor4;
 
-        this.commentsColor = tryColorFromHexStr(cfg.tokensColorOverrides.comments) ?? this.codeFgColor0;
-        this.keywordsColor = tryColorFromHexStr(cfg.tokensColorOverrides.keywords) ?? this.red;
-        this.literalsColor = tryColorFromHexStr(cfg.tokensColorOverrides.literals) ?? this.lightOrange;
-        this.literalsColor2 = tryColorFromHexStr(cfg.tokensColorOverrides["literals alt"]) ?? this.orange;
-        this.stringsColor = tryColorFromHexStr(cfg.tokensColorOverrides.strings) ?? this.literalsColor;
-        this.stringEscapesColor = tryColorFromHexStr(cfg.tokensColorOverrides["string escapes"]) ?? this.literalsColor2;
-        this.numbersColor = tryColorFromHexStr(cfg.tokensColorOverrides.numbers) ?? this.literalsColor;
-        this.namespacesColor = tryColorFromHexStr(cfg.tokensColorOverrides.namespaces) ?? this.codeFgColor2;
-        this.localVariablesColor = tryColorFromHexStr(cfg.tokensColorOverrides["local variables"]) ?? this.codeFgColor2;
-        this.specialVariablesColor = tryColorFromHexStr(cfg.tokensColorOverrides["special variables"]) ?? this.codeFgColor4;
-        this.enumMembersColor = tryColorFromHexStr(cfg.tokensColorOverrides["enum members"]) ?? this.specialVariablesColor;
-        this.operatorsColor = tryColorFromHexStr(cfg.tokensColorOverrides.operators) ?? this.codeFgColor2;
-        this.punctuationsColor = tryColorFromHexStr(cfg.tokensColorOverrides.punctuations) ?? this.codeFgColor2;
-        this.interfacesColor = tryColorFromHexStr(cfg.tokensColorOverrides.interfaces) ?? this.yellow;
-        this.attributesColor = tryColorFromHexStr(cfg.tokensColorOverrides.attributes) ?? this.yellow;
-        this.labelsColor = tryColorFromHexStr(cfg.tokensColorOverrides.labels) ?? this.orange;
-        this.typesColor = tryColorFromHexStr(cfg.tokensColorOverrides.types) ?? this.green;
-        this.functionsColor = tryColorFromHexStr(cfg.tokensColorOverrides.functions) ?? this.blue;
+        this.commentsColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.comments) ?? this.codeFgColor0;
+        this.keywordsColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.keywords) ?? this.red;
+        this.literalsColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.literals) ?? this.lightOrange;
+        this.literalsColor2 = this.tryTokenColorFromStr(cfg.tokensColorOverrides["literals alt"]) ?? this.orange;
+        this.stringsColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.strings) ?? this.literalsColor;
+        this.stringEscapesColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides["string escapes"]) ?? this.literalsColor2;
+        this.numbersColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.numbers) ?? this.literalsColor;
+        this.namespacesColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.namespaces) ?? this.codeFgColor2;
+        this.localVariablesColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides["local variables"]) ?? this.codeFgColor2;
+        this.specialVariablesColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides["special variables"]) ?? this.codeFgColor4;
+        this.enumMembersColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides["enum members"]) ?? this.specialVariablesColor;
+        this.operatorsColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.operators) ?? this.codeFgColor2;
+        this.punctuationsColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.punctuations) ?? this.codeFgColor2;
+        this.interfacesColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.interfaces) ?? this.yellow;
+        this.attributesColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.attributes) ?? this.yellow;
+        this.labelsColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.labels) ?? this.orange;
+        this.typesColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.types) ?? this.green;
+        this.functionsColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.functions) ?? this.blue;
 
         this.themeDistPath = path.join(DIST_THEMES_DIR, this.fileName + ".json")
         this.mdstyleDistPath = path.join(DIST_MDSTYLE_DIR, this.fileName + "_themed.css")
@@ -304,6 +304,79 @@ export class ThemeDef {
     mdstyleDistPath: string;
     /** Path which contributes the mdstyle to the extension. */
     mdstyleContribPath: string;
+
+    tryColorFromStr(s?: string): Color | null {
+        const c = tryColorFromHexStr(s)
+        if (c === null && s !== undefined) {
+            switch (s) {
+                case 'background0':
+                    return this.bgColor0
+                case 'background1':
+                    return this.bgColor1
+                case 'background2':
+                    return this.bgColor2
+                case 'background3':
+                    return this.bgColor3
+                case 'background4':
+                    return this.bgColor4
+
+                case 'foreground0':
+                    return this.fgColor0
+                case 'foreground1':
+                    return this.fgColor1
+                case 'foreground2':
+                    return this.fgColor2
+                case 'foreground3':
+                    return this.fgColor3
+                case 'foreground4':
+                    return this.fgColor4
+
+                case 'red':
+                    return this.red
+                case 'blue':
+                    return this.blue
+                case 'green':
+                    return this.green
+                case 'yellow':
+                    return this.yellow
+                case 'light orange':
+                    return this.lightOrange
+                case 'orange':
+                    return this.orange
+                case 'cyan':
+                    return this.cyan
+                case 'pink':
+                    return this.pink
+                case 'purple':
+                    return this.purple
+                default:
+                    return null
+            }
+        } else {
+            return c
+        }
+    }
+
+    tryTokenColorFromStr(s?: string): Color | null {
+        const c = this.tryColorFromStr(s)
+        if (c === null && s !== undefined) {
+            switch (s) {
+                case 'editor.foreground0':
+                    return this.codeFgColor0
+                case 'editor.foreground2':
+                    return this.codeFgColor2
+                case 'editor.foreground4':
+                    return this.codeFgColor4
+                default:
+                    return null
+            }
+        } else {
+            return c
+        }
+    }
+
+
+
 }
 
 export function createDarkTheme(cfg: Config): ThemeDef {

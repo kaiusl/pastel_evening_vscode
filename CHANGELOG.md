@@ -1,10 +1,16 @@
-# Change Log
+# Changelog
 
 All notable changes to the "Pastel Evening Theme" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 ## [Unreleased]
+
+### Added
+
+* Accept common color names (`background0`, `foreground4`, `blue`, `yellow` etc) as values for token, UI and editor color overrides. Settings UI includes the descriptions on what exactly is accepted.
+
+  This allows to simplify color overrides by possibly deduplicating raw color strings. 
 
 ## [0.4.2] - 2024-02-02
 
