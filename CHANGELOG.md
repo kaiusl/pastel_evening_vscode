@@ -12,6 +12,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
   This allows to simplify color overrides by possibly deduplicating raw color strings. 
 
+### Changed
+
+* Slight adjustment for GitLens gutter file blame colors.
+
 ## [0.4.2] - 2024-02-02
 
 ### Added

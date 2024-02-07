@@ -1199,11 +1199,12 @@ function editorColors(theme: ThemeDef): { [k: string]: string | Color } {
             "gitlens.graphScrollMarkerTagsColor": theme.orange.darken(0.2).desaturate(0.5),
             "gitlens.graphScrollMarkerUpstreamColor": theme.green,
 
-            "gitlens.gutterBackgroundColor": theme.bgColor1.setAlpha(0.1),//"#FFFFFF13",
-            "gitlens.gutterForegroundColor": theme.fgColor2, //"#BEBEBE",
-            "gitlens.gutterUncommittedForegroundColor": theme.blue.setAlpha(0.75),//"#00BCF299",
-            "gitlens.lineHighlightBackgroundColor": theme.blue.setAlpha(0.25),//"#00BCF233",
-            "gitlens.lineHighlightOverviewRulerColor": theme.blue.setAlpha(0.75),//"#00BCF299",
+            "gitlens.gutterBackgroundColor": theme.bgColor0.setAlpha(0.3),//"#FFFFFF13",
+            "gitlens.gutterForegroundColor": theme.fgColor1, //"#BEBEBE",
+            "gitlens.gutterUncommittedForegroundColor": theme.yellow,//"#00BCF299",
+            "gitlens.lineHighlightBackgroundColor": theme.selectionBgColor.multiplyAlpha(0.75),//"#00BCF233",
+            "gitlens.lineHighlightOverviewRulerColor": theme.selectionBgColor.setAlpha(0.75), //"#00BCF299",
+
             "gitlens.mergedPullRequestIconColor": theme.purple,//"#a371f7",
             "gitlens.openAutolinkedIssueIconColor": theme.green,//"#3fb950",
             "gitlens.openPullRequestIconColor": theme.green,//"#3fb950",
