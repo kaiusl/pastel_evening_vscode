@@ -46,6 +46,20 @@ Thus if the colors seem a bit too bright you can slightly lower the fontWeight a
 
 This theme includes various configuration options to easily customize the theme to your liking. Check out the extension settings in VSCode itself, they should be relatively self-explanatory.
 
+### Variants
+
+Below are a set of configurations you may be interested in trying out.
+The settings are given as a json so you can easily copy them to your `settings.json`.
+
+
+* Orange keywords (looks a bit less rainbow)
+    ```json
+    "pastelEveningTheme.colorOverrides.tokens": {
+        "keywords": "orange"
+    }
+    ```
+    ![](resources/example_rust2.png)
+
 ## Tested languages
 
 The theme has been tested with various languages, mainly against the examples from [Code Syntax Examples] repo but with some other projects as well.
