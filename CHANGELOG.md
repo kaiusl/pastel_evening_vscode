@@ -6,6 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.4.3] - 2024-02-09
+
 ### Added
 
 * Accept common color names (`background0`, `foreground4`, `blue`, `yellow` etc) as values for token, UI and editor color overrides. Settings UI includes the descriptions on what exactly is accepted.
@@ -124,7 +126,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Initial release
 
-[Unreleased]: https://github.com/kaiusl/pastel_evening_vscode/compare/v0.4.2...HEAD
+[Unreleased]: https://github.com/kaiusl/pastel_evening_vscode/compare/v0.4.3...HEAD
+[0.4.3]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.4.3
 [0.4.2]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.4.2
 [0.4.1]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.4.1
 [0.4.0]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.4.0
