@@ -3,7 +3,7 @@
   "displayName": "Pastel Evening Theme",
   "description": "Dark theme with pastel colors and a slight blue hint to the editor.",
   "publisher": "kaiusl",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "icon": "icon.png",
   "license": "MIT",
   "repository": {
@@ -20,7 +20,7 @@
     "Evening"
   ],
   "galleryBanner": {
-    "color": "#292b33",
+    "color": "#2b2d36",
     "theme": "dark"
   },
   "engines": {
@@ -126,115 +126,115 @@
             "properties": {
               "background0": {
                 "type": "string",
-                "description": "Darkest background color. Defaults to #1d1f24.",
+                "description": "Darkest background color. Defaults to #1d1f27.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
               "background1": {
                 "type": "string",
-                "description": "Dark background color. Defaults to #23252c.",
+                "description": "Dark background color. Defaults to #24262e.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
               "background2": {
                 "type": "string",
-                "description": "Base background color. Defaults to #292b33.",
+                "description": "Base background color. Defaults to #2b2d36.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
               "background3": {
                 "type": "string",
-                "description": "Light background color. Defaults to #2f313a.",
+                "description": "Light background color. Defaults to #33353d.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
               "background4": {
                 "type": "string",
-                "description": "Lightest background color. Defaults to #353842.",
+                "description": "Lightest background color. Defaults to #3b3d45.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
               "foreground0": {
                 "type": "string",
-                "description": "Darkest foreground color. Defaults to #737580.",
+                "description": "Darkest foreground color. Defaults to #7c8393.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
               "foreground1": {
                 "type": "string",
-                "description": "Dark foreground color. Defaults to #9193a1.",
+                "description": "Dark foreground color. Defaults to #9198a8.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
               "foreground2": {
                 "type": "string",
-                "description": "Base foreground color. Defaults to #acafbf.",
+                "description": "Base foreground color. Defaults to #a6aebe.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
               "foreground3": {
                 "type": "string",
-                "description": "Light foreground color. Defaults to #bfc3d4.",
+                "description": "Light foreground color. Defaults to #bcc4d5.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
               "foreground4": {
                 "type": "string",
-                "description": "Lightest foreground color. Defaults to #d1d5eb.",
+                "description": "Lightest foreground color. Defaults to #d3dbec.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
               "red": {
                 "type": "string",
-                "description": "Base red color. Defaults to #f28585.",
+                "description": "Base red color. Defaults to #faa2a0.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
               "pink": {
                 "type": "string",
-                "description": "Base pink color. Defaults to #e086e0.",
+                "description": "Base pink color. Defaults to #f9b0e1.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
               "orange": {
                 "type": "string",
-                "description": "Base orange color. Defaults to #df9355.",
+                "description": "Base orange color. Defaults to #f9a988.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
               "light orange": {
                 "type": "string",
-                "description": "Base light orange color. Defaults to #e6b583.",
+                "description": "Base light orange color. Defaults to #e0b490.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
               "yellow": {
                 "type": "string",
-                "description": "Base yellow color. Defaults to #eddd9a.",
+                "description": "Base yellow color. Defaults to #efc785.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
               "green": {
                 "type": "string",
-                "description": "Base green color. Defaults to #69edab.",
+                "description": "Base green color. Defaults to #8edca9.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
               "cyan": {
                 "type": "string",
-                "description": "Base cyan color. Defaults to #74dada.",
+                "description": "Base cyan color. Defaults to #6bd8dc.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
               "blue": {
                 "type": "string",
-                "description": "Base blue color. Defaults to #6dbaf2.",
+                "description": "Base blue color. Defaults to #83cafb.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               },
               "purple": {
                 "type": "string",
-                "description": "Base purple color. Defaults to #b385e0.",
+                "description": "Base purple color. Defaults to #c6b4fb.",
                 "pattern": "^#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})$",
                 "patternErrorMessage": "Invalid color string."
               }
@@ -248,7 +248,7 @@
             "properties": {
               "accent background": {
                 "type": "string",
-                "description": "Main ui accent color. Used by buttons, highlghts etc. Defaults to #0d70b9.",
+                "description": "Main ui accent color. Used by buttons, highlghts etc. Defaults to #83cafb.",
                 "pattern": "^((background[0-4])|(foreground[0-4])|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               },
@@ -260,7 +260,7 @@
               },
               "accent foreground": {
                 "type": "string",
-                "description": "Foreground color used on accents. Defaults to #e3e7ff.",
+                "description": "Foreground color used on accents. Defaults to #1d1f27.",
                 "pattern": "^((background[0-4])|(foreground[0-4])|(red)|(blue)|(green)|(yellow)|((light )?orange)|(cyan)|(pink)|(purple)|(#(([0-9A-Fa-f]){3,4}|([0-9A-Fa-f]){6}|([0-9A-Fa-f]){8})))$",
                 "patternErrorMessage": "Invalid color string."
               }

@@ -10,18 +10,6 @@ This theme aims to use relatively few different colors but still clearly disting
 The comments are purposefully muted to emphasize the actual code. 
 Short summary about colors and their meaning is below. Note however that it's possible to change them to your liking.
 
-| Color                                   | Tokens                                                                           |
-| --------------------------------------- | -------------------------------------------------------------------------------- |
-| ![](resources/cf28585.png) Red          | Keywords                                                                         |
-| ![](resources/c69edab.png) Green        | Types                                                                            |
-| ![](resources/c6dbaf2.png) Blue         | Functions                                                                        |
-| ![](resources/ceddd9a.png) Yellow       | Interfaces and annotations                                                       |
-| ![](resources/ce6b583.png) Light Orange | Strings and numbers                                                              |
-| ![](resources/cdf9355.png) Orange       | Labels, lifetimes, escape sequences in strings                                   |
-| ![](resources/c737580.png) Dark gray    | Comments                                                                         |
-| ![](resources/cacafbf.png) Light gray   | Main text, local variables, namespaces, modules, operators, punctuation          |
-| ![](resources/cd1d5eb.png) White        | Constant and static variables, function parameters, member fields and properties |
-
 Additionally static variables and methods are in *italic* (where possible). 
 Mutable variables are underlined in languages where mutable variables are special, like Rust and Kotlin. 
 See [ColorScheme.md] for more details about the color scheme.

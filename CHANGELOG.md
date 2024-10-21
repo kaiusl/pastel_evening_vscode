@@ -6,6 +6,41 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Changed
+
+* Fully updated colors to have more uniform perceived lightness across the spectrum.
+  
+    Overall the look is a bit more pastel and less vibrant than before.
+
+    It you want to revert to the previous style, add following to your VSCode's `settings.json`:
+    ```json
+    "pastelEveningTheme.colorOverrides.common": {
+        "red": "#f28585",
+        "pink": "#e086e0",
+        "purple": "#b385e0",
+        "blue": "#6dbaf2",
+        "cyan": "#74dada",
+        "green": "#69edab",
+        "yellow": "#eddd9a",
+        "light orange": "#e6b583",
+        "orange": "#df9355",
+    }
+    ```
+
+* Accent color is now a base blue (#80cafe) with a dark foreground (#1d1f27). 
+
+    This fits much more with pastel style than the previous darker blue.
+
+    It you want to revert to the previous style, add following to your VSCode's `settings.json`:
+    ```json
+    "pastelEveningTheme.colorOverrides.ui": {
+        "accent background": "#0d70b9",
+        "accent foreground": "#e3e7ff"
+    }
+    ```
+
+* Diff gutter colors are slightly darker.
+
 ## [0.4.3] - 2024-02-09
 
 ### Added

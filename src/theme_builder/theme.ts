@@ -62,39 +62,41 @@ type ThemeColors = {
     brightYellow: Color;
 }
 
-const red = Color.from_hex("#f28585")
-const yellow = Color.from_hex("#eddd9a")
-const bg0 = Color.from_hex("#1d1f24")
-const fg2 = Color.from_hex("#acafbf")
-const fg4 = Color.from_hex("#d1d5eb")
+const red = Color.from_hex("#faa2a0")
+const yellow = Color.from_hex("#efc785")
+const bg0 = Color.from_hex("#1d1f27")
+const fg2 = Color.from_hex("#a6aebe")
+const fg4 = Color.from_hex("#d3dbec")
 const darkColors: ThemeColors = {
     bg0: bg0,
-    bg1: Color.from_hex("#23252c"),
-    bg2: Color.from_hex("#292b33"),
-    bg3: Color.from_hex("#2f313a"),
-    bg4: Color.from_hex("#353842"),
+    bg1: Color.from_hex("#24262e"),
+    bg2: Color.from_hex("#2b2d36"),
+    bg3: Color.from_hex("#33353d"),
+    bg4: Color.from_hex("#3b3d45"),
     //
-    fg0: Color.from_hex("#737580"),
-    fg1: Color.from_hex("#9193a1"),
+    fg0: Color.from_hex("#7c8393"),
+    fg1: Color.from_hex("#9198a8"),
     fg2: fg2,
-    fg3: Color.from_hex("#bfc3d4"),
+    fg3: Color.from_hex("#bcc4d5"),
     fg4: fg4,
     //
-    accentBg: Color.from_hex("#0d70b9"),
-    accentFg: Color.from_hex("#e3e7ff"),
+    accentBg: Color.from_hex("#83cafb"),
+    accentFg: Color.from_hex("#1d1f27"),
     //
     searchMatchSelected: bg0,
-    searchMatch: red.overlayOpacity(0.125, bg0),
+    searchMatch: red.overlayOpacity(0.1, bg0),
     //
     red: red,
-    blue: Color.from_hex("#6dbaf2"),
-    green: Color.from_hex("#69edab"),
+    blue: Color.from_hex("#83cafb"),
+    green: Color.from_hex("#8edca9"),
     yellow: yellow,
-    lightOrange: Color.from_hex("#e6b583"),
-    orange: Color.from_hex("#df9355"),
-    cyan: Color.from_hex("#74dada"),
-    pink: Color.from_hex("#e086e0"),
-    purple: Color.from_hex("#b385e0"),
+    faintYellow: Color.from_hex("#d2c6b2"),
+    lightOrange: Color.from_hex("#e0b490"),
+    limeGreen: Color.from_hex("#c4d083"),
+    orange: Color.from_hex("#f9a988"),
+    cyan: Color.from_hex("#6bd8dc"),
+    pink: Color.from_hex("#f9b0e1"),
+    purple: Color.from_hex("#c6b4fb"),
     //
     border: Color.BLACK.setAlpha(0.25),
     UiHover: fg4,
@@ -108,14 +110,14 @@ const darkColors: ThemeColors = {
     mutedOpacity: 0.625,
 
     diffBgOpacity: 0.05,
-    diffGutterOpacity: 0.125,
+    diffGutterOpacity: 0.1,
     diffMarkerOpacity: 0.25,
 
     //
-    brightRed: Color.from_hex("#ee5c5c"),
-    brightGreen: Color.from_hex("#50e080"),
-    brightBlue: Color.from_hex("#0d70b9"),
-    brightYellow: Color.from_hex("#fdbc4b"),
+    brightRed: Color.from_hex("#fe7577"),
+    brightGreen: Color.from_hex("#1ceb96"),
+    brightBlue: Color.from_hex("#49b8fe"),
+    brightYellow: Color.from_hex("#fec257"),
 }
 
 function tryColorFromHexStr(s?: string): Color | null {
@@ -374,9 +376,6 @@ export class ThemeDef {
             return c
         }
     }
-
-
-
 }
 
 export function createDarkTheme(cfg: Config): ThemeDef {
