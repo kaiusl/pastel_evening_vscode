@@ -24,7 +24,7 @@
     "theme": "dark"
   },
   "engines": {
-    "vscode": "^1.80.0"
+    "vscode": "^1.94.0"
   },
   "main": "./dist/src/extension.js",
   "browser": "./dist/src/extension_web.js",
@@ -127,7 +127,10 @@
           "pastelEveningTheme.colorOverrides.baseScheme": {
             "type": "string",
             "order": 0,
-            "enum": ["Pastel Evening Dark", "Pastel Evening Dark #2"],
+            "enum": [
+              "Pastel Evening Dark",
+              "Pastel Evening Dark #2"
+            ],
             "default": "Pastel Evening Dark",
             "markdownDescription": "The base color scheme for customization. *This only applies to 'Pastel Evening Dark' variant.*"
           },
@@ -463,34 +466,36 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run build:publish",
-    "build:publish": "npm run export-version && npm run generate-theme && npm run webpack:publish",
-    "build:dev": "npm run export-version && npm run generate-theme && npm run webpack:dev",
+    "vscode:prepublish": "npm run clean && npm run build:publish",
+    "build:publish": "npm run clean && npm run export-version && npm run generate-theme && npm run webpack:publish",
+    "build:dev": "npm run clean && npm run export-version && npm run generate-theme && npm run webpack:dev",
     "generate-theme": "ts-node ./src/scripts/generate_theme.ts",
     "export-version": "node -p \"'export const THEME_VERSION = ' + JSON.stringify(require('./package.json').version) + ';'\" > src/version.ts",
     "watch": "nodemon --exec 'npm run build:dev'",
-    "clean": "rm -r dist",
+    "clean": "rm -rf dist",
     "clean-node": "rm -rf node_modules",
+    "package": "vsce package",
     "webpack:dev": "webpack --mode development",
     "webpack:publish": "webpack --mode production --devtool hidden-source-map",
     "web-test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=./",
     "test": "jest"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.11",
-    "@types/node": "^20.11.14",
-    "@types/vscode": "^1.80.0",
-    "@typescript-eslint/eslint-plugin": "^6.20.0",
-    "@typescript-eslint/parser": "^6.20.0",
-    "@vscode/vsce": "^2.23.0",
-    "@vscode/test-web": "*",
-    "eslint": "^8.56.0",
+    "@types/jest": "^29.5.13",
+    "@types/node": "^22.7.7",
+    "@types/vscode": "^1.94.0",
+    "@typescript-eslint/eslint-plugin": "^8.11.0",
+    "@typescript-eslint/parser": "^8.11.0",
+    "@vscode/test-web": "^0.0.63",
+    "@vscode/vsce": "^3.2.0",
+    "eslint": "^9.13.0",
     "jest": "^29.7.0",
-    "nodemon": "^3.0.3",
-    "ts-jest": "^29.1.2",
-    "typescript": "^5.3.3",
+    "nodemon": "^3.1.7",
+    "ts-jest": "^29.2.5",
     "ts-loader": "^9.5.1",
-    "webpack": "^5.90.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3",
+    "webpack": "^5.95.0",
     "webpack-cli": "^5.1.4"
   }
 }
