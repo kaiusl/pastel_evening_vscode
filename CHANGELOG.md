@@ -8,6 +8,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Added
 
+* A new theme variant `Pastel Evening Dark #2` which is a mix of orange/yellow shades with a bit of blue for functions.
+  
+  The main use case for this is web version of VSCode which doesn't support theme customization.
+
+  It's also worth pointing out that none of the customizations apply to this theme variant.
+  Customizations only apply to the main variant `Pastel Evening Dark`.
+
 * Two new customizable colors: `lime green` and `faint yellow`. 
   
     These are not used by default by they fit into the theme and can be used to customize the look.

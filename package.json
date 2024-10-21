@@ -54,6 +54,11 @@
         "label": "Pastel Evening Dark",
         "uiTheme": "vs-dark",
         "path": "./dist/themes/pastel_evening_dark.json"
+      },
+      {
+        "label": "Pastel Evening Dark #2",
+        "uiTheme": "vs-dark",
+        "path": "./dist/themes/pastel_evening_dark_v2.json"
       }
     ],
     "markdown.previewStyles": [

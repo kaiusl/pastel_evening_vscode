@@ -3,10 +3,10 @@
  */
 
 import * as vscode from 'vscode'
-import { DIST_DIR, DIST_MDSTYLE_CSS_CONTRIB_PATH, DIST_MDSTYLE_CSS_THEMED_PATH } from './common_defs'
+import { DIST_DIR, DIST_MDSTYLE_CSS_CONST_THEMED_PATH, DIST_MDSTYLE_CSS_CONTRIB_PATH, DIST_MDSTYLE_CSS_THEMED_PATH } from './common_defs'
 import * as config from './config'
-import { buildThemeJson, createAllThemes, ThemeDef } from './theme_builder/theme'
-import { buildMdstyleCss } from './theme_builder/mdstyle'
+import { buildThemeJson, createDarkTheme, ThemeDef } from './theme_builder/theme'
+import { buildMdstyleCssSingle } from './theme_builder/mdstyle'
 
 let savedConfigPath: vscode.Uri
 let extensionRoot: vscode.Uri
@@ -208,24 +208,24 @@ async function saveCfgToFile(cfg: config.Config, path: vscode.Uri) {
 
 async function updateThemeFull(cfg: config.Config) {
 
-    let themes: ThemeDef[]
+    let custom_theme: ThemeDef
     try {
-        themes = createAllThemes(cfg);
+        custom_theme = createDarkTheme(cfg)
     } catch (err) {
         throw Error(`failed to create theme: ${(err as Error).toString()}`)
     }
 
     await Promise.all([
-        ...themes.map(generateThemeJson),
-        generateAndUpdateMdStyle(themes, cfg),
+        generateThemeJson(custom_theme),
+        generateAndUpdateMdStyle(custom_theme, cfg),
         saveCfgToFile(cfg, savedConfigPath)
     ])
 }
 
-async function generateThemeJson(theme: ThemeDef) {
+async function generateThemeJson(custom_theme: ThemeDef) {
     try {
-        const dst = vscode.Uri.joinPath(extensionRoot, theme.themeDistPath)
-        const json = buildThemeJson(theme)
+        const dst = vscode.Uri.joinPath(extensionRoot, custom_theme.themeDistPath)
+        const json = buildThemeJson(custom_theme)
         const jsonBytes = new TextEncoder().encode(json)
         await vscode.workspace.fs.writeFile(dst, jsonBytes)
     } catch (err) {
@@ -233,8 +233,8 @@ async function generateThemeJson(theme: ThemeDef) {
     }
 }
 
-async function generateAndUpdateMdStyle(themes: ThemeDef[], cfg: config.Config) {
-    await generateMdStyleCss(themes)
+async function generateAndUpdateMdStyle(custom_theme: ThemeDef, cfg: config.Config) {
+    await generateMdStyleCss(custom_theme)
     // generation needs to finish before updating the contributed file
     await updateMdStyle(cfg)
 }
@@ -253,10 +253,11 @@ async function updateMdStyle(cfg: config.Config) {
     }
 }
 
-async function generateMdStyleCss(themes: ThemeDef[]) {
+async function generateMdStyleCss(custom_theme: ThemeDef) {
     try {
         const dst = vscode.Uri.joinPath(extensionRoot, DIST_MDSTYLE_CSS_THEMED_PATH)
-        const css = buildMdstyleCss(themes)
+        const const_css = await vscode.workspace.fs.readFile(vscode.Uri.joinPath(extensionRoot, DIST_MDSTYLE_CSS_CONST_THEMED_PATH));
+        const css = const_css + "\n" + buildMdstyleCssSingle(custom_theme);
         await vscode.workspace.fs.writeFile(dst, new TextEncoder().encode(css))
     } catch (err) {
         throw Error(`failed to generate mdstyle css: ${(err as Error).toString()}`)

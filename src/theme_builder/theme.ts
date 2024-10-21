@@ -5,7 +5,7 @@
 import { Color } from "../color/color";
 import path from "path"
 import { DIST_THEMES_DIR } from "../common_defs";
-import { Config, ExtensionColors } from "../config";
+import { Config, defaultConfig, ExtensionColors } from "../config";
 
 enum ThemeKind {
     DARK = "dark",
@@ -382,6 +382,26 @@ export class ThemeDef {
     }
 }
 
+export function createDarkThemeV2(): ThemeDef {
+    const cfg = defaultConfig();
+
+    cfg.tokensColorOverrides = {
+        keywords: "orange",
+        types: "yellow",
+        attributes: "faint yellow",
+        interfaces: "faint yellow"
+    }
+
+    return new ThemeDef(
+        "pastel_evening_dark_v2",
+        "Pastel Evening Dark #2",
+        ThemeKind.DARK,
+        darkColors,
+        cfg
+    )
+}
+
+
 export function createDarkTheme(cfg: Config): ThemeDef {
     return new ThemeDef(
         "pastel_evening_dark",
@@ -392,8 +412,8 @@ export function createDarkTheme(cfg: Config): ThemeDef {
     )
 }
 
-export function createAllThemes(cfg: Config): ThemeDef[] {
-    return  [createDarkTheme(cfg)]
+export function createAllConstThemes(): ThemeDef[] {
+    return [createDarkThemeV2()]
 }
 
 export function buildThemeJson(themeDef: ThemeDef): string {

@@ -2,7 +2,12 @@
 
 Dark theme with pastel colors and a slight blue hint to the editor.
 
+### Pastel Evening Dark (original color scheme)
 ![](resources/example_rust.png)
+
+### Pastel Evening Dark #2
+![](resources/example_rust_even_less_rainbow1.png)
+
 
 ## Color scheme
 
@@ -30,11 +35,15 @@ It's worth noting that Linux's and Windows' font rendering is different, I have 
 With same `fontWeight` the theme looks quite a bit brighter on Windows than on Linux.
 Thus if the colors seem a bit too bright you can slightly lower the fontWeight and other way around too.
 
+
 ## Configuration
 
 This theme includes various configuration options to easily customize the theme to your liking. 
 Check out the extension settings in VSCode itself, they should be relatively self-explanatory.
 Also you can see the next section for some examples of what you can do with quite small changes.
+
+Note that customization only apply to the main theme variant `Pastel Evening Dark`, 
+they don't apply to any of the other variants like `Pastel Evening Dark #2`.
 
 
 ### Variants
@@ -51,21 +60,7 @@ The settings are given as a json so you can easily copy them to your `settings.j
     ```
     ![](resources/example_rust2.png)
 
-* Even less rainbow and more orange.
-
-    It's a mix of orange/yellow shades with a bit of blue for functions.
-
-    ```json
-    "pastelEveningTheme.colorOverrides.tokens": {
-        "keywords": "orange",
-        "attributes": "faint yellow",
-        "types": "yellow",
-        "interfaces": "faint yellow",
-    },
-    ```
-    ![](resources/example_rust_even_less_rainbow1.png)
-
-    or if you desire more difference to interfaces, following looks quite nice too
+* Like #2 but with lime green interfaces
 
     ```json
     "pastelEveningTheme.colorOverrides.tokens": {
@@ -73,7 +68,7 @@ The settings are given as a json so you can easily copy them to your `settings.j
         "attributes": "faint yellow",
         "types": "yellow",
         "interfaces": "lime green",
-    },
+    }
     ```
     ![](resources/example_rust_even_less_rainbow2.png)
 

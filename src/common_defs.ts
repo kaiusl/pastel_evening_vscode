@@ -11,6 +11,7 @@ export const DIST_DIR = "dist"
 export const DIST_MDSTYLE_DIR = path.join(DIST_DIR, "mdstyle")
 export const DIST_MDSTYLE_CSS_CONTRIB_PATH = path.join(DIST_MDSTYLE_DIR, "pastel_evening.css")
 export const DIST_MDSTYLE_CSS_THEMED_PATH = path.join(DIST_MDSTYLE_DIR, "pastel_evening_themed.css")
+export const DIST_MDSTYLE_CSS_CONST_THEMED_PATH = path.join(DIST_MDSTYLE_DIR, "pastel_evening_const_themed.css")
 /** The root directory of the themes .json files. */
 export const DIST_THEMES_DIR = path.join(DIST_DIR, "themes")
 /** The root directory of the source files for the extension. */
