@@ -6,6 +6,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Added
+
+* Two new customizable colors: `lime green` and `faint yellow`. 
+  
+    These are not used by default by they fit into the theme and can be used to customize the look.
+    There are two new theme variants in the readme's variants section which do use these colors.
+
 ### Changed
 
 * Fully updated colors to have more uniform perceived lightness across the spectrum.

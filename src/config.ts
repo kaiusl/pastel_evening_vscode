@@ -52,7 +52,9 @@ export type CommonColorOverrides = {
     pink?: string
     orange?: string
     "light orange"?: string
+    "lime green"?: string
     yellow?: string
+    "faint yellow"?: string
     green?: string
     cyan?: string
     blue?: string

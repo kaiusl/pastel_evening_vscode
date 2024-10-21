@@ -32,7 +32,10 @@ Thus if the colors seem a bit too bright you can slightly lower the fontWeight a
 
 ## Configuration
 
-This theme includes various configuration options to easily customize the theme to your liking. Check out the extension settings in VSCode itself, they should be relatively self-explanatory.
+This theme includes various configuration options to easily customize the theme to your liking. 
+Check out the extension settings in VSCode itself, they should be relatively self-explanatory.
+Also you can see the next section for some examples of what you can do with quite small changes.
+
 
 ### Variants
 
@@ -47,6 +50,32 @@ The settings are given as a json so you can easily copy them to your `settings.j
     }
     ```
     ![](resources/example_rust2.png)
+
+* Even less rainbow and more orange.
+
+    It's a mix of orange/yellow shades with a bit of blue for functions.
+
+    ```json
+    "pastelEveningTheme.colorOverrides.tokens": {
+        "keywords": "orange",
+        "attributes": "faint yellow",
+        "types": "yellow",
+        "interfaces": "faint yellow",
+    },
+    ```
+    ![](resources/example_rust_even_less_rainbow1.png)
+
+    or if you desire more difference to interfaces, following looks quite nice too
+
+    ```json
+    "pastelEveningTheme.colorOverrides.tokens": {
+        "keywords": "orange",
+        "attributes": "faint yellow",
+        "types": "yellow",
+        "interfaces": "lime green",
+    },
+    ```
+    ![](resources/example_rust_even_less_rainbow2.png)
 
 ## Tested languages
 

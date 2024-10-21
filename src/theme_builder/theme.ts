@@ -49,7 +49,9 @@ type ThemeColors = {
     blue: Color;
     green: Color;
     yellow: Color;
+    faintYellow: Color;
     lightOrange: Color;
+    limeGreen: Color;
     orange: Color;
     cyan: Color;
     pink: Color;
@@ -166,6 +168,8 @@ export class ThemeDef {
         this.green = tryColorFromHexStr(cfg.commonColorOverrides.green) ?? colors.green;
         this.yellow = tryColorFromHexStr(cfg.commonColorOverrides.yellow) ?? colors.yellow;
         this.lightOrange = tryColorFromHexStr(cfg.commonColorOverrides["light orange"]) ?? colors.lightOrange;
+        this.limeGreen = tryColorFromHexStr(cfg.commonColorOverrides["lime green"]) ?? colors.limeGreen;
+        this.faintYellow = tryColorFromHexStr(cfg.commonColorOverrides["faint yellow"]) ?? colors.faintYellow;
         this.orange = tryColorFromHexStr(cfg.commonColorOverrides.orange) ?? colors.orange;
         this.cyan = tryColorFromHexStr(cfg.commonColorOverrides.cyan) ?? colors.cyan;
         this.pink = tryColorFromHexStr(cfg.commonColorOverrides.pink) ?? colors.pink;
@@ -268,7 +272,9 @@ export class ThemeDef {
     blue: Color;
     green: Color;
     yellow: Color;
+    faintYellow: Color;
     lightOrange: Color;
+    limeGreen: Color;
     orange: Color;
     cyan: Color;
     pink: Color;
@@ -341,8 +347,12 @@ export class ThemeDef {
                     return this.green
                 case 'yellow':
                     return this.yellow
+                case 'faint yellow':
+                    return this.faintYellow
                 case 'light orange':
                     return this.lightOrange
+                case 'lime green':
+                    return this.limeGreen
                 case 'orange':
                     return this.orange
                 case 'cyan':
