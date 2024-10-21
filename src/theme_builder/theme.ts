@@ -3,8 +3,8 @@
  */
 
 import { Color } from "../color/color";
-import path, { join } from "path"
-import { DIST_MDSTYLE_DIR, DIST_THEMES_DIR } from "../common_defs";
+import path from "path"
+import { DIST_THEMES_DIR } from "../common_defs";
 import { Config, ExtensionColors } from "../config";
 
 enum ThemeKind {
@@ -224,8 +224,6 @@ export class ThemeDef {
         this.functionsColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.functions) ?? this.blue;
 
         this.themeDistPath = path.join(DIST_THEMES_DIR, this.fileName + ".json")
-        this.mdstyleDistPath = path.join(DIST_MDSTYLE_DIR, this.fileName + "_themed.css")
-        this.mdstyleContribPath = join(DIST_MDSTYLE_DIR, this.fileName + ".css")
     }
 
     fileName: string;
@@ -308,10 +306,6 @@ export class ThemeDef {
     brightYellow: Color;
 
     themeDistPath: string;
-    /** Path which holds the themed mdstyle. */
-    mdstyleDistPath: string;
-    /** Path which contributes the mdstyle to the extension. */
-    mdstyleContribPath: string;
 
     tryColorFromStr(s?: string): Color | null {
         const c = tryColorFromHexStr(s)
@@ -396,6 +390,10 @@ export function createDarkTheme(cfg: Config): ThemeDef {
         darkColors,
         cfg
     )
+}
+
+export function createAllThemes(cfg: Config): ThemeDef[] {
+    return  [createDarkTheme(cfg)]
 }
 
 export function buildThemeJson(themeDef: ThemeDef): string {

@@ -40,7 +40,6 @@ export class Color {
      */
     public static from_hex(hex: string): Color {
         if (!hex.match(hexRegEx)) {
-            console.log("err")
             throw new ColorParseError(`${hex} is invalid hex color string`)
         }
 

@@ -57,7 +57,7 @@
       }
     ],
     "markdown.previewStyles": [
-      "./dist/mdstyle/pastel_evening_dark.css"
+      "./dist/mdstyle/pastel_evening.css"
     ],
     "configuration": [
       {

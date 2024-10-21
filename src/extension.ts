@@ -3,10 +3,9 @@
  */
 
 import * as vscode from 'vscode'
-import { DIST_DIR } from './common_defs'
+import { DIST_DIR, DIST_MDSTYLE_CSS_CONTRIB_PATH, DIST_MDSTYLE_CSS_THEMED_PATH } from './common_defs'
 import * as config from './config'
-import { buildThemeJson } from './theme_builder/theme'
-import { ThemeDef, createDarkTheme } from './theme_builder/theme'
+import { buildThemeJson, createAllThemes, ThemeDef } from './theme_builder/theme'
 import { buildMdstyleCss } from './theme_builder/mdstyle'
 
 let savedConfigPath: vscode.Uri
@@ -126,7 +125,7 @@ async function onCfgChange(event: vscode.ConfigurationChangeEvent) {
         } else if (event.affectsConfiguration(config.joinKeys(config.Keys.ROOT, config.Keys.MARKDOWN_PREVIEW_STYLE))) {
             const cfg = getCurrentCfg()
             // Don't need to regenerate theme files
-            await updateMdStyle(createDarkTheme(cfg), cfg)
+            await updateMdStyle(cfg)
             void showReloadWarning()
         } else {
             const cfg = getCurrentCfg()
@@ -208,15 +207,17 @@ async function saveCfgToFile(cfg: config.Config, path: vscode.Uri) {
 }
 
 async function updateThemeFull(cfg: config.Config) {
-    let theme: ThemeDef
+
+    let themes: ThemeDef[]
     try {
-        theme = createDarkTheme(cfg)
+        themes = createAllThemes(cfg);
     } catch (err) {
         throw Error(`failed to create theme: ${(err as Error).toString()}`)
     }
+
     await Promise.all([
-        generateThemeJson(theme),
-        generateAndUpdateMdStyle(theme, cfg),
+        ...themes.map(generateThemeJson),
+        generateAndUpdateMdStyle(themes, cfg),
         saveCfgToFile(cfg, savedConfigPath)
     ])
 }
@@ -232,17 +233,17 @@ async function generateThemeJson(theme: ThemeDef) {
     }
 }
 
-async function generateAndUpdateMdStyle(theme: ThemeDef, cfg: config.Config) {
-    await generateMdStyleCss(theme)
+async function generateAndUpdateMdStyle(themes: ThemeDef[], cfg: config.Config) {
+    await generateMdStyleCss(themes)
     // generation needs to finish before updating the contributed file
-    await updateMdStyle(theme, cfg)
+    await updateMdStyle(cfg)
 }
 
-async function updateMdStyle(theme: ThemeDef, cfg: config.Config) {
+async function updateMdStyle(cfg: config.Config) {
     try {
-        const dst = vscode.Uri.joinPath(extensionRoot, theme.mdstyleContribPath)
+        const dst = vscode.Uri.joinPath(extensionRoot, DIST_MDSTYLE_CSS_CONTRIB_PATH)
         if (cfg.exportMarkdownPreviewStyle) {
-            const src = vscode.Uri.joinPath(extensionRoot, theme.mdstyleDistPath)
+            const src = vscode.Uri.joinPath(extensionRoot, DIST_MDSTYLE_CSS_THEMED_PATH)
             await vscode.workspace.fs.copy(src, dst, { overwrite: true })
         } else {
             await vscode.workspace.fs.writeFile(dst, new TextEncoder().encode(""))
@@ -252,10 +253,10 @@ async function updateMdStyle(theme: ThemeDef, cfg: config.Config) {
     }
 }
 
-async function generateMdStyleCss(theme: ThemeDef) {
+async function generateMdStyleCss(themes: ThemeDef[]) {
     try {
-        const dst = vscode.Uri.joinPath(extensionRoot, theme.mdstyleDistPath)
-        const css = buildMdstyleCss(theme)
+        const dst = vscode.Uri.joinPath(extensionRoot, DIST_MDSTYLE_CSS_THEMED_PATH)
+        const css = buildMdstyleCss(themes)
         await vscode.workspace.fs.writeFile(dst, new TextEncoder().encode(css))
     } catch (err) {
         throw Error(`failed to generate mdstyle css: ${(err as Error).toString()}`)

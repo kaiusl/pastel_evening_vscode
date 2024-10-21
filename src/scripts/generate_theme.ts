@@ -4,10 +4,11 @@
 
 import fs from 'fs';
 import { buildColorSchemeMd } from '../theme_builder/color_scheme_md';
-import { DIST_DIR, DIST_MDSTYLE_DIR, DIST_THEMES_DIR } from '../common_defs';
+import { DIST_DIR, DIST_MDSTYLE_CSS_CONTRIB_PATH, DIST_MDSTYLE_CSS_THEMED_PATH, DIST_MDSTYLE_DIR, DIST_THEMES_DIR } from '../common_defs';
 import { buildMdstyleCss } from '../theme_builder/mdstyle';
-import { createDarkTheme, buildThemeJson } from '../theme_builder/theme';
+import { buildThemeJson, createAllThemes } from '../theme_builder/theme';
 import { defaultConfig } from '../config';
+
 
 for (const dir of [DIST_DIR, DIST_THEMES_DIR, DIST_MDSTYLE_DIR]) {
     if (!fs.existsSync(dir)) {
@@ -15,23 +16,24 @@ for (const dir of [DIST_DIR, DIST_THEMES_DIR, DIST_MDSTYLE_DIR]) {
     }
 }
 
-const cfg = defaultConfig()
-const theme = createDarkTheme(cfg)
-const json = buildThemeJson(theme);
-fs.writeFile(theme.themeDistPath, json, (err) => {
-    if (err) throw err;
-});
+const cfg = defaultConfig();
+const themes = createAllThemes(cfg);
+for (const theme of themes) {
+    const json = buildThemeJson(theme);
+    fs.writeFile(theme.themeDistPath, json, (err) => {
+        if (err) throw err;
+    });
 
-const css = buildMdstyleCss(theme)
-fs.writeFile(theme.mdstyleDistPath, css, (err) => {
-    if (err) throw err;
-});
-fs.writeFile(theme.mdstyleContribPath, css, (err) => {
-    if (err) throw err;
-});
+    fs.writeFile('./ColorScheme_' + theme.fileName + '.md', buildColorSchemeMd(theme), (err) => {
+        if (err) throw err;
+    });
+}
 
-fs.writeFile('./ColorScheme_' + theme.fileName + '.md', buildColorSchemeMd(theme), (err) => {
+const css = buildMdstyleCss(themes)
+fs.writeFile(DIST_MDSTYLE_CSS_THEMED_PATH, css, (err) => {
     if (err) throw err;
 });
-
+fs.writeFile(DIST_MDSTYLE_CSS_CONTRIB_PATH, css, (err) => {
+    if (err) throw err;
+});
 

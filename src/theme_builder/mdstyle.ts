@@ -10,7 +10,15 @@ type Style = {
     backgroundColor?: Color
 }
 
-export function buildMdstyleCss(theme: ThemeDef): string {
+export function buildMdstyleCss(themes: ThemeDef[]): string {
+    let css = ""
+    for (const theme of themes) {
+        css += buildMdstyleCssSingle(theme) + "\n"
+    }
+    return css
+}
+
+export function buildMdstyleCssSingle(theme: ThemeDef): string {
     const style: { [k: string]: Style } = {
         pre: {
             backgroundColor: theme.bgColor1
