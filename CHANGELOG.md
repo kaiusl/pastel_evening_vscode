@@ -14,11 +14,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
   It's also worth pointing out that none of the customizations apply to this theme variant.
   Customizations only apply to the main variant `Pastel Evening Dark`.
+  You can use new `pastelEveningTheme.colorOverrides.baseScheme` option to choose which variant you want as a base theme.
+
+* A new config option `pastelEveningTheme.colorOverrides.baseScheme` which allows to select base theme variant for customization.
 
 * Two new customizable colors: `lime green` and `faint yellow`. 
-  
-    These are not used by default by they fit into the theme and can be used to customize the look.
-    There are two new theme variants in the readme's variants section which do use these colors.
 
 ### Changed
 

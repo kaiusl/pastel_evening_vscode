@@ -166,6 +166,7 @@ export function getCurrentCfg(): config.Config {
         resultCfg.uiColorOverrides = cfg.get(config.Keys.UI_COLOR_OVERRIDES, resultCfg.uiColorOverrides)
         resultCfg.tokensColorOverrides = cfg.get(config.Keys.TOKENS_COLOR_OVERRIDES, resultCfg.tokensColorOverrides)
         resultCfg.showUpdateNotifications = cfg.get(config.Keys.SHOW_UPDATE_NOTIFICATIONS, resultCfg.showUpdateNotifications)
+        resultCfg.colorOverridesBaseScheme = cfg.get(config.Keys.COLOR_OVERRIDES_BASE_SCHEME, resultCfg.colorOverridesBaseScheme)
         return resultCfg
     } catch (err) {
         throw Error(`failed to read current theme config: ${(err as Error).toString()}`)

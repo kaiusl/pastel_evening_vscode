@@ -75,22 +75,22 @@
             "description": "Show a short notifications after a new version of theme was installed.",
             "order": 0
           },
-          "pastelEveningTheme.useItalics": {
-            "type": "boolean",
-            "default": true,
-            "description": "Use italics for static variables and members.",
-            "order": 1
-          },
-          "pastelEveningTheme.useUnderlined": {
-            "type": "boolean",
-            "default": true,
-            "description": "Underline mutable variables and members.",
-            "order": 2
-          },
           "pastelEveningTheme.exportMarkdownPreviewStyle": {
             "type": "boolean",
             "default": true,
             "description": "Use themed markdown preview style.",
+            "order": 1
+          },
+          "pastelEveningTheme.useItalics": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Use italics for static variables and members. *This only applies to 'Pastel Evening Dark' variant.*",
+            "order": 2
+          },
+          "pastelEveningTheme.useUnderlined": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Underline mutable variables and members. *This only applies to 'Pastel Evening Dark' variant.*",
             "order": 3
           },
           "pastelEveningTheme.extensionColors": {
@@ -116,7 +116,7 @@
               "GitHub Pull Requests and Issues": true,
               "Error Lens": true
             },
-            "markdownDescription": "Use theme colors for extensions."
+            "markdownDescription": "Use theme colors for extensions. *This only applies to 'Pastel Evening Dark' variant.*"
           }
         }
       },
@@ -124,10 +124,17 @@
         "title": "Color overrides",
         "order": 1,
         "properties": {
+          "pastelEveningTheme.colorOverrides.baseScheme": {
+            "type": "string",
+            "order": 0,
+            "enum": ["Pastel Evening Dark", "Pastel Evening Dark #2"],
+            "default": "Pastel Evening Dark",
+            "markdownDescription": "The base color scheme for customization. *This only applies to 'Pastel Evening Dark' variant.*"
+          },
           "pastelEveningTheme.colorOverrides.common": {
             "type": "object",
-            "order": 0,
-            "markdownDescription": "Common color overrides. \n\nThese colors are used throughout the theme, so major changes may result in weird theme. The intended use is for slight adjustment of each color if needed. \n\nAccepted color formats are `#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`.",
+            "order": 1,
+            "markdownDescription": "Common color overrides. \n\nThese colors are used throughout the theme, so major changes may result in weird theme. The intended use is for slight adjustment of each color if needed. \n\nAccepted color formats are `#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`. \n\n*This only applies to 'Pastel Evening Dark' variant.*",
             "properties": {
               "background0": {
                 "type": "string",
@@ -260,8 +267,8 @@
           },
           "pastelEveningTheme.colorOverrides.ui": {
             "type": "object",
-            "order": 1,
-            "markdownDescription": "UI color overrides. \n\nAccepted color formats are: \n * hex color string (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`) \n * one of the common colors (`background[0-4]`, `foregound[0-4]`, `red`, `blue`, `green`, `lime green`, `yellow`, `faint yellow`, `orange`, `light orange`, `cyan`, `pink`, `purple`)",
+            "order": 2,
+            "markdownDescription": "UI color overrides. \n\nAccepted color formats are: \n * hex color string (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`) \n * one of the common colors (`background[0-4]`, `foregound[0-4]`, `red`, `blue`, `green`, `lime green`, `yellow`, `faint yellow`, `orange`, `light orange`, `cyan`, `pink`, `purple`). \n\n*This only applies to 'Pastel Evening Dark' variant.*",
             "properties": {
               "accent background": {
                 "type": "string",
@@ -286,8 +293,8 @@
           },
           "pastelEveningTheme.colorOverrides.editor": {
             "type": "object",
-            "order": 2,
-            "markdownDescription": "Editor color overrides. \n\nAccepted color formats are: \n * hex color string (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`) \n * one of the common colors (`background[0-4]`, `foregound[0-4]`, `red`, `blue`, `green`, `lime green`, `yellow`, `faint yellow`, `orange`, `light orange`, `cyan`, `pink`, `purple`).",
+            "order": 3,
+            "markdownDescription": "Editor color overrides. \n\nAccepted color formats are: \n * hex color string (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`) \n * one of the common colors (`background[0-4]`, `foregound[0-4]`, `red`, `blue`, `green`, `lime green`, `yellow`, `faint yellow`, `orange`, `light orange`, `cyan`, `pink`, `purple`). \n\n*This only applies to 'Pastel Evening Dark' variant.*",
             "properties": {
               "selection background": {
                 "type": "string",
@@ -336,8 +343,8 @@
           },
           "pastelEveningTheme.colorOverrides.tokens": {
             "type": "object",
-            "order": 3,
-            "markdownDescription": "Token color overrides. \n\nAccepted color formats are: \n * hex color string (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`) \n * one of the common colors (`background[0-4]`, `foregound[0-4]`, `red`, `blue`, `green`, `lime green`, `yellow`, `faint yellow`, `orange`, `light orange`, `cyan`, `pink`, `purple`) \n * one of editor foreground colors (`editor.foreground[0,2,4]`)",
+            "order": 4,
+            "markdownDescription": "Token color overrides. \n\nAccepted color formats are: \n * hex color string (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`) \n * one of the common colors (`background[0-4]`, `foregound[0-4]`, `red`, `blue`, `green`, `lime green`, `yellow`, `faint yellow`, `orange`, `light orange`, `cyan`, `pink`, `purple`) \n * one of editor foreground colors (`editor.foreground[0,2,4]`). \n\n*This only applies to 'Pastel Evening Dark' variant.*",
             "propertyNames": true,
             "properties": {
               "keywords": {

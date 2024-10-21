@@ -40,17 +40,21 @@ Thus if the colors seem a bit too bright you can slightly lower the fontWeight a
 
 This theme includes various configuration options to easily customize the theme to your liking. 
 Check out the extension settings in VSCode itself, they should be relatively self-explanatory.
-Also you can see the next section for some examples of what you can do with quite small changes.
+Also you can see the next section for some examples.
 
 Note that customization only apply to the main theme variant `Pastel Evening Dark`, 
 they don't apply to any of the other variants like `Pastel Evening Dark #2`.
+However you can select the base theme for customization using `pastelEveningTheme.colorOverrides.baseScheme` option.
+For example
+```json
+"pastelEveningTheme.colorOverrides.baseScheme": "Pastel Evening Dark #2"
+```
 
 
 ### Variants
 
 Below are a set of configurations you may be interested in trying out.
 The settings are given as a json so you can easily copy them to your `settings.json`.
-
 
 * Orange keywords (looks a bit less rainbow)
     ```json
@@ -60,13 +64,11 @@ The settings are given as a json so you can easily copy them to your `settings.j
     ```
     ![](resources/example_rust2.png)
 
-* Like #2 but with lime green interfaces
+* Variant #2 with lime green interfaces for a bit more contrast
 
     ```json
+    "pastelEveningTheme.colorOverrides.baseScheme": "Pastel Evening Dark #2",
     "pastelEveningTheme.colorOverrides.tokens": {
-        "keywords": "orange",
-        "attributes": "faint yellow",
-        "types": "yellow",
         "interfaces": "lime green",
     }
     ```

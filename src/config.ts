@@ -1,6 +1,6 @@
 import { THEME_VERSION } from "./version"
 
-const CONFIG_VERSION = 1
+const CONFIG_VERSION = 2
 
 export enum Keys {
     ROOT = "pastelEveningTheme",
@@ -10,10 +10,16 @@ export enum Keys {
     COLOR_OVERRIDES = "colorOverrides",
     SHOW_UPDATE_NOTIFICATIONS = "showUpdateNotifications",
     EXTENSION_COLORS = "extensionColors",
+    COLOR_OVERRIDES_BASE_SCHEME = `${Keys.COLOR_OVERRIDES}.baseScheme`,
     COMMON_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.common`,
     UI_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.ui`,
     EDITOR_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.editor`,
     TOKENS_COLOR_OVERRIDES = `${Keys.COLOR_OVERRIDES}.tokens`,
+}
+
+export enum ThemeVariant {
+    Original = "Pastel Evening Dark",
+    V2 = "Pastel Evening Dark #2",
 }
 
 export type Config = {
@@ -22,6 +28,7 @@ export type Config = {
     exportMarkdownPreviewStyle: boolean
     showUpdateNotifications: boolean
     extensionColors: ExtensionColors
+    colorOverridesBaseScheme: ThemeVariant
     commonColorOverrides: CommonColorOverrides
     uiColorOverrides: UiColorOverrides
     editorColorOverrides: EditorColorOverrides
@@ -113,6 +120,7 @@ export function defaultConfig(): Config {
             "GitHub Pull Requests and Issues": true,
             "Error Lens": true
         },
+        colorOverridesBaseScheme: ThemeVariant.Original,
         commonColorOverrides: {},
         uiColorOverrides: {},
         editorColorOverrides: {},
@@ -122,6 +130,19 @@ export function defaultConfig(): Config {
     }
 }
 
+export function defaultConfigV2(): Config {
+    const cfg = defaultConfig();
+
+    cfg.tokensColorOverrides = {
+        keywords: "orange",
+        types: "yellow",
+        attributes: "faint yellow",
+        interfaces: "faint yellow"
+    }
+
+    return cfg
+}
+
 export function eqConfig(a: Config, b: Config): boolean {
     return a.useItalics === b.useItalics
         && a.useUnderlined === b.useUnderlined
@@ -129,6 +150,7 @@ export function eqConfig(a: Config, b: Config): boolean {
         && a.themeVersion === b.themeVersion
         && a.configVersion === b.configVersion
         && a.showUpdateNotifications === b.showUpdateNotifications
+        && a.colorOverridesBaseScheme === b.colorOverridesBaseScheme
         && JSON.stringify(a.extensionColors) === JSON.stringify(b.extensionColors)
         && JSON.stringify(a.commonColorOverrides) === JSON.stringify(b.commonColorOverrides)
         && JSON.stringify(a.uiColorOverrides) === JSON.stringify(b.uiColorOverrides)
@@ -142,12 +164,12 @@ export function mergeConfig(base: Config, other: Partial<Config>): Config {
     base.exportMarkdownPreviewStyle = other.exportMarkdownPreviewStyle ?? base.exportMarkdownPreviewStyle
     base.themeVersion = other.themeVersion ?? base.themeVersion
     base.configVersion = other.configVersion ?? base.configVersion
-    // TODO: We should probably merge objects too, not just replace them
-    base.extensionColors = other.extensionColors ?? base.extensionColors
-    base.commonColorOverrides = other.commonColorOverrides ?? base.commonColorOverrides
-    base.uiColorOverrides = other.uiColorOverrides ?? base.uiColorOverrides
-    base.editorColorOverrides = other.editorColorOverrides ?? base.editorColorOverrides
-    base.tokensColorOverrides = other.tokensColorOverrides ?? base.tokensColorOverrides
+    base.colorOverridesBaseScheme = other.colorOverridesBaseScheme ?? base.colorOverridesBaseScheme
+    base.extensionColors = { ...base.extensionColors, ...other.extensionColors }
+    base.commonColorOverrides = { ...base.commonColorOverrides, ...other.commonColorOverrides }
+    base.uiColorOverrides = { ...base.uiColorOverrides, ...other.uiColorOverrides }
+    base.editorColorOverrides = { ...base.editorColorOverrides, ...other.editorColorOverrides }
+    base.tokensColorOverrides = { ...base.tokensColorOverrides, ...other.tokensColorOverrides }
     base.showUpdateNotifications = other.showUpdateNotifications ?? base.showUpdateNotifications
 
     return base
