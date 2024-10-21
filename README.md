@@ -6,7 +6,7 @@ Dark theme with pastel colors and a slight blue hint to the editor.
 ![](resources/example_rust.png)
 
 ### Pastel Evening Dark #2
-![](resources/example_rust_even_less_rainbow1.png)
+![](resources/example_rust_v2.png)
 
 
 ## Color scheme
@@ -72,7 +72,7 @@ The settings are given as a json so you can easily copy them to your `settings.j
         "interfaces": "lime green",
     }
     ```
-    ![](resources/example_rust_even_less_rainbow2.png)
+    ![](resources/example_rust_v2_2.png)
 
 ## Tested languages
 
