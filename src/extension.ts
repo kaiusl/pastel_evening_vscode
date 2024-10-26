@@ -7,7 +7,7 @@ import { DIST_DIR, DIST_MDSTYLE_CSS_CONST_THEMED_PATH, DIST_MDSTYLE_CSS_CONTRIB_
 import { buildThemeJson, createDarkTheme, ThemeDef, } from './theme_builder/theme'
 import { buildMdstyleCssSingle } from './theme_builder/mdstyle'
 import * as config from './config'
-import { mergeCommonColorOverrides, mergeEditorColorOverrides, mergeTokenColorOverrides, mergeUiColorOverrides, RawCommonColorOverrides, RawEditorColorOverrides, RawTokenColorOverrides, RawUiColorOverrides, ThemeConfig } from './theme_builder/theme_config'
+import { RawThemeConfig, themeConfigFromRaw } from './theme_builder/theme_config'
 
 let savedConfigPath: vscode.Uri
 let extensionRoot: vscode.Uri
@@ -42,7 +42,7 @@ export async function activate(context: vscode.ExtensionContext) {
         }
 
         // After theme update the bundled theme uses default config
-        savedCfg = config.defaultConfig()
+        savedCfg = config.defaultRawConfig()
 
         if (!config.eqConfig(currentCfg, savedCfg)) {
             await updateThemeFull(currentCfg)
@@ -153,11 +153,12 @@ async function showReloadWarning() {
     }
 }
 
-function getCurrentCfg(): config.Config {
+function getCurrentCfg(): config.RawConfig {
     try {
         const cfg = vscode.workspace.getConfiguration(config.Keys.ROOT)
 
-        const resultCfg = config.defaultConfig()
+        const resultCfg = config.defaultRawConfig()
+
         resultCfg.exportMarkdownPreviewStyle = cfg.get(config.Keys.MARKDOWN_PREVIEW_STYLE, resultCfg.exportMarkdownPreviewStyle)
         resultCfg.showUpdateNotifications = cfg.get(config.Keys.SHOW_UPDATE_NOTIFICATIONS, resultCfg.showUpdateNotifications)
         getCurrentThemeCfg(cfg, resultCfg.themeConfig)
@@ -168,38 +169,29 @@ function getCurrentCfg(): config.Config {
     }
 }
 
-function getCurrentThemeCfg(cfg: vscode.WorkspaceConfiguration, resultCfg: ThemeConfig) {
+function getCurrentThemeCfg(cfg: vscode.WorkspaceConfiguration, resultCfg: RawThemeConfig) {
     resultCfg.useItalics = cfg.get(config.Keys.ITALICS, resultCfg.useItalics)
     resultCfg.useUnderlined = cfg.get(config.Keys.UNDERLINED, resultCfg.useUnderlined)
-
-    const rawCommonColorOverrides: RawCommonColorOverrides = cfg.get(config.Keys.COMMON_COLOR_OVERRIDES, {})
-    mergeCommonColorOverrides(resultCfg.commonColorOverrides, rawCommonColorOverrides)
-
-    const rawEditorColorOverrides: RawEditorColorOverrides = cfg.get(config.Keys.EDITOR_COLOR_OVERRIDES, {})
-    mergeEditorColorOverrides(resultCfg.editorColorOverrides, rawEditorColorOverrides)
-
-    const rawUiColorOverrides: RawUiColorOverrides = cfg.get(config.Keys.UI_COLOR_OVERRIDES, {})
-    mergeUiColorOverrides(resultCfg.uiColorOverrides, rawUiColorOverrides)
-
-    const rawTokenColorOverrides: RawTokenColorOverrides = cfg.get(config.Keys.TOKENS_COLOR_OVERRIDES, {})
-    mergeTokenColorOverrides(resultCfg.tokensColorOverrides, rawTokenColorOverrides)
-
+    resultCfg.commonColorOverrides = cfg.get(config.Keys.COMMON_COLOR_OVERRIDES, resultCfg.commonColorOverrides)
+    resultCfg.uiColorOverrides = cfg.get(config.Keys.UI_COLOR_OVERRIDES, resultCfg.uiColorOverrides)
+    resultCfg.editorColorOverrides = cfg.get(config.Keys.EDITOR_COLOR_OVERRIDES, resultCfg.editorColorOverrides)
+    resultCfg.tokensColorOverrides = cfg.get(config.Keys.TOKENS_COLOR_OVERRIDES, resultCfg.tokensColorOverrides)
     resultCfg.extensionColors = cfg.get(config.Keys.EXTENSION_COLORS, resultCfg.extensionColors)
     resultCfg.colorOverridesBaseScheme = cfg.get(config.Keys.COLOR_OVERRIDES_BASE_SCHEME, resultCfg.colorOverridesBaseScheme)
 }
 
 type CfgReadResult = {
     exists: boolean,
-    cfg: config.Config
+    cfg: config.RawConfig
 }
 
 export async function readCfgFromFile(path: vscode.Uri): Promise<CfgReadResult> {
-    let cfg = config.defaultConfig()
+    let cfg = config.defaultRawConfig()
     let exists = true
     try {
         const contents = await vscode.workspace.fs.readFile(path)
         const cfgStr = new TextDecoder().decode(contents)
-        const readCfg = JSON.parse(cfgStr) as Partial<config.Config>
+        const readCfg = JSON.parse(cfgStr) as Partial<config.RawConfig>
         config.mergeConfig(cfg, readCfg)
     } catch (err) {
         if (err instanceof vscode.FileSystemError && err.code == "FileNotFound") {
@@ -213,7 +205,7 @@ export async function readCfgFromFile(path: vscode.Uri): Promise<CfgReadResult> 
     return { exists, cfg }
 }
 
-async function saveCfgToFile(cfg: config.Config, path: vscode.Uri) {
+async function saveCfgToFile(cfg: config.RawConfig, path: vscode.Uri) {
     try {
         const contents = new TextEncoder().encode(JSON.stringify(cfg))
         await vscode.workspace.fs.writeFile(path, contents)
@@ -222,11 +214,11 @@ async function saveCfgToFile(cfg: config.Config, path: vscode.Uri) {
     }
 }
 
-async function updateThemeFull(cfg: config.Config) {
+async function updateThemeFull(cfg: config.RawConfig) {
 
     let custom_theme: ThemeDef
     try {
-        custom_theme = createDarkTheme(cfg.themeConfig)
+        custom_theme = createDarkTheme(themeConfigFromRaw(cfg.themeConfig))
     } catch (err) {
         throw Error(`failed to create theme: ${(err as Error).toString()}`)
     }
@@ -249,13 +241,13 @@ async function generateThemeJson(custom_theme: ThemeDef) {
     }
 }
 
-async function generateAndUpdateMdStyle(custom_theme: ThemeDef, cfg: config.Config) {
+async function generateAndUpdateMdStyle(custom_theme: ThemeDef, cfg: config.RawConfig) {
     await generateMdStyleCss(custom_theme)
     // generation needs to finish before updating the contributed file
     await updateMdStyle(cfg)
 }
 
-async function updateMdStyle(cfg: config.Config) {
+async function updateMdStyle(cfg: config.RawConfig) {
     try {
         const dst = vscode.Uri.joinPath(extensionRoot, DIST_MDSTYLE_CSS_CONTRIB_PATH)
         if (cfg.exportMarkdownPreviewStyle) {

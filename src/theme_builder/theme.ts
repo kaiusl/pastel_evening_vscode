@@ -5,7 +5,7 @@
 import { Color } from "../color/color";
 import path from "path"
 import { DIST_THEMES_DIR } from "../common_defs";
-import { BaseColor, cloneThemeConfig, ColorOverride, CommonColorOverrides, DEF_THEME_CONFIG, DEF_THEME_CONFIG_V2, EditorColor, ExtensionColors, mergeThemeConfig, ThemeConfig, ThemeVariant, TokenColorOverride } from "./theme_config";
+import { BaseColor, cloneThemeConfig, ColorOverride, DEF_THEME_CONFIG, DEF_THEME_CONFIG_V2, EditorColor, ExtensionColors, mergeThemeConfig, ThemeConfig, ThemeVariant, TokenColorOverride } from "./theme_config";
 
 
 export enum ThemeKind {

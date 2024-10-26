@@ -11,8 +11,19 @@ export type ThemeConfig = {
     tokensColorOverrides: TokenColorOverrides
 }
 
+export type RawThemeConfig = {
+    useItalics: boolean
+    useUnderlined: boolean
+    extensionColors: ExtensionColors
+    colorOverridesBaseScheme: ThemeVariant
+    commonColorOverrides: RawCommonColorOverrides
+    uiColorOverrides: RawUiColorOverrides
+    editorColorOverrides: RawEditorColorOverrides
+    tokensColorOverrides: RawTokenColorOverrides
+}
+
 /** Merges `other` into `base`. */
-export function mergeThemeConfig(base: ThemeConfig, other: Partial<ThemeConfig>) {
+export function mergeThemeConfig<T extends ThemeConfig | RawThemeConfig>(base: T, other: Partial<T>) {
     if (other.useItalics != null) {
         base.useItalics = other.useItalics
     }
@@ -44,6 +55,27 @@ export function mergeThemeConfig(base: ThemeConfig, other: Partial<ThemeConfig>)
     if (other.tokensColorOverrides != null) {
         Object.assign(base.tokensColorOverrides, other.tokensColorOverrides)
     }
+}
+
+export function themeConfigFromRaw(raw: RawThemeConfig): ThemeConfig {
+    let result: ThemeConfig;
+
+    if (raw.colorOverridesBaseScheme === ThemeVariant.V2) {
+        result = cloneThemeConfig(DEF_THEME_CONFIG_V2)
+    } else {
+        result = cloneThemeConfig(DEF_THEME_CONFIG)
+    }
+
+    result.useItalics = raw.useItalics
+    result.useUnderlined = raw.useUnderlined
+    result.colorOverridesBaseScheme = raw.colorOverridesBaseScheme
+    result.extensionColors = raw.extensionColors
+    mergeCommonColorOverrides(result.commonColorOverrides, raw.commonColorOverrides)
+    mergeUiColorOverrides(result.uiColorOverrides, raw.uiColorOverrides)
+    mergeEditorColorOverrides(result.editorColorOverrides, raw.editorColorOverrides)
+    mergeTokenColorOverrides(result.tokensColorOverrides, raw.tokensColorOverrides)
+
+    return result
 }
 
 export enum ThemeVariant {
@@ -105,19 +137,19 @@ function isEditorColor(value: string): value is EditorColor {
 }
 
 /** Common color overrides */
-export type CommonColorOverrides = { [Property in BaseColor]: Color }
-export type RawCommonColorOverrides = { [Property in keyof CommonColorOverrides]?: string }
+type CommonColorOverrides = { [Property in BaseColor]: Color }
+type RawCommonColorOverrides = { [Property in keyof CommonColorOverrides]?: string }
 
 /** UI specific color overrides */
-export type UiColorOverrides = {
+type UiColorOverrides = {
     "accent background": ColorOverride
     "accent alt background"?: ColorOverride
     "accent foreground": ColorOverride
 }
-export type RawUiColorOverrides = { [Property in keyof UiColorOverrides]?: string }
+type RawUiColorOverrides = { [Property in keyof UiColorOverrides]?: string }
 
 /** Editor specific color overrides */
-export type EditorColorOverrides = {
+type EditorColorOverrides = {
     "selection background"?: ColorOverride
     "hover highlight background"?: ColorOverride
     "search match background"?: ColorOverride
@@ -126,10 +158,10 @@ export type EditorColorOverrides = {
     foreground2?: ColorOverride
     foreground4?: ColorOverride
 }
-export type RawEditorColorOverrides = { [Property in keyof EditorColorOverrides]?: string }
+type RawEditorColorOverrides = { [Property in keyof EditorColorOverrides]?: string }
 
 /** Code token specific color overrides */
-export type TokenColorOverrides = {
+type TokenColorOverrides = {
     keywords: TokenColorOverride
     functions: TokenColorOverride
     comments?: TokenColorOverride
@@ -149,9 +181,9 @@ export type TokenColorOverrides = {
     labels?: TokenColorOverride
     types: TokenColorOverride
 }
-export type RawTokenColorOverrides = { [Property in keyof TokenColorOverrides]?: string }
+type RawTokenColorOverrides = { [Property in keyof TokenColorOverrides]?: string }
 
-export function mergeCommonColorOverrides(base: CommonColorOverrides, raw: RawCommonColorOverrides) {
+function mergeCommonColorOverrides(base: CommonColorOverrides, raw: RawCommonColorOverrides) {
     const entries = Object.entries(raw) as [keyof typeof raw, string][]
     for (const [k, v] of entries) {
         try {
@@ -162,7 +194,7 @@ export function mergeCommonColorOverrides(base: CommonColorOverrides, raw: RawCo
     }
 }
 
-export function mergeUiColorOverrides(base: UiColorOverrides, raw: RawUiColorOverrides) {
+function mergeUiColorOverrides(base: UiColorOverrides, raw: RawUiColorOverrides) {
     const entries = Object.entries(raw) as [keyof typeof raw, string][]
     for (const [k, v] of entries) {
         const colorOverride = tryParseColorOverride(v)
@@ -172,7 +204,7 @@ export function mergeUiColorOverrides(base: UiColorOverrides, raw: RawUiColorOve
     }
 }
 
-export function mergeEditorColorOverrides(base: EditorColorOverrides, raw: RawEditorColorOverrides) {
+function mergeEditorColorOverrides(base: EditorColorOverrides, raw: RawEditorColorOverrides) {
     const entries = Object.entries(raw) as [keyof typeof raw, string][]
     for (const [k, v] of entries) {
         const colorOverride = tryParseColorOverride(v)
@@ -182,7 +214,7 @@ export function mergeEditorColorOverrides(base: EditorColorOverrides, raw: RawEd
     }
 }
 
-export function mergeTokenColorOverrides(base: TokenColorOverrides, raw: RawTokenColorOverrides) {
+function mergeTokenColorOverrides(base: TokenColorOverrides, raw: RawTokenColorOverrides) {
     const entries = Object.entries(raw) as [keyof typeof raw, string][]
     for (const [k, v] of entries) {
         const colorOverride = tryParseTokenColorOverride(v)
@@ -193,7 +225,7 @@ export function mergeTokenColorOverrides(base: TokenColorOverrides, raw: RawToke
 }
 
 // Tagged union of color overrides
-export type ColorOverrideKind = "Color" | "BaseColor" | "EditorColor";
+type ColorOverrideKind = "Color" | "BaseColor" | "EditorColor";
 interface IColorBase {
     readonly type: ColorOverrideKind,
 }
@@ -245,7 +277,7 @@ function tryParseTokenColorOverride(value: string): TokenColorOverride | null {
     return null
 }
 
-export const DEF_THEME_CONFIG: ThemeConfig = {
+export const DEF_RAW_THEME_CONFIG: RawThemeConfig = {
     useItalics: true,
     useUnderlined: true,
     extensionColors: {
@@ -254,6 +286,14 @@ export const DEF_THEME_CONFIG: ThemeConfig = {
         "Error Lens": true
     },
     colorOverridesBaseScheme: ThemeVariant.Original,
+    commonColorOverrides: {},
+    uiColorOverrides: {},
+    editorColorOverrides: {},
+    tokensColorOverrides: {}
+}
+
+export const DEF_THEME_CONFIG: ThemeConfig = {
+    ...DEF_RAW_THEME_CONFIG,
     commonColorOverrides: {
         background0: Color.from_hex("#1d1f27"),
         background1: Color.from_hex("#24262e"),
@@ -308,7 +348,8 @@ DEF_THEME_CONFIG_V2.tokensColorOverrides.types = { type: "BaseColor", value: "ye
 DEF_THEME_CONFIG_V2.tokensColorOverrides.attributes = { type: "BaseColor", value: "faint yellow" }
 DEF_THEME_CONFIG_V2.tokensColorOverrides.interfaces = { type: "BaseColor", value: "faint yellow" }
 
-export function cloneThemeConfig(cfg: ThemeConfig): ThemeConfig {
+
+export function cloneThemeConfig<T extends ThemeConfig | RawThemeConfig>(cfg: T): T {
     return {
         useItalics: cfg.useItalics,
         useUnderlined: cfg.useUnderlined,
@@ -318,5 +359,5 @@ export function cloneThemeConfig(cfg: ThemeConfig): ThemeConfig {
         uiColorOverrides: { ...cfg.uiColorOverrides },
         editorColorOverrides: { ...cfg.editorColorOverrides },
         tokensColorOverrides: { ...cfg.tokensColorOverrides }
-    }
+    } as T
 }

@@ -1,4 +1,4 @@
-import { cloneThemeConfig, DEF_THEME_CONFIG, DEF_THEME_CONFIG_V2, mergeThemeConfig, ThemeConfig } from "./theme_builder/theme_config"
+import { cloneThemeConfig, DEF_RAW_THEME_CONFIG, DEF_THEME_CONFIG, DEF_THEME_CONFIG_V2, mergeThemeConfig, RawThemeConfig, ThemeConfig } from "./theme_builder/theme_config"
 import { THEME_VERSION } from "./version"
 
 const CONFIG_VERSION = 2
@@ -26,8 +26,16 @@ export type Config = {
     themeConfig: ThemeConfig
 }
 
+export type RawConfig = {
+    exportMarkdownPreviewStyle: boolean
+    showUpdateNotifications: boolean
+    themeVersion: string
+    configVersion: number
+    themeConfig: RawThemeConfig
+}
 
-export function eqConfig(a: Config, b: Config): boolean {
+
+export function eqConfig<T extends Config | RawConfig>(a: T, b: T): boolean {
     return a.exportMarkdownPreviewStyle === b.exportMarkdownPreviewStyle
         && a.themeVersion === b.themeVersion
         && a.configVersion === b.configVersion
@@ -35,7 +43,7 @@ export function eqConfig(a: Config, b: Config): boolean {
         && JSON.stringify(a.themeConfig) === JSON.stringify(b.themeConfig)
 }
 
-export function mergeConfig(base: Config, other: Partial<Config>) {
+export function mergeConfig<T extends Config | RawConfig>(base: T, other: Partial<T>) {
     base.exportMarkdownPreviewStyle = other.exportMarkdownPreviewStyle ?? base.exportMarkdownPreviewStyle
     base.themeVersion = other.themeVersion ?? base.themeVersion
     base.configVersion = other.configVersion ?? base.configVersion
@@ -65,6 +73,13 @@ export function defaultConfig(): Config {
     return {
         ...DEF_CONFIG_PARTIAL,
         themeConfig: cloneThemeConfig(DEF_THEME_CONFIG)
+    }
+}
+
+export function defaultRawConfig(): RawConfig {
+    return {
+        ...DEF_CONFIG_PARTIAL,
+        themeConfig: cloneThemeConfig(DEF_RAW_THEME_CONFIG)
     }
 }
 
