@@ -5,134 +5,13 @@
 import { Color } from "../color/color";
 import path from "path"
 import { DIST_THEMES_DIR } from "../common_defs";
-import { Config, defaultConfigV2, ExtensionColors, mergeConfig, ThemeVariant } from "../config";
+import { BaseColor, cloneThemeConfig, ColorOverride, CommonColorOverrides, DEF_THEME_CONFIG, DEF_THEME_CONFIG_V2, EditorColor, ExtensionColors, mergeThemeConfig, ThemeConfig, ThemeVariant, TokenColorOverride } from "./theme_config";
 
-enum ThemeKind {
+
+export enum ThemeKind {
     DARK = "dark",
     LIGHT = "light"
 }
-
-type ThemeColors = {
-    bg0: Color;
-    bg1: Color;
-    bg2: Color;
-    bg3: Color;
-    bg4: Color;
-
-    fg0: Color;
-    fg1: Color;
-    fg2: Color;
-    fg3: Color;
-    fg4: Color;
-
-    accentBg: Color;
-    accentFg: Color;
-
-    searchMatchSelected: Color;
-    searchMatch: Color;
-
-    border: Color;
-    UiHover: Color;
-    scrollBarOpacity: number;
-    hoverOpacity: number;
-    activeOpacity: number;
-    dropBg: Color;
-
-    overlayBase: Color;
-    mutedOpacity: number;
-
-    diffBgOpacity: number;
-    diffGutterOpacity: number;
-    diffMarkerOpacity: number;
-
-    red: Color;
-    blue: Color;
-    green: Color;
-    yellow: Color;
-    faintYellow: Color;
-    lightOrange: Color;
-    limeGreen: Color;
-    orange: Color;
-    cyan: Color;
-    pink: Color;
-    purple: Color;
-
-    //
-    brightRed: Color;
-    brightGreen: Color;
-    brightBlue: Color;
-    brightYellow: Color;
-}
-
-const red = Color.from_hex("#faa2a0")
-const yellow = Color.from_hex("#efc785")
-const bg0 = Color.from_hex("#1d1f27")
-const fg2 = Color.from_hex("#a6aebe")
-const fg4 = Color.from_hex("#d3dbec")
-const darkColors: ThemeColors = {
-    bg0: bg0,
-    bg1: Color.from_hex("#24262e"),
-    bg2: Color.from_hex("#2b2d36"),
-    bg3: Color.from_hex("#33353d"),
-    bg4: Color.from_hex("#3b3d45"),
-    //
-    fg0: Color.from_hex("#7c8393"),
-    fg1: Color.from_hex("#9198a8"),
-    fg2: fg2,
-    fg3: Color.from_hex("#bcc4d5"),
-    fg4: fg4,
-    //
-    accentBg: Color.from_hex("#83cafb"),
-    accentFg: Color.from_hex("#1d1f27"),
-    //
-    searchMatchSelected: bg0,
-    searchMatch: red.overlayOpacity(0.1, bg0),
-    //
-    red: red,
-    blue: Color.from_hex("#83cafb"),
-    green: Color.from_hex("#8edca9"),
-    yellow: yellow,
-    faintYellow: Color.from_hex("#d2c6b2"),
-    lightOrange: Color.from_hex("#e0b490"),
-    limeGreen: Color.from_hex("#c4d083"),
-    orange: Color.from_hex("#f9a988"),
-    cyan: Color.from_hex("#6bd8dc"),
-    pink: Color.from_hex("#f9b0e1"),
-    purple: Color.from_hex("#c6b4fb"),
-    //
-    border: Color.BLACK.setAlpha(0.25),
-    UiHover: fg4,
-    scrollBarOpacity: 0.05,
-    hoverOpacity: 0.1,
-    activeOpacity: 0.2,
-    dropBg: fg4.setAlpha(0.1),
-
-    //
-    overlayBase: bg0,
-    mutedOpacity: 0.625,
-
-    diffBgOpacity: 0.05,
-    diffGutterOpacity: 0.1,
-    diffMarkerOpacity: 0.25,
-
-    //
-    brightRed: Color.from_hex("#fe7577"),
-    brightGreen: Color.from_hex("#1ceb96"),
-    brightBlue: Color.from_hex("#49b8fe"),
-    brightYellow: Color.from_hex("#fec257"),
-}
-
-function tryColorFromHexStr(s?: string): Color | null {
-    if (s == undefined) {
-        return null
-    }
-    try {
-        return Color.from_hex(s)
-    } catch (e) {
-        return null
-    }
-}
-
 /** Complete theme definition. */
 export class ThemeDef {
 
@@ -140,8 +19,7 @@ export class ThemeDef {
         fileName: string,
         displayName: string,
         kind: ThemeKind,
-        colors: ThemeColors,
-        cfg: Config
+        cfg: ThemeConfig
     ) {
         this.fileName = fileName;
         this.displayName = displayName;
@@ -151,77 +29,77 @@ export class ThemeDef {
         this.italics = cfg.useItalics;
         this.underlined = cfg.useUnderlined;
 
-        this.bgColor0 = tryColorFromHexStr(cfg.commonColorOverrides.background0) ?? colors.bg0;
-        this.bgColor1 = tryColorFromHexStr(cfg.commonColorOverrides.background1) ?? colors.bg1;
-        this.bgColor2 = tryColorFromHexStr(cfg.commonColorOverrides.background2) ?? colors.bg2;
-        this.bgColor3 = tryColorFromHexStr(cfg.commonColorOverrides.background3) ?? colors.bg3;
-        this.bgColor4 = tryColorFromHexStr(cfg.commonColorOverrides.background4) ?? colors.bg4;
+        this.bgColor0 = cfg.commonColorOverrides.background0;
+        this.bgColor1 = cfg.commonColorOverrides.background1;
+        this.bgColor2 = cfg.commonColorOverrides.background2;
+        this.bgColor3 = cfg.commonColorOverrides.background3;
+        this.bgColor4 = cfg.commonColorOverrides.background4;
 
-        this.fgColor0 = tryColorFromHexStr(cfg.commonColorOverrides.foreground0) ?? colors.fg0;
-        this.fgColor1 = tryColorFromHexStr(cfg.commonColorOverrides.foreground1) ?? colors.fg1;
-        this.fgColor2 = tryColorFromHexStr(cfg.commonColorOverrides.foreground2) ?? colors.fg2;
-        this.fgColor3 = tryColorFromHexStr(cfg.commonColorOverrides.foreground3) ?? colors.fg3;
-        this.fgColor4 = tryColorFromHexStr(cfg.commonColorOverrides.foreground4) ?? colors.fg4;
+        this.fgColor0 = cfg.commonColorOverrides.foreground0;
+        this.fgColor1 = cfg.commonColorOverrides.foreground1;
+        this.fgColor2 = cfg.commonColorOverrides.foreground2;
+        this.fgColor3 = cfg.commonColorOverrides.foreground3;
+        this.fgColor4 = cfg.commonColorOverrides.foreground4;
 
-        this.red = tryColorFromHexStr(cfg.commonColorOverrides.red) ?? colors.red;
-        this.blue = tryColorFromHexStr(cfg.commonColorOverrides.blue) ?? colors.blue;
-        this.green = tryColorFromHexStr(cfg.commonColorOverrides.green) ?? colors.green;
-        this.yellow = tryColorFromHexStr(cfg.commonColorOverrides.yellow) ?? colors.yellow;
-        this.lightOrange = tryColorFromHexStr(cfg.commonColorOverrides["light orange"]) ?? colors.lightOrange;
-        this.limeGreen = tryColorFromHexStr(cfg.commonColorOverrides["lime green"]) ?? colors.limeGreen;
-        this.faintYellow = tryColorFromHexStr(cfg.commonColorOverrides["faint yellow"]) ?? colors.faintYellow;
-        this.orange = tryColorFromHexStr(cfg.commonColorOverrides.orange) ?? colors.orange;
-        this.cyan = tryColorFromHexStr(cfg.commonColorOverrides.cyan) ?? colors.cyan;
-        this.pink = tryColorFromHexStr(cfg.commonColorOverrides.pink) ?? colors.pink;
-        this.purple = tryColorFromHexStr(cfg.commonColorOverrides.purple) ?? colors.purple;
-        this.brightRed = colors.brightRed;
-        this.brightGreen = colors.brightGreen;
-        this.brightBlue = colors.brightBlue;
-        this.brightYellow = colors.brightYellow;
+        this.red = cfg.commonColorOverrides.red;
+        this.blue = cfg.commonColorOverrides.blue;
+        this.green = cfg.commonColorOverrides.green;
+        this.yellow = cfg.commonColorOverrides.yellow;
+        this.lightOrange = cfg.commonColorOverrides["light orange"];
+        this.limeGreen = cfg.commonColorOverrides["lime green"];
+        this.faintYellow = cfg.commonColorOverrides["faint yellow"];
+        this.orange = cfg.commonColorOverrides.orange;
+        this.cyan = cfg.commonColorOverrides.cyan;
+        this.pink = cfg.commonColorOverrides.pink;
+        this.purple = cfg.commonColorOverrides.purple;
+        this.brightRed = cfg.commonColorOverrides["bright red"];
+        this.brightGreen = cfg.commonColorOverrides["bright green"];
+        this.brightBlue = cfg.commonColorOverrides["bright blue"];
+        this.brightYellow = cfg.commonColorOverrides["bright yellow"];
 
-        this.accentBgColor = this.tryColorFromStr(cfg.uiColorOverrides["accent background"]) ?? colors.accentBg;
-        this.accentFgColor = this.tryColorFromStr(cfg.uiColorOverrides["accent foreground"]) ?? colors.accentFg;
-        this.accentAltBgColor = this.tryColorFromStr(cfg.uiColorOverrides["accent alt background"]) ?? this.accentBgColor.darken(0.15).desaturate(0.5);
+        this.accentBgColor = this.resolveColor(cfg.uiColorOverrides["accent background"]);
+        this.accentFgColor = this.resolveColor(cfg.uiColorOverrides["accent foreground"]);
+        this.accentAltBgColor = this.resolveOptionalColor(cfg.uiColorOverrides["accent alt background"]) ?? this.accentBgColor.darken(0.15).desaturate(0.5);
 
-        this.searchMatchSelectedBgColor = this.tryColorFromStr(cfg.editorColorOverrides["search match selected background"]) ?? colors.searchMatchSelected;
-        this.searchMatchBgColor = this.tryColorFromStr(cfg.editorColorOverrides["search match background"]) ?? colors.searchMatch;
-        this.selectionBgColor = this.tryColorFromStr(cfg.editorColorOverrides["selection background"]) ?? this.blue.setAlpha(0.2);
-        this.editorHoverHighlightBgColor = this.tryColorFromStr(cfg.editorColorOverrides["hover highlight background"]) ?? this.yellow.setAlpha(0.15);
+        this.searchMatchSelectedBgColor = this.resolveOptionalColor(cfg.editorColorOverrides["search match selected background"]) ?? this.bgColor0;
+        this.searchMatchBgColor = this.resolveOptionalColor(cfg.editorColorOverrides["search match background"]) ?? this.red.overlayOpacity(0.1, this.bgColor0);
+        this.selectionBgColor = this.resolveOptionalColor(cfg.editorColorOverrides["selection background"]) ?? this.blue.setAlpha(0.2);
+        this.editorHoverHighlightBgColor = this.resolveOptionalColor(cfg.editorColorOverrides["hover highlight background"]) ?? this.yellow.setAlpha(0.15);
 
-        this.borderColor = colors.border;
-        this.hoverColor = colors.UiHover;
-        this.scrollBarOpacity = colors.scrollBarOpacity;
-        this.hoverOpacity = colors.hoverOpacity;
-        this.activeOpacity = colors.activeOpacity;
-        this.dropBgColor = colors.dropBg;
-        this.overlayBaseColor = colors.overlayBase;
-        this.mutedOpacity = colors.mutedOpacity;
-        this.diffBgOpacity = colors.diffBgOpacity;
-        this.diffGutterOpacity = colors.diffGutterOpacity;
-        this.diffMarkerOpacity = colors.diffMarkerOpacity;
+        this.borderColor = this.bgColor0.setAlpha(0.25);
+        this.hoverColor = this.fgColor4;
+        this.scrollBarOpacity = 0.05;
+        this.hoverOpacity = 0.1;
+        this.activeOpacity = 0.2;
+        this.dropBgColor = this.fgColor4.setAlpha(0.1);
+        this.overlayBaseColor = this.bgColor0;
+        this.mutedOpacity = 0.625;
+        this.diffBgOpacity = 0.05;
+        this.diffGutterOpacity = 0.1;
+        this.diffMarkerOpacity = 0.25;
 
-        this.codeFgColor0 = this.tryColorFromStr(cfg.editorColorOverrides.foreground0) ?? this.fgColor0;
-        this.codeFgColor2 = this.tryColorFromStr(cfg.editorColorOverrides.foreground2) ?? this.fgColor2;
-        this.codeFgColor4 = this.tryColorFromStr(cfg.editorColorOverrides.foreground4) ?? this.fgColor4;
+        this.codeFgColor0 = this.resolveOptionalColor(cfg.editorColorOverrides.foreground0) ?? this.fgColor0;
+        this.codeFgColor2 = this.resolveOptionalColor(cfg.editorColorOverrides.foreground2) ?? this.fgColor2;
+        this.codeFgColor4 = this.resolveOptionalColor(cfg.editorColorOverrides.foreground4) ?? this.fgColor4;
 
-        this.commentsColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.comments) ?? this.codeFgColor0;
-        this.keywordsColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.keywords) ?? this.red;
-        this.literalsColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.literals) ?? this.lightOrange;
-        this.literalsColor2 = this.tryTokenColorFromStr(cfg.tokensColorOverrides["literals alt"]) ?? this.orange;
-        this.stringsColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.strings) ?? this.literalsColor;
-        this.stringEscapesColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides["string escapes"]) ?? this.literalsColor2;
-        this.numbersColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.numbers) ?? this.literalsColor;
-        this.namespacesColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.namespaces) ?? this.codeFgColor2;
-        this.localVariablesColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides["local variables"]) ?? this.codeFgColor2;
-        this.specialVariablesColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides["special variables"]) ?? this.codeFgColor4;
-        this.enumMembersColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides["enum members"]) ?? this.specialVariablesColor;
-        this.operatorsColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.operators) ?? this.codeFgColor2;
-        this.punctuationsColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.punctuations) ?? this.codeFgColor2;
-        this.interfacesColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.interfaces) ?? this.yellow;
-        this.attributesColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.attributes) ?? this.yellow;
-        this.labelsColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.labels) ?? this.orange;
-        this.typesColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.types) ?? this.green;
-        this.functionsColor = this.tryTokenColorFromStr(cfg.tokensColorOverrides.functions) ?? this.blue;
+        this.commentsColor = this.resolveOptionalTokenColor(cfg.tokensColorOverrides.comments) ?? this.codeFgColor0;
+        this.keywordsColor = this.resolveTokenColor(cfg.tokensColorOverrides.keywords);
+        this.literalsColor = this.resolveTokenColor(cfg.tokensColorOverrides.literals);
+        this.literalsColor2 = this.resolveTokenColor(cfg.tokensColorOverrides["literals alt"]);
+        this.stringsColor = this.resolveOptionalTokenColor(cfg.tokensColorOverrides.strings) ?? this.literalsColor;
+        this.stringEscapesColor = this.resolveOptionalTokenColor(cfg.tokensColorOverrides["string escapes"]) ?? this.literalsColor2;
+        this.numbersColor = this.resolveOptionalTokenColor(cfg.tokensColorOverrides.numbers) ?? this.literalsColor;
+        this.namespacesColor = this.resolveTokenColor(cfg.tokensColorOverrides.namespaces);
+        this.localVariablesColor = this.resolveTokenColor(cfg.tokensColorOverrides["local variables"]);
+        this.specialVariablesColor = this.resolveTokenColor(cfg.tokensColorOverrides["special variables"]);
+        this.enumMembersColor = this.resolveTokenColor(cfg.tokensColorOverrides["enum members"]);
+        this.operatorsColor = this.resolveOptionalTokenColor(cfg.tokensColorOverrides.operators) ?? this.codeFgColor2;
+        this.punctuationsColor = this.resolveOptionalTokenColor(cfg.tokensColorOverrides.punctuations) ?? this.codeFgColor2;
+        this.interfacesColor = this.resolveTokenColor(cfg.tokensColorOverrides.interfaces);
+        this.attributesColor = this.resolveTokenColor(cfg.tokensColorOverrides.attributes);
+        this.labelsColor = this.resolveOptionalTokenColor(cfg.tokensColorOverrides.labels) ?? this.orange;
+        this.typesColor = this.resolveTokenColor(cfg.tokensColorOverrides.types);
+        this.functionsColor = this.resolveTokenColor(cfg.tokensColorOverrides.functions);
 
         this.themeDistPath = path.join(DIST_THEMES_DIR, this.fileName + ".json")
     }
@@ -307,107 +185,136 @@ export class ThemeDef {
 
     themeDistPath: string;
 
-    tryColorFromStr(s?: string): Color | null {
-        const c = tryColorFromHexStr(s)
-        if (c === null && s !== undefined) {
-            switch (s) {
-                case 'background0':
-                    return this.bgColor0
-                case 'background1':
-                    return this.bgColor1
-                case 'background2':
-                    return this.bgColor2
-                case 'background3':
-                    return this.bgColor3
-                case 'background4':
-                    return this.bgColor4
 
-                case 'foreground0':
-                    return this.fgColor0
-                case 'foreground1':
-                    return this.fgColor1
-                case 'foreground2':
-                    return this.fgColor2
-                case 'foreground3':
-                    return this.fgColor3
-                case 'foreground4':
-                    return this.fgColor4
-
-                case 'red':
-                    return this.red
-                case 'blue':
-                    return this.blue
-                case 'green':
-                    return this.green
-                case 'yellow':
-                    return this.yellow
-                case 'faint yellow':
-                    return this.faintYellow
-                case 'light orange':
-                    return this.lightOrange
-                case 'lime green':
-                    return this.limeGreen
-                case 'orange':
-                    return this.orange
-                case 'cyan':
-                    return this.cyan
-                case 'pink':
-                    return this.pink
-                case 'purple':
-                    return this.purple
-                default:
-                    return null
-            }
-        } else {
-            return c
+    resolveColor(c: ColorOverride): Color {
+        switch (c.type) {
+            case "Color":
+                return c.value
+            case "BaseColor":
+                return this.resolveBaseColor(c.value)
         }
     }
 
-    tryTokenColorFromStr(s?: string): Color | null {
-        const c = this.tryColorFromStr(s)
-        if (c === null && s !== undefined) {
-            switch (s) {
-                case 'editor.foreground0':
-                    return this.codeFgColor0
-                case 'editor.foreground2':
-                    return this.codeFgColor2
-                case 'editor.foreground4':
-                    return this.codeFgColor4
-                default:
-                    return null
-            }
-        } else {
-            return c
+    resolveOptionalColor(c?: ColorOverride): Color | null {
+        if (c === null || c === undefined) {
+            return null
+        }
+
+        return this.resolveColor(c)
+    }
+
+    resolveBaseColor(c: BaseColor): Color {
+        switch (c) {
+            case "red":
+                return this.red
+            case "blue":
+                return this.blue
+            case "green":
+                return this.green
+            case "yellow":
+                return this.yellow
+            case "faint yellow":
+                return this.faintYellow
+            case "light orange":
+                return this.lightOrange
+            case "lime green":
+                return this.limeGreen
+            case "orange":
+                return this.orange
+            case "cyan":
+                return this.cyan
+            case "pink":
+                return this.pink
+            case "purple":
+                return this.purple
+
+            case "bright red":
+                return this.brightRed
+            case "bright green":
+                return this.brightGreen
+            case "bright blue":
+                return this.brightBlue
+            case "bright yellow":
+                return this.brightYellow
+
+            case "background0":
+                return this.bgColor0
+            case "background1":
+                return this.bgColor1
+            case "background2":
+                return this.bgColor2
+            case "background3":
+                return this.bgColor3
+            case "background4":
+                return this.bgColor4
+
+            case "foreground0":
+                return this.fgColor0
+            case "foreground1":
+                return this.fgColor1
+            case "foreground2":
+                return this.fgColor2
+            case "foreground3":
+                return this.fgColor3
+            case "foreground4":
+                return this.fgColor4
+        }
+    }
+
+    resolveTokenColor(c: TokenColorOverride): Color {
+        switch (c.type) {
+            case "Color":
+                return c.value;
+            case "EditorColor":
+                return this.resolveEditorColor(c.value);
+            case "BaseColor":
+                return this.resolveBaseColor(c.value);
+        }
+    }
+
+    resolveOptionalTokenColor(c?: TokenColorOverride): Color | null {
+        if (c === null || c === undefined) {
+            return null
+        }
+
+        return this.resolveTokenColor(c)
+    }
+
+    resolveEditorColor(c: EditorColor): Color {
+        switch (c) {
+            case "editor.foreground0":
+                return this.codeFgColor0
+            case "editor.foreground2":
+                return this.codeFgColor2
+            case "editor.foreground4":
+                return this.codeFgColor4
         }
     }
 }
 
 export function createDarkThemeV2(): ThemeDef {
-    const cfg = defaultConfigV2();
-
     return new ThemeDef(
         "pastel_evening_dark_v2",
         "Pastel Evening Dark #2",
         ThemeKind.DARK,
-        darkColors,
-        cfg
+        DEF_THEME_CONFIG_V2
     )
 }
 
-
-export function createDarkTheme(user_cfg: Config): ThemeDef {
-    let cfg: Config
+export function createDarkTheme(user_cfg: ThemeConfig): ThemeDef {
+    let cfg: ThemeConfig
     if (user_cfg.colorOverridesBaseScheme === ThemeVariant.V2) {
-        cfg = mergeConfig(defaultConfigV2(), user_cfg)
+        cfg = cloneThemeConfig(DEF_THEME_CONFIG_V2)
     } else {
-        cfg = user_cfg;
+        cfg = cloneThemeConfig(DEF_THEME_CONFIG)
     }
+
+    mergeThemeConfig(cfg, user_cfg);
 
     return new ThemeDef(
         "pastel_evening_dark",
         "Pastel Evening Dark",
         ThemeKind.DARK,
-        darkColors,
         cfg
     )
 }

@@ -7,8 +7,7 @@ import { buildColorSchemeMd } from '../theme_builder/color_scheme_md';
 import { DIST_DIR, DIST_MDSTYLE_CSS_CONST_THEMED_PATH, DIST_MDSTYLE_CSS_CONTRIB_PATH, DIST_MDSTYLE_CSS_THEMED_PATH, DIST_MDSTYLE_DIR, DIST_THEMES_DIR } from '../common_defs';
 import { buildMdstyleCss, buildMdstyleCssSingle } from '../theme_builder/mdstyle';
 import { buildThemeJson, createAllConstThemes, createDarkTheme } from '../theme_builder/theme';
-import { defaultConfig } from '../config';
-
+import { DEF_THEME_CONFIG } from '../theme_builder/theme_config';
 
 for (const dir of [DIST_DIR, DIST_THEMES_DIR, DIST_MDSTYLE_DIR]) {
     if (!fs.existsSync(dir)) {
@@ -16,8 +15,7 @@ for (const dir of [DIST_DIR, DIST_THEMES_DIR, DIST_MDSTYLE_DIR]) {
     }
 }
 
-const cfg = defaultConfig();
-const theme = createDarkTheme(cfg);
+const theme = createDarkTheme(DEF_THEME_CONFIG);
 const themes = createAllConstThemes();
 for (const t of [...themes, theme]) {
     const json = buildThemeJson(t);
