@@ -12,10 +12,10 @@ class ColorParseError extends Error {
 }
 
 export class Color {
-    r: number
-    g: number
-    b: number
-    a: number
+    readonly r: number
+    readonly g: number
+    readonly b: number
+    readonly a: number
 
     /**
      * 
@@ -69,10 +69,6 @@ export class Color {
         }
     }
 
-    public clone(): Color {
-        return new Color(this.r, this.g, this.b, this.a)
-    }
-
     public setAlpha(a: number): Color {
         return new Color(this.r, this.g, this.b, a)
     }
@@ -120,21 +116,15 @@ export class Color {
     }
 
     public addRed(amount: number): Color {
-        const c = this.clone()
-        c.r = clamp(c.r + amount, 0, 1)
-        return c
+        return new Color(clamp(this.r + amount, 0, 1), this.g, this.b, this.a)
     }
 
     public addGreen(amount: number): Color {
-        const c = this.clone()
-        c.g = clamp(c.g + amount, 0, 1)
-        return c
+        return new Color(this.r, clamp(this.g + amount, 0, 1), this.b, this.a)
     }
 
     public addBlue(amount: number): Color {
-        const c = this.clone()
-        c.b = clamp(c.b + amount, 0, 1)
-        return c
+        return new Color(this.r, this.g, clamp(this.b + amount, 0, 1), this.a)
     }
 
     public toHex(fmt?: string): string {
