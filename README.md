@@ -7,7 +7,7 @@ We provide two variants of the theme as a base with options to easily customize 
 ### Pastel Evening Dark (original)
 ![](resources/example_rust.png)
 
-### Pastel Evening Dark #2
+### Pastel Evening Dark 2
 ![](resources/example_rust_v2.png)
 
 
@@ -19,7 +19,7 @@ Short summary about colors and their meaning is below. Note however that it's po
 
 Additionally static variables and methods are in *italic* (where possible). 
 Mutable variables are underlined in languages where mutable variables are special, like Rust and Kotlin. 
-See [Pastel Evening Dark color scheme] and [Pastel Evening Dark #2 color scheme] for more details about the color scheme.
+See [Pastel Evening Dark color scheme] and [Pastel Evening Dark 2 color scheme] for more details about the color scheme.
 
 It is recommended to use this theme with semantic highlighting. 
 It will work without it as well, but may miss some colors.
@@ -45,13 +45,13 @@ Check out the extension settings in VSCode itself, they should be relatively sel
 Also you can see the next section for some examples.
 
 Note that customization only apply to the main theme variant `Pastel Evening Dark`, 
-they don't apply to any of the other variants like `Pastel Evening Dark #2`.
+they don't apply to any of the other variants like `Pastel Evening Dark 2`.
 However you can select the base theme for customization using `pastelEveningTheme.colorOverrides.baseScheme` option.
 For example
 ```json
-"pastelEveningTheme.colorOverrides.baseScheme": "Pastel Evening Dark #2"
+"pastelEveningTheme.colorOverrides.baseScheme": "Pastel Evening Dark 2"
 ```
-to use `Pastel Evening Dark #2` variant as base.
+to use `Pastel Evening Dark 2` variant as base.
 
 
 ### Custom variants
@@ -67,10 +67,10 @@ The settings are given as a json so you can easily copy them to your `settings.j
     ```
     ![](resources/example_rust2.png)
 
-* Variant #2 with lime green interfaces for a bit more contrast
+* Variant 2 with lime green interfaces for a bit more contrast
 
     ```json
-    "pastelEveningTheme.colorOverrides.baseScheme": "Pastel Evening Dark #2",
+    "pastelEveningTheme.colorOverrides.baseScheme": "Pastel Evening Dark 2",
     "pastelEveningTheme.colorOverrides.tokens": {
         "interfaces": "lime green",
     }
@@ -113,5 +113,5 @@ Editor's UI style is inspired by [Lapce] editor's default dark theme.
 [Gatito Theme]: https://marketplace.visualstudio.com/items?itemName=pawelgrzybek.gatito-theme
 [Lapce]: https://lapce.dev/
 [Pastel Evening Dark color scheme]: https://github.com/kaiusl/pastel_evening_vscode/blob/main/ColorScheme_pastel_evening_dark.md
-[Pastel Evening Dark #2 color scheme]: https://github.com/kaiusl/pastel_evening_vscode/blob/main/ColorScheme_pastel_evening_dark_v2.md
+[Pastel Evening Dark 2 color scheme]: https://github.com/kaiusl/pastel_evening_vscode/blob/main/ColorScheme_pastel_evening_dark_v2.md
 [CONTRIBUTING.md]: https://github.com/kaiusl/pastel_evening_vscode/blob/main/CONTRIBUTING.md

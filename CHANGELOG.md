@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Changed
+
+* Rename `Pastel Evening Dark #2` to `Pastel Evening Dark 2` because VSCode Marketplace renders #2 part as GitHub issue.
+
 ## [0.5.0] - 2024-10-27
 
 ### Added

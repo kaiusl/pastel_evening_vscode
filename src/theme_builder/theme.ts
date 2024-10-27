@@ -294,8 +294,8 @@ export class ThemeDef {
 
 export function createDarkThemeV2(): ThemeDef {
     return new ThemeDef(
-        "pastel_evening_dark_v2",
-        "Pastel Evening Dark #2",
+        "pastel_evening_dark_2",
+        "Pastel Evening Dark 2",
         ThemeKind.DARK,
         DEF_THEME_CONFIG_V2
     )

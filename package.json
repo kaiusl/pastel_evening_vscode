@@ -56,9 +56,9 @@
         "path": "./dist/themes/pastel_evening_dark.json"
       },
       {
-        "label": "Pastel Evening Dark #2",
+        "label": "Pastel Evening Dark 2",
         "uiTheme": "vs-dark",
-        "path": "./dist/themes/pastel_evening_dark_v2.json"
+        "path": "./dist/themes/pastel_evening_dark_2.json"
       }
     ],
     "markdown.previewStyles": [
@@ -129,7 +129,7 @@
             "order": 0,
             "enum": [
               "Pastel Evening Dark",
-              "Pastel Evening Dark #2"
+              "Pastel Evening Dark 2"
             ],
             "default": "Pastel Evening Dark",
             "markdownDescription": "The base color scheme for customization. *This only applies to 'Pastel Evening Dark' variant.*"

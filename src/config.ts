@@ -146,7 +146,7 @@ export function configFromRaw(raw: RawConfig): Config {
 
 export enum ThemeVariant {
     Original = "Pastel Evening Dark",
-    V2 = "Pastel Evening Dark #2",
+    V2 = "Pastel Evening Dark 2",
 }
 
 export type ExtensionColors = {
