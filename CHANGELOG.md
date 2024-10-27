@@ -6,9 +6,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.5.1] - 2024-10-27
+
 ### Changed
 
-* Rename `Pastel Evening Dark #2` to `Pastel Evening Dark 2` because VSCode Marketplace renders #2 part as GitHub issue.
+* Rename `Pastel Evening Dark #2` to `Pastel Evening Dark 2` because VSCode Marketplace renders #2 part as GitHub issue
+  and that messes up config examples in readme.
 
 ## [0.5.0] - 2024-10-27
 
@@ -181,7 +184,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Initial release
 
-[Unreleased]: https://github.com/kaiusl/pastel_evening_vscode/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/kaiusl/pastel_evening_vscode/compare/v0.5.1...HEAD
+[0.5.1]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.5.1
 [0.5.0]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.5.0
 [0.4.3]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.4.3
 [0.4.2]: https://github.com/kaiusl/pastel_evening_vscode/releases/tag/v0.4.2
