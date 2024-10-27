@@ -5,7 +5,7 @@
 import { Color } from "../color/color";
 import path from "path"
 import { DIST_THEMES_DIR } from "../common_defs";
-import { BaseColor, cloneThemeConfig, ColorOverride, DEF_THEME_CONFIG, DEF_THEME_CONFIG_V2, EditorColor, ExtensionColors, mergeThemeConfig, ThemeConfig, ThemeVariant, TokenColorOverride } from "./theme_config";
+import { BaseColor, cloneConfig, ColorOverride, DEF_THEME_CONFIG, DEF_THEME_CONFIG_V2, EditorColor, ExtensionColors, mergeThemeConfig, ThemeConfig, ThemeVariant, TokenColorOverride } from "../config";
 
 
 export enum ThemeKind {
@@ -304,9 +304,9 @@ export function createDarkThemeV2(): ThemeDef {
 export function createDarkTheme(user_cfg: ThemeConfig): ThemeDef {
     let cfg: ThemeConfig
     if (user_cfg.colorOverridesBaseScheme === ThemeVariant.V2) {
-        cfg = cloneThemeConfig(DEF_THEME_CONFIG_V2)
+        cfg = cloneConfig(DEF_THEME_CONFIG_V2)
     } else {
-        cfg = cloneThemeConfig(DEF_THEME_CONFIG)
+        cfg = cloneConfig(DEF_THEME_CONFIG)
     }
 
     mergeThemeConfig(cfg, user_cfg);
