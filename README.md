@@ -2,7 +2,7 @@
 
 Dark theme with pastel colors and a slight blue hint to the editor.
 
-We provide two variants of the theme as a base with options to easily customize the theme.
+We provide two variants of the theme as a base with options to easily customize them.
 
 ### Pastel Evening Dark (original)
 ![](resources/example_rust.png)
@@ -19,7 +19,7 @@ Short summary about colors and their meaning is below. Note however that it's po
 
 Additionally static variables and methods are in *italic* (where possible). 
 Mutable variables are underlined in languages where mutable variables are special, like Rust and Kotlin. 
-See [ColorScheme] and [ColorScheme #2] for more details about the color scheme.
+See [Pastel Evening Dark color scheme] and [Pastel Evening Dark #2 color scheme] for more details about the color scheme.
 
 It is recommended to use this theme with semantic highlighting. 
 It will work without it as well, but may miss some colors.
@@ -54,7 +54,7 @@ For example
 to use `Pastel Evening Dark #2` variant as base.
 
 
-### Variants
+### Custom variants
 
 Below are a set of configurations you may be interested in trying out.
 The settings are given as a json so you can easily copy them to your `settings.json`.
@@ -112,6 +112,6 @@ Editor's UI style is inspired by [Lapce] editor's default dark theme.
 [Panda Syntax]: https://marketplace.visualstudio.com/items?itemName=tinkertrain.theme-panda
 [Gatito Theme]: https://marketplace.visualstudio.com/items?itemName=pawelgrzybek.gatito-theme
 [Lapce]: https://lapce.dev/
-[ColorScheme]: https://github.com/kaiusl/pastel_evening_vscode/blob/main/ColorScheme_pastel_evening_dark.md
-[ColorScheme #2]: https://github.com/kaiusl/pastel_evening_vscode/blob/main/ColorScheme_pastel_evening_dark_v2.md
+[Pastel Evening Dark color scheme]: https://github.com/kaiusl/pastel_evening_vscode/blob/main/ColorScheme_pastel_evening_dark.md
+[Pastel Evening Dark #2 color scheme]: https://github.com/kaiusl/pastel_evening_vscode/blob/main/ColorScheme_pastel_evening_dark_v2.md
 [CONTRIBUTING.md]: https://github.com/kaiusl/pastel_evening_vscode/blob/main/CONTRIBUTING.md

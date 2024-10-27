@@ -109,7 +109,7 @@ Main uses:
 | match background           | #1d1f27 | currently selected match                       |
 | match highlight            | #5b3f42 | other matches                                  |
 
-* Use subtle borders darker than the inner area usually #00000040.
+* Use subtle borders darker than the inner area usually #1d1f2740.
 * Hover is slightly lighter, focused slightly lighter than that.
 
 If possible and it looks good, try to use colors from code section for yellows, greens etc.
