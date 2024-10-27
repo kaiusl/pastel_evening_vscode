@@ -411,7 +411,7 @@ export const DEF_THEME_CONFIG: Readonly<ThemeConfig> = {
         "special variables": { type: "EditorColor", value: "editor.foreground4" },
         "enum members": { type: "EditorColor", value: "editor.foreground4" },
         interfaces: { type: "BaseColor", value: "yellow" },
-        attributes: { type: "BaseColor", value: "faint yellow" },
+        attributes: { type: "BaseColor", value: "yellow" },
         types: { type: "BaseColor", value: "green" }
     }
 }
